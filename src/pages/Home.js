@@ -14,9 +14,7 @@ function Home() {
                     <h1>Food Website</h1>
                     <p>Best Food In VietNamese</p>
                     <Link to='/menu'> <Button startIcon={<ReplyIcon sx={{fontSize: 'inherit'}} />}>Order Now</Button></Link>
-                   
                 </div>
-                
             </div>
         </Layout>
         </>

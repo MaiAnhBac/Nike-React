@@ -14,10 +14,10 @@ function Footer() {
                     cursor: "pointer",
                     mr: 2,
                 }}}>
-                    <InstagramIcon />
-                    <TwitterIcon />
-                    <GitHubIcon />
-                    <YouTubeIcon />
+                    <InstagramIcon sx={{borderRadius:'10px',background: '#ea4c89',transition: 'all 1s', '&:hover': {opacity: '0.8', transform: 'scale(1.4)'}}} />
+                    <TwitterIcon sx={{borderRadius:'10px',background: '#1da1f2', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />
+                    <GitHubIcon sx={{borderRadius:'10px',background: 'black', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />
+                    <YouTubeIcon sx={{borderRadius:'10px',background: '#EA4335', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />
                 </Box>
                 <Typography variant="h6" sx={{
                     "@media (max-width: 600px)": { fontSize: "1rem"}

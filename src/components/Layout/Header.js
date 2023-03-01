@@ -1,6 +1,4 @@
-import {useState} from 'react'
-import { AppBar, Box, Drawer, IconButton, Toolbar, Typography} from '@mui/material'
-import FastfoodIcon from "@mui/icons-material/Fastfood"
+import { AppBar, Box, IconButton, Toolbar, Typography} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import {Link, NavLink} from 'react-router-dom';
 import '../../styles/HeaderStyles.css'
@@ -16,8 +14,6 @@ function Header() {
                             <MenuIcon />
                         </IconButton>
                         <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            {/* <FastfoodIcon /> */}
-                            {/* My Restaurant */}
                             <Link to={'/'}><img src={logo} alt="logo" height={'70'} width={150}/></Link>
                         </Typography>
                         <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -33,6 +29,9 @@ function Header() {
                                 </li>
                                 <li>
                                     <NavLink to="/contact">Contact</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/login">Login</NavLink>
                                 </li>
                             </ul>
                         </Box>
