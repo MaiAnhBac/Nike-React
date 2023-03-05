@@ -19,14 +19,14 @@
     font-weight: bold;
     font-size: 70px;
     font-family: 'Poppins' , sans-serif ;
-    color: white;
+    color: blacks;
 }
 .home .headerContainer p {
     margin-top: 15px;
     padding: 0;
     font-size: 40px;
     font-weight: lighter;
-    color: whitesmoke;
+    color: black;
 }
 .home .headerContainer a {
     text-decoration: none;

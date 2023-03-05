@@ -19,7 +19,7 @@ function Contact() {
                 <Typography sx={{marginBottom: "20px"}}><TextField id="outlined-multiline-static" label="Message" multiline rows={4} fullWidth/></Typography>
                 <Typography><Button variant="contained" endIcon={<SendIcon />} sx={{padding: "10px 35px", fontSize: "17px", background: "green"}}>Send</Button></Typography>
             </Box>
-            <Box sx={{m: 3, ml: 10, mr: 10, "@media (max-width:600px)": {width: "380px",}}}>
+            <Box sx={{m: 3, ml: 10, mr: 10, "@media (max-width: 600px)": { mr: 10}}}>
                 <TableContainer component={Paper}>
                     <Table aria-label="contact table">
                         <TableHead>

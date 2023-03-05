@@ -29,6 +29,7 @@ import Cachua from '../images/epcachua.jpg'
 
 export const MenuList = [
     {
+        productID: 1,
         child: 'Bò',
         name: 'Ẩm thực Việt',
         description: 'Ẩm thực Việt thì còn nói gì nữa',
@@ -36,6 +37,7 @@ export const MenuList = [
         price: 1340,
     },
     {
+        productID: 2,
         child: 'Ngô',
         name: 'Ẩm thực Ngô',
         description: 'Ngon, mềm, mịn',
@@ -43,6 +45,7 @@ export const MenuList = [
         price: 1240,
     },
     {
+        productID: 3,
         child: 'Bò',
         name: 'Ẩm thực Pháp',
         description: 'Ngon, mềm, mịn, đặc sản',
@@ -50,6 +53,7 @@ export const MenuList = [
         price: 1140,
     },
     {
+        productID: 4,
         child: 'Bò',
         name: 'Bò Nướng',
         description: 'Nóng cay giòn, thơm phức',
@@ -57,6 +61,7 @@ export const MenuList = [
         price: 1330,
     },
     {
+        productID: 5,
         child: 'Trái cây',
         name: 'Trái cây',
         description: 'Trái cây tươi, ngon, ngọt lịm',
@@ -64,6 +69,7 @@ export const MenuList = [
         price: 700,
     },
     {
+        productID: 6,
         child: 'Bò',
         name: 'Bò sốt',
         description: 'Bò sốt Mỹ đậm đà hương vị, ăn 1 phải ăn 2',
@@ -71,6 +77,7 @@ export const MenuList = [
         price: 1300,
     },
     {
+        productID: 7,
         child: 'Tôm',
         name: 'Tôm Hùm',
         description: 'Tôm hùm to nhiều thịt, ăn đậm đà, 1 con phải 2 người ăn ',
@@ -78,6 +85,7 @@ export const MenuList = [
         price: 1500,
     },
     {
+        productID: 8,
         child: 'Đồ uống',
         name: 'Ép cà rốt',
         description: 'Ép nguyên chất từ quả',
@@ -85,6 +93,7 @@ export const MenuList = [
         price: 400,
     },
     {
+        productID: 9,
         child: 'Bò',
         name: 'Bò Mỹ',
         description: 'Cùng là Bò Mỹ nhưng món ăn này khác biệt hoàn toàn so với Bò sốt',
@@ -92,6 +101,7 @@ export const MenuList = [
         price: 1400,
     },
     {
+        productID: 10,
         child: 'Cua',
         name: 'Cua Hoàng Đế',
         description: 'Cua Hoàng đế số lượng người ăn phải tới 5 tới 6 người',
@@ -99,6 +109,7 @@ export const MenuList = [
         price: 2000,
     },
     {
+        productID: 11,
         child: 'Bánh',
         name: 'Bánh mềm tráng miệng',
         description: 'Khi ăn món xong, quý khách ăn thử món này để thưởng thức hương vị tuyệt vời này',
@@ -106,6 +117,7 @@ export const MenuList = [
         price: 1100,
     },
     {
+        productID: 12,
         child: 'Trái cây',
         name: 'Trái cây tráng miệng',
         description: 'Khi ăn món xong, quý khách ăn thử món này để thưởng thức hương vị tuyệt vời này',
@@ -113,6 +125,7 @@ export const MenuList = [
         price: 1100,
     },
     {
+        productID: 13,
         child: 'Chả',
         name: 'Chả mực',
         description: 'Chả mực được lấy từ Nhật Bản, khá ít số lượng',
@@ -120,6 +133,7 @@ export const MenuList = [
         price: 400,
     },
     {
+        productID: 14,
         child: 'Bò',
         name: 'Món ăn Nhật Bản',
         description: 'Món này được lấy từ công thức của Nhật Bản, khiến món ăn trở lên hấp dẫn hơn',
@@ -127,6 +141,7 @@ export const MenuList = [
         price: 1200,
     },
     {
+        productID: 15,
         child: 'Cá',
         name: 'Cá hồi',
         description: 'Cá hồi có thể ăn sống hoặc ăn chín, tùy vào người dùng thưởng thức món ăn',
@@ -134,6 +149,7 @@ export const MenuList = [
         price: 800,
     },
     {
+        productID: 16,
         child: 'Cá',
         name: 'Fish',
         description: 'Cá sốt cà chua, thơm ngon, tươi, làm liền ăn liền, nóng hổi',
@@ -141,6 +157,7 @@ export const MenuList = [
         price: 1000,
     },
     {
+        productID: 17,
         child: 'Thịt',
         name: 'Thịt Hấp Nướng',
         description: 'Thịt hấp được chiên trước khi hấp khiến độ giòn tan, ngọt lịm, thịt mềm, không dai, ăn là phải biết',
@@ -148,6 +165,7 @@ export const MenuList = [
         price: 500,
     },
     {
+        productID: 18,
         child: 'Đồ uống',
         name: 'Ép ổi',
         description: 'Ép nguyên chất từ quả',
@@ -155,6 +173,7 @@ export const MenuList = [
         price: 400,
     },
     {
+        productID: 19,
         child: 'Thịt',
         name: 'Thịt Nướng Giòn Tan',
         description: 'Thịt được nướng bằng bếp than, kết hợp với các thứ rau củ quả, làm rất là công phu, thịt được nướng rất kỹ nhưng không bị cháy',
@@ -162,6 +181,7 @@ export const MenuList = [
         price: 400,
     },
     {
+        productID: 20,
         child: 'Thịt',
         name: 'Thịt Nướng kết hợp Lòng Nướng',
         description: 'Thịt được nướng từ Lò Vi Sóng, kết hợp ăn với Lòng Nướng, rất là ngon',
@@ -169,6 +189,7 @@ export const MenuList = [
         price: 600,
     },
     {
+        productID: 21,
         child: 'Bánh',
         name: 'Bánh Chiên ',
         description: 'Bánh chiên rất giòn bên trong có nhân khoai lang kết hợp với nước chấm, đậm đà hương vị tuyệt vời, ăn một lần phải muốn ăn lần hai',
@@ -176,6 +197,7 @@ export const MenuList = [
         price: 700,
     },
     {
+        productID: 22,
         child: 'Khoai',
         name: 'Khoai Lang Chiên',
         description: 'Khoai được chiên khi gọi món, đảm bảo không bị ỉu trước khi ăn',
@@ -183,6 +205,7 @@ export const MenuList = [
         price: 200,
     },
     {
+        productID: 23,
         child: 'Đồ uống',
         name: 'Ép dứa',
         description: 'Ép nguyên chất',
@@ -190,6 +213,7 @@ export const MenuList = [
         price: 300,
     },
     {
+        productID: 24,
         child: 'Chả',
         name: 'Chả Ram',
         description: 'Chả Ram được gói từ trước, trong gồm nhiều thứ kết hợp lại với nhau, và được chiên giòn khi ăn, đảm bảo chấm với nước chấm gọi EZ',
@@ -197,6 +221,7 @@ export const MenuList = [
         price: 800,
     },
     {
+        productID: 25,
         child: 'Sushi',
         name: 'Sushi',
         description: 'Món ăn SuShi Hàn Quốc được làm rất là tỉ mi, khi ăn được kết hợp với mù tạt phải gọi là ngon tuyệt ',
@@ -204,6 +229,7 @@ export const MenuList = [
         price: 1200,
     },
     {
+        productID: 26,
         child: 'Đồ uống',
         name: 'Ép cà chua',
         description: 'Ép nguyên chất từ quả',
@@ -211,6 +237,7 @@ export const MenuList = [
         price: 400,
     },
     {
+        productID: 27,
         child: 'Hamburger',
         name: 'Hamburger',
         description: 'Nóng cay giòn, thơm phức',
@@ -218,6 +245,7 @@ export const MenuList = [
         price: 40,
     },
     {
+        productID: 28,
         child: 'Hamburger',
         name: 'Hamburger-DiaDui',
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',

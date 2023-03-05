@@ -24,16 +24,16 @@ function Login() {
     return ( 
         <>
             <Layout>
-                <Grid textAlign={'center'} sx={{padding: 6}}>
+                <Grid textAlign={'center'} sx={{my: 8}}>
                     <Paper elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 style={{fontWeight: 'bold'}}>Create Account</h2>
                             <Typography sx={{mt: 2}}>Hey, Enter your details to get create <br/> account to your</Typography>
                         </Grid>
                         <form style={{display: 'flex', flexDirection: 'column'}}>
-                            <TextField id="outlined-name" label="Name" variant="outlined" sx={{mt: 3}} />
-                            <TextField id="outlined-name" label="Enter Email/Phone No" variant="outlined" sx={{my: 3}} />
-                            <FormControl variant="outlined" sx={{mb: 2}}>
+                            <TextField id="outlined-name" label="Name" variant="outlined" sx={{mt: 3}} required />
+                            <TextField id="outlined-name" label="Enter Email/Phone No" variant="outlined" sx={{my: 3}} required />
+                            <FormControl variant="outlined" sx={{mb: 2}} required>
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
@@ -53,7 +53,7 @@ function Login() {
                                     label="Password"
                                 />
                              </FormControl>
-                             <FormControl variant="outlined" sx={{mb: 2}}>
+                             <FormControl variant="outlined" sx={{mb: 2}} required>
                                 <InputLabel htmlFor="outlined-adornment-confirmpassword">Confirm Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-confirmpassword"

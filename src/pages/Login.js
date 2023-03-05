@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import {Checkbox,Button,TextField,Grid, Paper, Typography} from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
@@ -17,10 +17,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import Alert  from "@mui/material/Alert";
 function Login() {
-    const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
+    const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px',"@media (max-width: 600px)": {width: '400px', '& h2': {fontSize: '10px'}}}
     const [open, setOpen] = useState(false)
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [useName, setUseName] = useState([])
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -35,11 +36,11 @@ function Login() {
     }
     const onConfirmLogin = (e) => {
         e.preventDefault();
-        if( email === 'user' && password === '123'){
+        if (email === useName.email && password === useName.password) {
             setOpen(false)
             navigate('/menu')
         }
-        else  {
+        else {
             setOpen(true)
         }
     }
@@ -49,19 +50,29 @@ function Login() {
         }
         setOpen(false);
       };
+    useEffect(() => {
+        fetch('https://dummyjson.com/users/1')
+            .then((res) => res.json())
+            .then((data) => {
+                setUseName(data)
+            })
+            .catch((err) => {
+                console.error("Error:", err)
+            })
+    }, [])
     
     return ( 
         <>
             <Layout>
-                <Grid textAlign={'center'} sx={{padding: 16}}>
+                <Grid textAlign={'center'} sx={{my: 18, "@media (max-width: 600px)": {my: 10} }}>
                     <Paper elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 style={{fontWeight: 'bold'}}>Sign In</h2>
                             <Typography sx={{mt: 2}}>Hey, Enter your details to get sign in <br /> to your account</Typography>
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
-                            <TextField id="outlined-name" value={email} onChange={handleEmail} name="username" label="Enter Email/Phone No" variant="outlined" sx={{ my: 3 }} />
-                            <FormControl variant="outlined" sx={{mb: 2}}>
+                            <TextField id="outlined-name" value={email} onChange={handleEmail} name="username" label="Enter Email/Phone No" variant="outlined" sx={{ my: 3 }} required />
+                            <FormControl variant="outlined" sx={{mb: 2}} required>
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password" name="password" value={password} onChange={handlePassword}

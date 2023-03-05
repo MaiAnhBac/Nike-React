@@ -6,9 +6,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { Link } from "react-router-dom";
 function Menu() {
     const [selected, setSelected] = useState('')
-    const handleChange = (event) => {
-        setSelected(event.target.value)
-        console.log(event.target.value)
+    const handleChange = (e) => {
+        setSelected(e.target.value)
+        console.log(e.target.value)
     }
     return (
         <Layout>
@@ -19,7 +19,7 @@ function Menu() {
                         <Select value={selected} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select" label="Chọn lọc" sx={{width: '300px', mt: '10px'}}>
                             {MenuList.filter((obj, index) =>
                                 MenuList.findIndex((item) => item.child === obj.child) === index).map((menu, index) => (
-                                    <MenuItem value={menu.child} key={index}>{menu.child}</MenuItem>
+                                    <MenuItem value={menu.productID} key={index}>{menu.child}</MenuItem>
                                 ))}
                         </Select>
                     </FormControl>
