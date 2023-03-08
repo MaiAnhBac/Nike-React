@@ -8,6 +8,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: covers;
+    background-image: url('../images/banner1.jpg');
 }
 .home .headerContainer{
     width: auto;
@@ -19,7 +20,7 @@
     font-weight: bold;
     font-size: 70px;
     font-family: 'Poppins' , sans-serif ;
-    color: blacks;
+    color: black;
 }
 .home .headerContainer p {
     margin-top: 15px;
@@ -96,6 +97,7 @@
     .home{
         justify-content: center;
         align-items: center;
+        background-image: url('../images/poster1.jpg');
     }
     .headerContainer{
         margin-left: 0;

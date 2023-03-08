@@ -1,16 +1,15 @@
 import { Button } from "@mui/material";
 import Layout from "../components/Layout/Layout";
 import {Link} from 'react-router-dom'
-import Banner1 from '../images/ez2.jpg'
-import Banner from '../images/banner1.jpg'
 import "../styles/HomeStyles.css"
 import ReplyIcon from '@mui/icons-material/Reply';
+
 
 function Home() {
     return ( 
         <>
         <Layout>
-            <div className="home" style={{backgroundImage: `url(${Banner})`}}>
+            <div className="home">
                 <div className="headerContainer">
                     <h1>Food Website</h1>
                     <p>Best Food In VietNamese</p>

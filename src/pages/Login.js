@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import {loginAndGetToken} from '../data/API'
+import { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import {Checkbox,Button,TextField,Grid, Paper, Typography} from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
@@ -13,15 +14,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link, useNavigate } from "react-router-dom";
-import Snackbar from '@mui/material/Snackbar';
-import Alert  from "@mui/material/Alert";
+import {Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert'
 function Login() {
-    const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px',"@media (max-width: 600px)": {width: '400px', '& h2': {fontSize: '10px'}}}
-    const [open, setOpen] = useState(false)
+    const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [useName, setUseName] = useState([])
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -36,35 +34,21 @@ function Login() {
     }
     const onConfirmLogin = (e) => {
         e.preventDefault();
-        if (email === useName.email && password === useName.password) {
-            setOpen(false)
-            navigate('/menu')
-        }
-        else {
-            setOpen(true)
-        }
+        loginAndGetToken(email, password).then(token =>{
+            if(token.username === email){
+                swal("Login!", "You clicked the button!", "success");
+                localStorage.setItem('user', JSON.stringify(token))
+                navigate('/menu')
+            }
+            else{
+                swal("Login Failed!", "You clicked the button!", "error");
+            }
+        })
     }
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setOpen(false);
-      };
-    useEffect(() => {
-        fetch('https://dummyjson.com/users/1')
-            .then((res) => res.json())
-            .then((data) => {
-                setUseName(data)
-            })
-            .catch((err) => {
-                console.error("Error:", err)
-            })
-    }, [])
-    
     return ( 
         <>
             <Layout>
-                <Grid textAlign={'center'} sx={{my: 18, "@media (max-width: 600px)": {my: 10} }}>
+                <Grid textAlign={'center'} sx={{my: 18 }}>
                     <Paper elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 style={{fontWeight: 'bold'}}>Sign In</h2>
@@ -92,20 +76,11 @@ function Login() {
                                     label="Password"
                                 />
                              </FormControl>
-                            <Typography sx={{display: 'flex'}}>
+                            <div style={{display: 'flex'}}>
                                 <Checkbox icon={<FavoriteBorderIcon />} checkedIcon={<FavoriteIcon sx={{color: '#FF9933'}} />} />
                                 <Typography sx={{ mt: 1 }}>Remember me</Typography>
-                            </Typography>
+                            </div>
                             <Button variant="contained" type="submit" sx={{background: '#FF9933', my: 3, p: 1.5, borderRadius: '14px'}}>Sign In</Button>
-                            {open ? <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-                                <Alert severity="error" sx={{ width: '100%' }} onClose={handleClose}>
-                                    This is a error message!
-                                </Alert>
-                            </Snackbar> : <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-                                <Alert severity="success" sx={{ width: '100%' }} onClose={handleClose}>
-                                    This is a success message!
-                                </Alert>
-                            </Snackbar>}
                             <Typography>--- Or Sign up with ---</Typography>
                             <Typography>
                                 <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold', '&:hover': {border: '1px solid #FF9933', background: 'white'} }}>Google</Button>

@@ -14,9 +14,15 @@ function Contact() {
             <Box sx={{ my: 10, ml: 10,mr: 10, mb: 10, "& h4": { fontWeight: "bold", mb: 2, color: "green" } }}>
                 <Typography variant="h4">Contact <span className="span-title">My Restaurant</span></Typography>
                 <p className="p-title">Please fill out the form below to contact us</p>
-                <Typography sx={{marginBottom: "20px"}}><TextField label="Name" id="name" fullWidth /></Typography>
-                <Typography sx={{marginBottom: "20px"}}><TextField label="Email" id="email" fullWidth /></Typography>
-                <Typography sx={{marginBottom: "20px"}}><TextField id="outlined-multiline-static" label="Message" multiline rows={4} fullWidth/></Typography>
+                <div style={{ marginBottom: '20px' }}>
+                    <TextField label="Name" id="name" fullWidth />
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                    <TextField label="Email" id="email" fullWidth />
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                    <TextField id="outlined-multiline-static" label="Message" multiline rows={4} fullWidth />
+                </div>
                 <Typography><Button variant="contained" endIcon={<SendIcon />} sx={{padding: "10px 35px", fontSize: "17px", background: "green"}}>Send</Button></Typography>
             </Box>
             <Box sx={{m: 3, ml: 10, mr: 10, "@media (max-width: 600px)": { mr: 10}}}>

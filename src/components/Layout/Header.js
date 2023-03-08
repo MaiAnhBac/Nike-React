@@ -4,7 +4,11 @@ import {Link, NavLink} from 'react-router-dom';
 import '../../styles/HeaderStyles.css'
 import logo from '../../images/food.png'
 import { useState } from 'react';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 function Header() {
+    const userLogin = JSON.parse(localStorage.getItem('user')) || null
     const [mobileOpen, setMobileOpen] = useState(false)
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
@@ -12,26 +16,29 @@ function Header() {
     const drawer = (
         <Box  sx={{textAlign: 'center'}}>
             <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            <Link to={'/'}><img src={logo} alt="logo" height={'70'} width={150}/></Link>
-                        </Typography>
-                        <Divider />
-                            <ul className='mobile-navigation'>
-                                <li>
-                                    <NavLink activeClassName="active" to="/">Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/menu">Menu</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/about">About</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/contact">Contact</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/login">Login</NavLink>
-                                </li>
-                            </ul>
+                <Link to={'/'}><img src={logo} alt="logo" height={'70'} width={150} /></Link>
+            </Typography>
+            <Divider />
+            <ul className='mobile-navigation'>
+                <li>
+                    <NavLink activeClassName="active" to="/">Home</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/menu">Menu</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/about">About</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/contact">Contact</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/shoppingcart"><ShoppingCartIcon /></NavLink>
+                </li>
+                <li>
+                    {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}
+                </li>
+            </ul>
         </Box>
     )
     return ( 
@@ -60,7 +67,10 @@ function Header() {
                                     <NavLink to="/contact">Contact</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/login">Login</NavLink>
+                                    <NavLink to="/shoppingcart"><ShoppingCartIcon /></NavLink>
+                                </li>
+                                <li>
+                                    {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}
                                 </li>
                             </ul>
                         </Box>

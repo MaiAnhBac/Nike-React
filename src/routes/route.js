@@ -5,6 +5,8 @@ import Contact from '../pages/Contact';
 import Menu from '../pages/Menu'
 import Register from '../pages/Register';
 import Pagenotfound from '../pages/Pagenotfound'
+import ShoppingCart from '../pages/ShoppingCart'
+import Logout from '../pages/Logout'
 const publicRoutes = [
     {path: '/', component: Home},
     {path: '/about', component: About},
@@ -12,7 +14,9 @@ const publicRoutes = [
     {path: '/register', component: Register},
     {path: '/pagenotfound', component: Pagenotfound},
     {path: '/contact', component: Contact},
-    {path: '/menu', component: Menu}
+    {path: '/menu', component: Menu},
+    {path: '/shoppingcart', component: ShoppingCart},
+    {path: '/logout', component: Logout}
 ]
 
 const privateRoutes = []
