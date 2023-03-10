@@ -1,3 +1,4 @@
+import {useSelector} from 'react-redux';
 import { AppBar, Box, Divider, Drawer, IconButton, Toolbar, Typography} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import {Link, NavLink} from 'react-router-dom';
@@ -7,8 +8,10 @@ import { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import Badge from '@mui/material/Badge';
 function Header() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
+    const {cart} = useSelector((item) => item.user)
     const [mobileOpen, setMobileOpen] = useState(false)
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
@@ -33,7 +36,11 @@ function Header() {
                     <NavLink to="/contact">Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/shoppingcart"><ShoppingCartIcon /></NavLink>
+                    <NavLink to="/shoppingcart">
+                        <Badge color="secondary" badgeContent={cart.length}>
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </NavLink>
                 </li>
                 <li>
                     {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}
@@ -67,7 +74,11 @@ function Header() {
                                     <NavLink to="/contact">Contact</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/shoppingcart"><ShoppingCartIcon /></NavLink>
+                                    <NavLink to="/shoppingcart">
+                                        <Badge color="secondary" badgeContent={cart.length}>
+                                            <ShoppingCartIcon />
+                                        </Badge>
+                                    </NavLink>
                                 </li>
                                 <li>
                                     {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}

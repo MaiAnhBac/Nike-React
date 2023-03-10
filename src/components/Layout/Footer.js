@@ -22,7 +22,7 @@ function Footer() {
                 <Typography variant="h6" sx={{
                     "@media (max-width: 600px)": { fontSize: "1rem"}
                 }}>
-                    All Rights Reserved copy by TMA Solitions Bình Định
+                    All Rights Reserved copy by TMA Solutions Bình Định
                 </Typography>
             </Box>
        </>

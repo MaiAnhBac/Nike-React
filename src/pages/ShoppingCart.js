@@ -1,4 +1,5 @@
 import { Typography, Box, CardMedia, Grid, Button, IconButton } from '@mui/material';
+import {Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,9 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Layout from "../components/Layout/Layout";
-import Cachua from '../images/epcachua.jpg'
 import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from '@mui/material/Checkbox';
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import { RemoveCart } from "../redux/cartSystem";
+import swal from 'sweetalert'
 function ShoppingCart() {
+    const {cart} = useSelector((item) => item.user)
+    const dispatch = useDispatch()
     return ( 
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
@@ -23,65 +30,35 @@ function ShoppingCart() {
                                 <Table>
                                     <TableHead >
                                         <TableRow>
+                                            <TableCell><Checkbox /></TableCell>
                                             <TableCell sx={{ fontWeight: 'bold' }}>Product</TableCell>
                                             <TableCell align="right" sx={{ fontWeight: 'bold' }}>Price</TableCell>
                                             <TableCell align="right" sx={{ fontWeight: 'bold' }}>Quantity</TableCell>
                                             <TableCell align="right" sx={{ fontWeight: 'bold' }}>Total</TableCell>
-                                            <TableCell align="right" sx={{ fontWeight: 'bold' }}></TableCell>
+                                            <TableCell align="right" sx={{ fontWeight: 'bold' }}>Operation</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        <TableRow>
-                                            <TableCell sx={{ display: 'flex' }}>
-                                                <CardMedia src={Cachua} component={'img'} sx={{ maxWidth: '250px' }} />
-                                                <Box sx={{ m: 5 }}>
-                                                    <Typography variant='h5' sx={{ fontWeight: 'bold', color: 'green' }}>Cà chua</Typography>
-                                                    <Typography> Cà chua tươi ngon mới được nhập</Typography>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">1</TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">
-                                                <IconButton>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell sx={{ display: 'flex' }}>
-                                                <CardMedia src={Cachua} component={'img'} sx={{ maxWidth: '250px' }} />
-                                                <Box sx={{ m: 5 }}>
-                                                    <Typography variant='h5' sx={{ fontWeight: 'bold', color: 'green' }}>Cà chua</Typography>
-                                                    <Typography> Cà chua tươi ngon mới được nhập</Typography>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">1</TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">
-                                                <IconButton>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell sx={{ display: 'flex' }}>
-                                                <CardMedia src={Cachua} component={'img'} sx={{ maxWidth: '250px' }} />
-                                                <Box sx={{ m: 5 }}>
-                                                    <Typography variant='h5' sx={{ fontWeight: 'bold', color: 'green' }}>Cà chua</Typography>
-                                                    <Typography> Cà chua tươi ngon mới được nhập</Typography>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">1</TableCell>
-                                            <TableCell align="right">$9.99</TableCell>
-                                            <TableCell align="right">
-                                                <IconButton>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </TableCell>
-                                        </TableRow>
+                                        {cart.map(carts => (
+                                            <TableRow key={carts.productID}>
+                                                <TableCell sx={{width: 0}}><Checkbox defaultChecked/></TableCell>
+                                                <TableCell sx={{ display: 'flex' }}>
+                                                    <CardMedia src={carts.image} component={'img'} sx={{ maxWidth: '250px', maxHeight: '150px' }} />
+                                                    <Box sx={{ m: 5 }}>
+                                                        <Typography variant='h5' sx={{ fontWeight: 'bold', color: 'green' }}>{carts.name}</Typography>
+                                                        <Typography> {carts.description}</Typography>
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell align="right">${carts.price}</TableCell>
+                                                <TableCell align="center">{carts.amount}</TableCell>
+                                                <TableCell align="right" sx={{color: 'red', fontWeight: 'bold'}}>${carts.price * carts.amount} </TableCell>
+                                                <TableCell align="right">
+                                                    <IconButton onClick={() => {dispatch(RemoveCart(carts)); swal("Delete To Cart", "You clicked the button!", "success");}}>
+                                                        <DeleteIcon />
+                                                    </IconButton>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -101,13 +78,15 @@ function ShoppingCart() {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell align="left">Total</TableCell>
-                                        <TableCell align="left" sx={{color: 'red', fontWeight: 'bold'}}>$400</TableCell>
+                                        <TableCell align="left" sx={{color: 'red', fontWeight: 'bold', fontSize: '18px'}}>$400</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>
                         <Grid item xs={12} sx={{ textAlign: 'right' }}>
-                            <Button variant="contained" color="secondary" sx={{ m: 2 }}>Continue</Button>
+                            <Link to={'/menu'} style={{ textDecoration: 'none' }} >
+                                <Button variant="contained" color="secondary" sx={{ m: 2 }}>Continue</Button>
+                            </Link>
                             <Button variant="contained" color="primary" >Checkout</Button>
                         </Grid>
                     </Grid>

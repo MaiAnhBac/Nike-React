@@ -70,6 +70,7 @@ export const MenuList = [
         description: 'Ẩm thực Việt thì còn nói gì nữa',
         image: Viet,
         price: 1340,
+        quantity: 10
     },
     {
         productID: 2,
@@ -78,6 +79,7 @@ export const MenuList = [
         description: 'Ngon, mềm, mịn',
         image: CaRan,
         price: 1240,
+        quantity: 10
     },
     {
         productID: 3,
@@ -86,6 +88,7 @@ export const MenuList = [
         description: 'Ngon, mềm, mịn, đặc sản',
         image: Phap,
         price: 1140,
+        quantity: 10
     },
     {
         productID: 4,
@@ -94,6 +97,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức',
         image: Bonuong,
         price: 1330,
+        quantity: 10
     },
     {
         productID: 5,
@@ -102,6 +106,7 @@ export const MenuList = [
         description: 'Trái cây tươi, ngon, ngọt lịm',
         image: Traicay,
         price: 700,
+        quantity: 10
     },
     {
         productID: 6,
@@ -110,6 +115,7 @@ export const MenuList = [
         description: 'Bò sốt Mỹ đậm đà hương vị, ăn 1 phải ăn 2',
         image: Bosot,
         price: 1300,
+        quantity: 10
     },
     {
         productID: 7,
@@ -118,6 +124,7 @@ export const MenuList = [
         description: 'Tôm hùm to nhiều thịt, ăn đậm đà, 1 con phải 2 người ăn ',
         image: Tomhum,
         price: 1500,
+        quantity: 10
     },
     {
         productID: 8,
@@ -126,6 +133,7 @@ export const MenuList = [
         description: 'Ép nguyên chất từ quả',
         image: Carot,
         price: 400,
+        quantity: 10
     },
     {
         productID: 9,
@@ -134,6 +142,7 @@ export const MenuList = [
         description: 'Cùng là Bò Mỹ nhưng món ăn này khác biệt hoàn toàn so với Bò sốt',
         image: Bomi,
         price: 1400,
+        quantity: 10
     },
     {
         productID: 10,
@@ -142,6 +151,7 @@ export const MenuList = [
         description: 'Cua Hoàng đế số lượng người ăn phải tới 5 tới 6 người',
         image: Cuahoangde,
         price: 2000,
+        quantity: 10
     },
     {
         productID: 11,
@@ -150,6 +160,7 @@ export const MenuList = [
         description: 'Khi ăn món xong, quý khách ăn thử món này để thưởng thức hương vị tuyệt vời này',
         image: Montrang,
         price: 1100,
+        quantity: 10
     },
     {
         productID: 12,
@@ -158,6 +169,7 @@ export const MenuList = [
         description: 'Khi ăn món xong, quý khách ăn thử món này để thưởng thức hương vị tuyệt vời này',
         image: Montrang2,
         price: 1100,
+        quantity: 10
     },
     {
         productID: 13,
@@ -166,6 +178,7 @@ export const MenuList = [
         description: 'Chả mực được lấy từ Nhật Bản, khá ít số lượng',
         image: Chamuc,
         price: 400,
+        quantity: 10
     },
     {
         productID: 14,
@@ -174,6 +187,7 @@ export const MenuList = [
         description: 'Thích là nhích thôi, ngại gì không thử',
         image: BiaKen,
         price: 1200,
+        quantity: 10
     },
     {
         productID: 15,
@@ -182,6 +196,7 @@ export const MenuList = [
         description: 'Cá hồi có thể ăn sống hoặc ăn chín, tùy vào người dùng thưởng thức món ăn',
         image: Cahoi,
         price: 800,
+        quantity: 10
     },
     {
         productID: 16,
@@ -190,6 +205,7 @@ export const MenuList = [
         description: 'Cá sốt cà chua, thơm ngon, tươi, làm liền ăn liền, nóng hổi',
         image: Ca,
         price: 1000,
+        quantity: 10
     },
     {
         productID: 17,
@@ -198,6 +214,7 @@ export const MenuList = [
         description: 'Thịt hấp được chiên trước khi hấp khiến độ giòn tan, ngọt lịm, thịt mềm, không dai, ăn là phải biết',
         image: hap,
         price: 500,
+        quantity: 10
     },
     {
         productID: 18,
@@ -206,6 +223,7 @@ export const MenuList = [
         description: 'Ép nguyên chất từ quả',
         image: Oi,
         price: 400,
+        quantity: 10
     },
     {
         productID: 19,
@@ -214,6 +232,7 @@ export const MenuList = [
         description: 'Thịt được nướng bằng bếp than, kết hợp với các thứ rau củ quả, làm rất là công phu, thịt được nướng rất kỹ nhưng không bị cháy',
         image: Thit,
         price: 400,
+        quantity: 10
     },
     {
         productID: 20,
@@ -222,6 +241,7 @@ export const MenuList = [
         description: 'Thịt được nướng từ Lò Vi Sóng, kết hợp ăn với Lòng Nướng, rất là ngon',
         image: Long,
         price: 600,
+        quantity: 10
     },
     {
         productID: 21,
@@ -230,6 +250,7 @@ export const MenuList = [
         description: 'Bánh chiên rất giòn bên trong có nhân khoai lang kết hợp với nước chấm, đậm đà hương vị tuyệt vời, ăn một lần phải muốn ăn lần hai',
         image: Chien,
         price: 700,
+        quantity: 10
     },
     {
         productID: 22,
@@ -238,6 +259,7 @@ export const MenuList = [
         description: 'Khoai được chiên khi gọi món, đảm bảo không bị ỉu trước khi ăn',
         image: Khoai,
         price: 200,
+        quantity: 10
     },
     {
         productID: 23,
@@ -246,6 +268,7 @@ export const MenuList = [
         description: 'Ép nguyên chất',
         image: Dua,
         price: 300,
+        quantity: 10
     },
     {
         productID: 24,
@@ -254,6 +277,7 @@ export const MenuList = [
         description: 'Chả Ram gồm nhiều thứ kết hợp lại với nhau, chiên giòn khi ăn, ăn kèm với nước chấm',
         image: Ram,
         price: 800,
+        quantity: 10
     },
     {
         productID: 25,
@@ -262,6 +286,7 @@ export const MenuList = [
         description: 'Món ăn Cá Hàn Quốc được làm rất là tỉ mi, khi ăn được kết hợp với mù tạt phải gọi là ngon tuyệt ',
         image: CaSot,
         price: 1200,
+        quantity: 10
     },
     {
         productID: 26,
@@ -270,6 +295,7 @@ export const MenuList = [
         description: 'Ép nguyên chất từ quả',
         image: Cachua,
         price: 400,
+        quantity: 10
     },
     {
         productID: 27,
@@ -278,6 +304,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức',
         image: Burger,
         price: 40,
+        quantity: 10
     },
     {
         productID: 28,
@@ -285,7 +312,8 @@ export const MenuList = [
         name: 'Hamburger-DiaDui',
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: Burger2,
-        price: 100,
+        price: 1600,
+        quantity: 10
     },
     {
         productID: 29,
@@ -293,7 +321,8 @@ export const MenuList = [
         name: 'Tôm Càng Đỏ',
         description: 'Mới hấp, thơm phức, bùng vị, bùng cảm xúc',
         image: TomDo,
-        price: 100,
+        price: 1400,
+        quantity: 10
     },
     {
         productID: 30,
@@ -301,7 +330,8 @@ export const MenuList = [
         name: 'Tôm Càng Xanh',
         description: 'Mới hấp, thơm phức, bùng vị, bùng cảm xúc',
         image: TomXanh,
-        price: 100,
+        price: 1900,
+        quantity: 10
     },
     {
         productID: 31,
@@ -309,7 +339,8 @@ export const MenuList = [
         name: 'Thịt Nướng',
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: ThitNuong,
-        price: 100,
+        price: 800,
+        quantity: 10
     },
     {
         productID: 32,
@@ -317,7 +348,8 @@ export const MenuList = [
         name: 'Chả Ram',
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: ChaRam,
-        price: 100,
+        price: 600,
+        quantity: 10
     },
     {
         productID: 33,
@@ -325,7 +357,8 @@ export const MenuList = [
         name: 'Chả Giò',
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: ChaGio,
-        price: 100,
+        price: 600,
+        quantity: 10
     },
     {
         productID: 34,
@@ -334,6 +367,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: KhoaiKen,
         price: 100,
+        quantity: 10
     }
     ,
     {
@@ -343,6 +377,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: KhoaiTim,
         price: 100,
+        quantity: 10
     },
     {
         productID: 36,
@@ -351,6 +386,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: KhoaiMai,
         price: 100,
+        quantity: 10
     },
     {
         productID: 37,
@@ -359,6 +395,7 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: Burger3,
         price: 100,
+        quantity: 10
     },
     {
         productID: 38,
@@ -367,38 +404,43 @@ export const MenuList = [
         description: 'Nóng cay giòn, thơm phức, bùng vị, bùng cảm xúc',
         image: Burger4,
         price: 100,
+        quantity: 10
     },
     {
         productID: 39,
         child: 'Sushi',
         name: 'Sushi ',
-        description: 'Ngon không cưỡng lại được',
-        image: Sushi,
-        price: 1000,
+        description: 'Với thành phần chính là phô mai kem, sushi Philadelphia có nhiều chất béo bão hòa và cholesterol',
+        image: Sushi10,
+        price: 2600,
+        quantity: 10
     },
     {
         productID: 40,
         child: 'Sushi',
         name: 'Sushi Nhật bản',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Loại này gọi là Tempura Makizushi, Sushi cuộn',
         image: Sushi2,
-        price: 1000,
+        price: 1500,
+        quantity: 10
     },
     {
         productID: 41,
         child: 'Sushi',
         name: 'Sushi Nhật bản Đặc Biệt',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Sushi gồm có phần cơm (trộn giấm) kèm với hải sản, còn sashimi chỉ có hải sản sống mà thôi',
         image: Sushinb,
-        price: 1000,
+        price: 1500,
+        quantity: 10
     },
     {
         productID: 42,
         child: 'Sushi',
         name: 'Sushi Nhật bản Khẩu Phần',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Sushi gồm có cơm trộn giấm với một miếng hải sản và ở giữa có ít mù tạt (wasabi)',
         image: Sushi1,
-        price: 1000,
+        price: 1200,
+        quantity: 10
     },
     {
         productID: 43,
@@ -407,6 +449,7 @@ export const MenuList = [
         description: 'Ngon không cưỡng lại được',
         image: Ngo,
         price: 400,
+        quantity: 10
     },
     {
         productID: 44,
@@ -414,7 +457,8 @@ export const MenuList = [
         name: 'Ngô Chiên Giòn',
         description: 'Ngon không cưỡng lại được',
         image: Ngo2,
-        price: 400,
+        price: 410,
+        quantity: 10
     },
     {
         productID: 45,
@@ -422,7 +466,8 @@ export const MenuList = [
         name: 'Sốt Ngô',
         description: 'Ngon không cưỡng lại được',
         image: Ngo3,
-        price: 400,
+        price: 450,
+        quantity: 10
     },
     {
         productID: 46,
@@ -430,7 +475,8 @@ export const MenuList = [
         name: 'Chè Ngô',
         description: 'Ngon không cưỡng lại được',
         image: Ngo4,
-        price: 400,
+        price: 470,
+        quantity: 10
     },
     {
         productID: 47,
@@ -439,126 +485,142 @@ export const MenuList = [
         description: 'Ngon không cưỡng lại được',
         image: Ca1,
         price: 600,
+        quantity: 10
     },
     {
         productID: 48,
         child: 'Cá',
-        name: 'Cá hồi xuất khẩu',
+        name: 'Cá hồi nhập khẩu',
         description: 'Ngon không cưỡng lại được',
         image: Ca2,
-        price: 400,
+        price: 590,
+        quantity: 10
     },
     {
         productID: 49,
         child: 'Cá',
-        name: 'Cá hồi xuất khẩu',
+        name: 'Cá hồi Quy Nhơn',
         description: 'Ngon không cưỡng lại được',
         image: Ca3,
-        price: 400,
+        price: 560,
+        quantity: 10
     },
     {
         productID: 50,
         child: 'Cá',
-        name: 'Cá hồi xuất khẩu',
+        name: 'Cá hồi Đà Nẵng',
         description: 'Ngon không cưỡng lại được',
         image: Ca4,
-        price: 400,
+        price: 470,
+        quantity: 10
     },
     {
         productID: 51,
         child: 'Cá',
-        name: 'Cá hồi xuất khẩu',
+        name: 'Cá hồi Nha Trang',
         description: 'Ngon không cưỡng lại được',
         image: Ca5,
-        price: 400,
+        price: 760,
+        quantity: 10
     },
     {
         productID: 52,
         child: 'Sushi',
         name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Sushi gồm thành phần chính là cơm, nguyên liệu hải sản và có thể kèm rong biển, tảo biển hoặc rau',
         image: Sushi3,
-        price: 400,
+        price: 1800,
+        quantity: 10
     },
     {
         productID: 53,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi khẩu phần 1 người',
+        description: 'SuShi Sử',
         image: Sushi4,
-        price: 400,
+        price: 1400,
+        quantity: 10
     },
     {
         productID: 54,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi khẩu phần 2 người',
+        description: 'Chirashizushi là một tô xới đầy cơm, bên trên xếp đầy các loại thịt, cá, rong biển',
         image: Sushi5,
-        price: 400,
+        price: 1300,
+        quantity: 10
     },
     {
         productID: 55,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi khẩu phần 4 người',
+        description: 'Gunkan là loại sushi có phần cơm được bao bọc bởi lá rong biển, bên trên được phủ thêm lớp trứng cua, trứng cá hồi, trứng cá tuyết…',
         image: Sushi6,
-        price: 400,
+        price: 1200,
+        quantity: 10
     },
     {
         productID: 56,
         child: 'Sushi',
         name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Sushi cá thu vua, cá thu tốt cho tim mạch nhờ hàm lượng protein, omega-3 và các chất dinh dưỡng khác',
         image: Sushi7,
-        price: 400,
+        price: 1000,
+        quantity: 10
     },
     {
         productID: 57,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi đặc biệt 2 người',
+        description: 'Nigirizushi là loại sushi phổ biến nhất, cơm được trộn giấm rồi nắm thành nắm nhỏ, bên trên được phủ một miếng hải sản tươi',
         image: Sushi8,
-        price: 400,
+        price: 900,
+        quantity: 10
     },
     {
         productID: 58,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi đặc biệt 3 người',
+        description: 'Temaki là sushi được nặn theo hình nón, bên trong là cơm, các loại hải sản và rau củ quả.',
         image: Sushi9,
-        price: 400,
+        price: 1450,
+        quantity: 10
     },
     {
         productID: 59,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
-        image: Sushi10,
-        price: 400,
+        name: 'Sushi đặc biệt 4 người',
+        description: 'Sushi là món ăn Nhật Bản, nguyên liệu hải sản và có thể kèm rong biển, tảo biển hoặc rau.',
+        image: Sushi,
+        price: 1500,
+        quantity: 10
     },
     {
         productID: 60,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi đặc biệt cặp',
+        description: 'Sushi cá mập, tương tự như cá kiếm, cá mập cũng có hàm lượng thủy ngân cao',
         image: Sushi11,
-        price: 400,
+        price: 1000,
+        quantity: 10
     },
     {
         productID: 61,
         child: 'Sushi',
-        name: 'Sushi đặc biệt',
-        description: 'Ngon không cưỡng lại được',
+        name: 'Sushi đặc biệt mới',
+        description: 'Sushi cá hồi, là một trong những thực phẩm có hàm lượng axit béo omega-3 cao nhất',
         image: Sushi12,
-        price: 400,
+        price: 1200,
+        quantity: 10
     },
     {
         productID: 62,
         child: 'Đồ uống',
         name: 'Ép dưa hấu',
-        description: 'Ngon không cưỡng lại được',
+        description: 'Sushi cá kiếm, với phần thịt chắc, cá kiếm (tên tiếng Nhật: mekajiki) được xem là một nguyên liệu ngon để làm món sushi',
         image: Duahau,
         price: 400,
+        quantity: 10
     },
     {
         productID: 63,
@@ -566,7 +628,8 @@ export const MenuList = [
         name: 'Bánh ngọt',
         description: 'Ngon không cưỡng lại được',
         image: Banh,
-        price: 400,
+        price: 300,
+        quantity: 10
     },
     {
         productID: 64,
@@ -574,7 +637,8 @@ export const MenuList = [
         name: 'Tôm hùm nướng',
         description: 'Ngon không cưỡng lại được',
         image: TomDo4,
-        price: 400,
+        price: 1400,
+        quantity: 10
     },
 
 
