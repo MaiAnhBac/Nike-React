@@ -14,13 +14,26 @@ import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import { RemoveCart } from "../redux/cartSystem";
 import swal from 'sweetalert'
+import { useEffect, useState } from 'react';
 function ShoppingCart() {
     const {cart} = useSelector((item) => item.user)
     const dispatch = useDispatch()
+    const [total, setTotal] = useState(0)
+
+    const handleTotal = () => {
+        let ans = 0;
+        cart.map(item => {
+            ans += item.amount * item.price
+        })
+        setTotal(ans)
+    }
+    useEffect(() => {
+        handleTotal();
+    })
     return ( 
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center' } }}>
+                <Grid container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center' }, "@media (max-width: 600px)": { display: 'grid'} }}>
                     <Grid item xs={12}>
                         <Typography variant="h4">Shopping Cart</Typography>
                     </Grid>
@@ -50,7 +63,7 @@ function ShoppingCart() {
                                                     </Box>
                                                 </TableCell>
                                                 <TableCell align="right">${carts.price}</TableCell>
-                                                <TableCell align="center">{carts.amount}</TableCell>
+                                                <TableCell align="center">{carts.amount} </TableCell>
                                                 <TableCell align="right" sx={{color: 'red', fontWeight: 'bold'}}>${carts.price * carts.amount} </TableCell>
                                                 <TableCell align="right">
                                                     <IconButton onClick={() => {dispatch(RemoveCart(carts)); swal("Delete To Cart", "You clicked the button!", "success");}}>
@@ -69,16 +82,16 @@ function ShoppingCart() {
                             <Table>
                                 <TableBody>
                                     <TableRow>
-                                        <TableCell align="left">Total price</TableCell>
-                                        <TableCell align="left">$400</TableCell>
+                                        <TableCell align="left">Total price:</TableCell>
+                                        <TableCell align="left">{total}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell align="left">Discount</TableCell>
-                                        <TableCell align="left">$400</TableCell>
+                                        <TableCell align="left">Discount:</TableCell>
+                                        <TableCell align="left">0%</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell align="left">Total</TableCell>
-                                        <TableCell align="left" sx={{color: 'red', fontWeight: 'bold', fontSize: '18px'}}>$400</TableCell>
+                                        <TableCell align="left" sx={{fontWeight: 'bold'}}>Total:</TableCell>
+                                        <TableCell align="left" sx={{color: 'red', fontWeight: 'bold', fontSize: '18px'}}>{total}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>

@@ -8,7 +8,8 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Footer() {
     return ( 
        <>
-            <Box sx = { {textAlign: "center", bgcolor: "#1A1A19", color: "white", p: 3}} >
+            {/* position: 'fixed', bottom: 0, width: '100%' */}
+            <Box sx = {{textAlign: "center", bgcolor: "#1A1A19", color: "white", p: 3}} >
                 <Box sx= {{my: 0, "& svg": {
                     fontSize: "40px",
                     cursor: "pointer",

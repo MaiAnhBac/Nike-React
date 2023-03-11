@@ -38,7 +38,7 @@ function Menu() {
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                     {List.map((menu) => (
-                        <Card key={menu.productID} sx={{ maxWidth: '390px', m: 2 }}>
+                        <Card key={menu.productID} sx={{maxWidth: '390px', m: 2 }}>
                             <CardActionArea>
                                 <CardMedia sx={{ minHeight: '400px', transition: 'all .5s', '&:hover': { transform: 'scale(1.1)' } }} component={'img'} src={menu.image} alt={menu.name} />
                                 <CardContent>
