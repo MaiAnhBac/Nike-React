@@ -617,7 +617,7 @@ export const MenuList = [
         productID: 62,
         child: 'Đồ uống',
         name: 'Ép dưa hấu',
-        description: 'Sushi cá kiếm, với phần thịt chắc, cá kiếm (tên tiếng Nhật: mekajiki) được xem là một nguyên liệu ngon để làm món sushi',
+        description: 'Ép dưa hấu, được làm với nhưng trái dưa hấu tươi thơm, ngon, mới nhất...',
         image: Duahau,
         price: 400,
         quantity: 10

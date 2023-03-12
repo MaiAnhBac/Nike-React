@@ -6,7 +6,9 @@ import AddIcon from '@mui/icons-material/Add';
 import {useDispatch} from 'react-redux';
 import { AddCart } from "../redux/cartSystem";
 import swal from 'sweetalert'
+import {useNavigate} from 'react-router-dom'
 function Menu() {
+    const navigate = useNavigate();
     const [selected, setSelected] = useState('')
     const [List, setList] = useState(MenuList)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,6 +59,7 @@ function Menu() {
                                 <div style={{ mt: '5px' }}>
                                     <Button variant="contained" onClick={() => {
                                         if (!isLoggedIn) {
+                                            navigate('/login');
                                             swal("Please Login!", "You clicked the button!", "warning");
                                             return;
                                         }

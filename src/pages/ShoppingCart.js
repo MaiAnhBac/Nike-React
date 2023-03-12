@@ -1,4 +1,4 @@
-import { Typography, Box, CardMedia, Grid, Button, IconButton } from '@mui/material';
+import { Typography, Box, CardMedia, Grid, Button, IconButton, TextField } from '@mui/material';
 import {Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -63,7 +63,9 @@ function ShoppingCart() {
                                                     </Box>
                                                 </TableCell>
                                                 <TableCell align="right">${carts.price}</TableCell>
-                                                <TableCell align="center">{carts.amount} </TableCell>
+                                                <TableCell align="right">
+                                                    <TextField size="small" type="number" value={carts.amount} style={{ width: "60px", height: "60px", marginTop: '12px' }} inputProps={{ min: 1, max: 100 }}/>
+                                                </TableCell>
                                                 <TableCell align="right" sx={{color: 'red', fontWeight: 'bold'}}>${carts.price * carts.amount} </TableCell>
                                                 <TableCell align="right">
                                                     <IconButton onClick={() => {dispatch(RemoveCart(carts)); swal("Delete To Cart", "You clicked the button!", "success");}}>
