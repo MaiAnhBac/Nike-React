@@ -1,10 +1,11 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import '../../styles/LayoutStyles.css'
 function Layout({children}) {
     return ( 
         <>
             <Header />
-            <div>
+            <div className="content">
                 {children}
             </div>
             <Footer />

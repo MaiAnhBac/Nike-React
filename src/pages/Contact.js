@@ -1,6 +1,7 @@
+import { useState } from "react";
+import '../styles/About.css'
 import {Button,TextField, Typography, Box, TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody } from "@mui/material";
 import Layout from "../components/Layout/Layout";
-import '../styles/About.css'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import EmailIcon from '@mui/icons-material/Email';
 import CallIcon from '@mui/icons-material/Call';
@@ -9,21 +10,45 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SendIcon from '@mui/icons-material/Send';
 function Contact() {
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [message, setMessage] = useState()
+    const handleName = (e) => {
+        setName(e.target.value)
+    }
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
+    }
+    const handleMessage = (e) => {
+        setMessage(e.target.value)
+    }
+    const handleSubmit = () => {
+        var courses = []
+        var course = {
+            name: name,
+            email: email,
+            message: message
+        }
+        courses.push(course);
+        console.log(courses);
+    };
     return ( 
         <Layout>
             <Box sx={{ my: 10, ml: 10,mr: 10, mb: 10, "& h4": { fontWeight: "bold", mb: 2, color: "green" } }}>
-                <Typography variant="h4">Contact <span className="span-title">My Restaurant</span></Typography>
+                <Typography variant="h4">Contact <span className="span-title">My Nike</span></Typography>
                 <p className="p-title">Please fill out the form below to contact us</p>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField label="Name" id="name" fullWidth />
+                    <TextField label="Name" onChange={handleName} id="name" fullWidth />
                 </div>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField label="Email" id="email" fullWidth />
+                    <TextField label="Email" onChange={handleEmail} id="email" fullWidth />
                 </div>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField id="outlined-multiline-static" label="Message" multiline rows={4} fullWidth />
+                    <TextField id="outlined-multiline-static" label="Message" onChange={handleMessage}  multiline rows={4} fullWidth />
                 </div>
-                <Typography><Button variant="contained" endIcon={<SendIcon />} sx={{padding: "10px 35px", fontSize: "17px", background: "green"}}>Send</Button></Typography>
+                <Typography>
+                    <Button variant="contained" onClick={handleSubmit} endIcon={<SendIcon />} sx={{padding: "10px 35px", fontSize: "17px", background: "green"}}>Send</Button>
+                </Typography>
             </Box>
             <Box sx={{m: 3, ml: 10, mr: 10, "@media (max-width: 600px)": { mr: 10}}}>
                 <TableContainer component={Paper}>

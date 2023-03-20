@@ -1,0 +1,11 @@
+
+@media (max-width: 600px) {
+    .cardmenu {
+        width: 320px !important;
+        margin-left: 0 !important;
+    }
+    .dividermenu {
+        margin-right: 96px !important;
+        margin-left: 96px !important;
+    }
+}

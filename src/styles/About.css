@@ -15,3 +15,8 @@ span.span-title {
 .TextField {
     margin-bottom: 20px;
 }
+@media (max-width: 600px) {
+    .box-p {
+        font-size: 1.2rem;
+    }
+}

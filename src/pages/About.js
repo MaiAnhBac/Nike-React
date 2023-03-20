@@ -5,17 +5,17 @@ import '../styles/About.css'
 function About() {
     return ( 
         <Layout>
-            <Box sx={{my: 6, textAlign: "center", "@media (max-width: 600px)": {mt: 0, "& h3": {fontSize: "1.5rem"}}}} >
+            <Box sx={{my: 6, textAlign: "center", "@media (max-width: 600px)": {mt: 0, "& h3": {fontSize: "1.7rem"}}}} >
                 <Typography variant="h3" fontWeight={"bold"} padding={10} >
-                    Welcome to My Restaurant
+                    Welcome to My Nike
                 </Typography>
                 <p className="box-p">
-                - “Food” là "Ngon" với nguồn nguyên liệu hữu cơ trung hoà cùng nguyên liêu sạch tự nhiên tạo ra công thức OSO thẩm thấu từ tâm ý khách hàng. OSO cùng bếp trưởng 5 sao hiến tạo làm ra giá trị món ăn chất lượng hảo hạng với thông điệp xứng danh ăn ”Ngon” đến với lòng ý quý bạn từ OSO.
+                - NIKE, Inc. designs, develops, markets and sells high quality footwear, apparel, and equipment, accessories and services. Its athletic footwear products are designed primarily for specific athletic use, although a large percentage of the products are worn for casual or leisure purposes. It focuses on NIKE Brand and Brand Jordan product offerings in seven key categories: running, basketball, football, men’s training, women’s training, NIKE sportswear, and action sports. It also markets product designed for kids, as well as for other athletic and recreational uses such as baseball, cricket, golf, lacrosse, outdoor activities, football, tennis, volleyball, walking, and wrestling
                 </p>
                 <br />
-                <p className="box-p">- “Food” Là “Đẹp” với món ăn bày trí đẹp hoà lẫn màu sắc tươi ngon từ thiên nhiên ban tặng hướng đến quý khách cùng OSO ăn đẹp thân tâm. OSO góp thêm phần đẹp hoà khung cảnh hạ tầng xanh sạch tầm nhìn View Khung Trời “Phố - Vườn Tượng - Cổ Viện - Sông - Biển- Núi - Cánh buồm lớn - Cầu Rồng Vàng Lớn ... của Đà Thành - Bản đồ Việt Nam (S) ban tặng hài hoà ngay trong tầm mắt bắt vào tâm hồn của Quý Bạn cùng hoà thưởng thức món ăn tinh thần đẹp, ý về vẻ đẹp thì chắc là còn rất nhiều nơi đây trong khi OSO gửi phần đến tính trung hoà vẻ đẹp hiện hữu. Bên cạnh một phần không nhỏ góp thêm vào vẻ đẹp là sự tinh tế trong cung cách phục vụ từ lòng người OSO ... và OSO cũng hiểu còn vẻ đẹp Lớn của vẻ đẹp mà OSO ngoài tâm sức và luôn mong đợi để tiếp giúp sức OSO xây dựng ngày càng đẹp lên đó là Vẻ đẹp Lớn từ “Tấm Lòng Đẹp của Quý Khách Bạn” cùng nhớ đến ngày càng yêu mến cùng OSO để hướng thông điệp ăn” Đẹp” vào tâm ý Quý Khách Bạn.</p>
+                <p className="box-p">- Nike, originally known as Blue Ribbon Sports (BRS), was founded by University of Oregon track athlete Philip Knight and his coach Bill Bowerman in January 1964. The company initially operated as a distributor for Japanese shoe maker Onitsuka Tiger (now ASICS), making most sales at track meets out of Knight’s automobile.</p>
                 <br />
-                <p className="box-p">- “Food” là” Khỏe” với nguồn gốc nguyên liệu sạch rõ ràng, bảo quản tươi sạch đến khi hiến tạo ra đến món luôn “giữ lại dưỡng chất thiên nhiên phần cốt lõi của nguồn nguyên liệu giúp cơ thể hấp thụ dễ dàng” để phục vụ tâm vui hơn là ăn ngon, ăn đẹp, ăn khoẻ với hướng đến thông điệp “thân khỏe - tâm khỏe” vào tâm ý Quý Khách Bạn từ OSO.</p>
+                <p className="box-p">- Nike Inc. will buy back $8 billion of Nike’s class B stock in 4 years after the current $5 billion buyback program is completed in second quarter of fiscal 2013. Up to September 2012, Nike Inc. has bought back $10 billion of stock. On December 19, 2013, Nike Inc’s quarterly profit rose as a result of global orders for merchandise for delivery by April increased 13 percent. Future orders of shoes or clothes for delivery between December and April, rose to $10.4 billion. Nike shares (NKE) rose 0.6 percent to $78.75 in extended trading.”</p>
             </Box>
         </Layout>
      );

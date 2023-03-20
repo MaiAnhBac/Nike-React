@@ -1,7 +1,8 @@
 import {loginAndGetToken} from '../data/API'
 import { useState } from "react";
+import {Link, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import {Checkbox,Button,TextField,Grid, Paper, Typography, MenuList} from '@mui/material'
+import {Checkbox,Button,TextField,Grid, Paper, Typography} from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
 import AppleIcon from '@mui/icons-material/Apple';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -14,8 +15,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {Link, useNavigate } from "react-router-dom";
 import swal from 'sweetalert'
+import '../styles/Login.css';
 function Login() {
     const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
     const [email, setEmail] = useState();
@@ -55,11 +56,11 @@ function Login() {
                             <Typography sx={{mt: 2}}>Hey, Enter your details to get sign in <br /> to your account</Typography>
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
-                            <TextField id="outlined-name" value={email} onChange={handleEmail} name="username" label="Enter Email/Phone No" variant="outlined" sx={{ my: 3 }} required />
+                            <TextField id="outlined-name" onChange={handleEmail} name="username" label="Enter Email/Phone No" variant="outlined" sx={{ my: 3 }} required />
                             <FormControl variant="outlined" sx={{mb: 2}} required>
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
-                                    id="outlined-adornment-password" name="password" value={password} onChange={handlePassword}
+                                    id="outlined-adornment-password" name="password"  onChange={handlePassword}
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -83,9 +84,9 @@ function Login() {
                             <Button variant="contained" type="submit" sx={{background: '#FF9933', my: 3, p: 1.5, borderRadius: '14px'}}>Sign In</Button>
                             <Typography>--- Or Sign up with ---</Typography>
                             <Typography>
-                                <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold', '&:hover': {border: '1px solid #FF9933', background: 'white'} }}>Google</Button>
-                                <Button variant="outlined" startIcon={<AppleIcon />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold', '&:hover': {border: '1px solid #FF9933', background: 'white'} }}>Apple</Button>
-                                <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ border: '1px solid #E6E6FA', mt: 2, color: 'black', fontWeight: 'bold', '&:hover': {border: '1px solid #FF9933', background: 'white'} }}>Facebook</Button>
+                                <Button className='btn' variant="outlined" startIcon={<GoogleIcon />} sx={{mt: 2, mr: 2}} >Google</Button>
+                                <Button className='btn' variant="outlined" startIcon={<AppleIcon />} sx={{mt: 2, mr: 2}} >Apple</Button>
+                                <Button className='btns' variant="outlined" startIcon={<FacebookIcon />} sx={{mt: 2}}>Facebook</Button>
                             </Typography>
                             <Typography sx={{mt: 2}}>Don't have an account? <Link to="/register" style={{color: 'black', textDecoration: 'none',fontWeight: 'bold'}}>Create Account</Link></Typography>
                         </form>

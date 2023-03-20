@@ -1,17 +1,18 @@
 import {useSelector} from 'react-redux';
+import { useState } from 'react';
+import {NavLink} from 'react-router-dom';
+import '../../styles/HeaderStyles.css'
 import { AppBar, Box, Divider, Drawer, IconButton, Toolbar, Typography} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import {Link, NavLink} from 'react-router-dom';
-import '../../styles/HeaderStyles.css'
 import logo from '../../images/food.png'
-import { useState } from 'react';
+import logofm from '../../images/e.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Badge from '@mui/material/Badge';
 function Header() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
-    const {cart} = useSelector((item) => item.user)
+    const {carts} = useSelector((item) => item.user)
     const [mobileOpen, setMobileOpen] = useState(false)
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
@@ -19,12 +20,12 @@ function Header() {
     const drawer = (
         <Box  sx={{textAlign: 'center'}}>
             <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to={'/'}><img src={logo} alt="logo" height={'70'} width={150} /></Link>
+                <NavLink to='/'><img src={logofm} alt="logo" height={'70'} width={150} /></NavLink>
             </Typography>
             <Divider />
             <ul className='mobile-navigation'>
                 <li>
-                    <NavLink activeClassName="active" to="/">Home</NavLink>
+                    <NavLink activeclassname="active" to="/">Home</NavLink>
                 </li>
                 <li>
                     <NavLink to="/menu">Menu</NavLink>
@@ -37,7 +38,7 @@ function Header() {
                 </li>
                 <li>
                     <NavLink to="/shoppingcart">
-                        <Badge color="secondary" badgeContent={cart.length}>
+                        <Badge color="secondary" badgeContent={carts.length}>
                             <ShoppingCartIcon />
                         </Badge>
                     </NavLink>
@@ -57,12 +58,12 @@ function Header() {
                             <MenuIcon />
                         </IconButton>
                         <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            <Link to={'/'}><img src={logo} alt="logo" height={'70'} width={150}/></Link>
+                            <NavLink to='/'><img src={logofm} alt="logo" height={'70'} width={150}/></NavLink>
                         </Typography>
                         <Box sx={{ display: { xs: "none", sm: "block" } }}>
                             <ul className='navigation-menu'>
                                 <li>
-                                    <NavLink activeClassName="active" to="/">Home</NavLink>
+                                    <NavLink activeclassname="active" to="/">Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/menu">Menu</NavLink>
@@ -75,7 +76,7 @@ function Header() {
                                 </li>
                                 <li>
                                     <NavLink to="/shoppingcart">
-                                        <Badge color="secondary" badgeContent={cart.length}>
+                                        <Badge color="secondary" badgeContent={carts.length}>
                                             <ShoppingCartIcon />
                                         </Badge>
                                     </NavLink>

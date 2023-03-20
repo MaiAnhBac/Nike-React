@@ -1,15 +1,7 @@
-import Layout from "../components/Layout/Layout";
-import Badge from '@mui/material/Badge';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ErrorIcon from '@mui/icons-material/Error';
 function Pagenotfound() {
     return ( 
-        
-        <Layout>
-            <h1>Page not Found</h1>
-            <Badge color="secondary" badgeContent={99}>
-                <ShoppingCartIcon />
-            </Badge>
-        </Layout>
+            <h1 style={{padding: '20px', color: 'red'}}>404 Page not Found <ErrorIcon /></h1>
      );
 }
 

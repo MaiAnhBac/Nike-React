@@ -1,7 +1,7 @@
 import { Button, Typography, Box, Grid, Card } from "@mui/material";
 import {Link} from 'react-router-dom';
-import Layout from "../components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout/Layout";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,6 +15,7 @@ function Logout() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
     const handleLogOut = () =>{
         localStorage.removeItem("user")
+        localStorage.removeItem('cart')
         swal("LogOut!", "You clicked the button!", "success");
         navigate('/')
     }
@@ -31,7 +32,9 @@ function Logout() {
                             <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.lastName}</Typography>
                             <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography>
                             <Box sx={{ textAlign: 'center' }}>
-                               <Link to={'/'} style={{textDecoration: 'none'}}> <Button variant="contained" color="secondary" sx={{ m: 2 }}>Home</Button></Link>
+                                <Link to={'/'} style={{ textDecoration: 'none' }}>
+                                    <Button variant="contained" color="secondary" sx={{ m: 2 }}>Home</Button>
+                                </Link>
                                 <Button variant="contained" color="primary" onClick={handleLogOut} >Logout</Button>
                             </Box>
                             <Typography variant="h6" sx={{p: 3, textAlign: 'center'}}>Welcome to my food restaurant</Typography>
@@ -42,7 +45,7 @@ function Logout() {
                             <TableContainer component={Paper}>
                                 <Table>
                                     <TableBody>
-                                    <TableRow>
+                                        <TableRow>
                                             <TableCell>ID:</TableCell>
                                             <TableCell align="left">{userLogin.id}</TableCell>
                                         </TableRow>
@@ -77,8 +80,7 @@ function Logout() {
                                 </Table>
                             </TableContainer>
                         </Grid>
-                    </Grid>
-                    
+                    </Grid>  
                 </Grid>
             </Box>
         </Layout>

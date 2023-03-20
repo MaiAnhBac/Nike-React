@@ -1,0 +1,18 @@
+@media (max-width: 600px) {
+    .grid {
+        display: grid !important;
+    }
+    .cell {
+        display: grid !important;
+        padding: 0 !important;
+    }
+    .box {
+        margin: 1 !important;
+    }
+    .titleh5 {
+        font-size: 16px !important;
+    }
+    .img {
+        max-width: 120px;
+    }
+}

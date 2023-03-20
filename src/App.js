@@ -1,7 +1,6 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {publicRoutes} from './routes/route'
-
 function App() {
   return (
     <div className="App">

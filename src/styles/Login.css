@@ -1,0 +1,21 @@
+.btn {
+    border: 1px solid #E6E6FA !important;
+    margin-right: 2 !important;
+    margin-top: 2 !important;
+    color: black !important;
+    font-weight: bold !important;
+}
+.btns {
+    border: 1px solid #E6E6FA !important;
+    margin-top: 2 !important;
+    color: black !important;
+    font-weight: bold !important;
+}
+.btn:hover {
+    border: 1px solid #FF9933 !important;
+    background: white important;
+}
+.btns:hover {
+    border: 1px solid #FF9933 !important;
+    background: white !important;
+}
