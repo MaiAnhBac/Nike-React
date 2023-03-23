@@ -19,3 +19,28 @@
     border: 1px solid #FF9933 !important;
     background: white !important;
 }
+@media (max-width: 600px) {
+    .paper {
+        width: 430px !important;
+    }
+    .tyh2 {
+        font-size: 14px !important;
+    }
+    .or {
+        font-size: 13px !important;
+    }
+    .btn {
+        font-size: 13px !important;
+        padding: 2px 10px !important;
+    }
+    .btns {
+        font-size: 13px !important;
+        padding: 2px 10px !important;
+    }
+    .icon {
+        font-size: 16px !important;;
+    }
+    .tyac {
+        font-size: 13px !important;
+    }
+}

@@ -6,7 +6,7 @@ function About() {
     return ( 
         <Layout>
             <Box sx={{my: 6, textAlign: "center", "@media (max-width: 600px)": {mt: 0, "& h3": {fontSize: "1.7rem"}}}} >
-                <Typography variant="h3" fontWeight={"bold"} padding={10} >
+                <Typography variant="h3" fontWeight={"bold"} padding={10} color={'#EC870E'} >
                     Welcome to My Nike
                 </Typography>
                 <p className="box-p">

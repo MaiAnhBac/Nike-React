@@ -2,11 +2,11 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import Login from '../pages/Login';
 import Contact from '../pages/Contact';
-import Menu from '../pages/Menu'
+import Shop from '../pages/Shop'
 import Register from '../pages/Register';
 import Pagenotfound from '../pages/Pagenotfound'
 import ShoppingCart from '../pages/ShoppingCart'
-import Logout from '../pages/Logout'
+import Personal from '../pages/Personal'
 import ProductDetails from '../pages/Productdetails'
 const publicRoutes = [
     {path: '/', component: Home},
@@ -15,9 +15,9 @@ const publicRoutes = [
     {path: '/register', component: Register},
     {path: '/pagenotfound', component: Pagenotfound},
     {path: '/contact', component: Contact},
-    {path: '/menu', component: Menu},
+    {path: '/shop', component: Shop},
     {path: '/shoppingcart', component: ShoppingCart},
-    {path: '/logout', component: Logout},
+    {path: '/personal', component: Personal},
     {path: '/productdetails/:id', component: ProductDetails}
 ]
 

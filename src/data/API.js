@@ -39,12 +39,14 @@ export const getProductsByDetails = (id) => {
             .then(res => res.json())
     )
 };
+//phân trang 
 export const getProductsByLimit = (off, limit) => {
     return (
         fetch(`https://api.escuelajs.co/api/v1/products?offset=${off}&limit=${limit}`)
             .then(res => res.json())
     )
 };
+//lọc giá trị theo từ nhỏ tới lớn
 export const getProductsByPrice = (min, max) => {
     return (
         fetch(`https://api.escuelajs.co/api/v1/products/?price_min=${min}&price_max=${max}`)

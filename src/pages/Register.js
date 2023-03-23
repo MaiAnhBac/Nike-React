@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import {Checkbox,Button,TextField,Grid, Paper, Typography} from '@mui/material'
+import {Button,TextField,Grid, Paper, Typography} from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
 import AppleIcon from '@mui/icons-material/Apple';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -14,30 +12,51 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-function Login() {
+import '../styles/Login.css';
+function Register() {
     const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
     const [showPassword, setShowPassword] = useState(false);
+    const [formdata, setFormData] = useState({
+        name: '',
+        username: '',
+        password: ''
+    })
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch('https://dummyjson.com/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(formdata)
+        })
+            .then(response => response.json())
+            
+    }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formdata, [name]: value });
+    }
     return ( 
         <>
             <Layout>
-                <Grid textAlign={'center'} sx={{my: 8}}>
-                    <Paper elevation={20} style={paperStyle}>
+                <Grid textAlign={'center'} sx={{my: 10}}>
+                    <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 style={{fontWeight: 'bold'}}>Create Account</h2>
-                            <Typography sx={{mt: 2}}>Hey, Enter your details to get create <br/> account to your</Typography>
+                            <Typography className='tyh2' sx={{mt: 2}}>Hey, Enter your details to get create <br/> account to your</Typography>
                         </Grid>
-                        <form style={{display: 'flex', flexDirection: 'column'}}>
-                            <TextField id="outlined-name" label="Name" variant="outlined" sx={{mt: 3}} required />
-                            <TextField id="outlined-name" label="Enter Email/Phone No" variant="outlined" sx={{my: 3}} required />
-                            <FormControl variant="outlined" sx={{mb: 2}} required>
-                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <form style={{display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
+                            <TextField id="outlined-name" label="Name*" value={formdata.name} variant="outlined" sx={{mt: 3}} onChange={handleInputChange}  />
+                            <TextField id="outlined-phone" label="Enter Email/Phone No*" value={formdata.username} variant="outlined" sx={{my: 2}} onChange={handleInputChange} />
+                            <FormControl variant="outlined" sx={{mb: 2}} >
+                                <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
-                                    type={showPassword ? 'text' : 'password'}
+                                    type={showPassword ? 'text' : 'password'} value={formdata.password} onChange={handleInputChange}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -53,11 +72,11 @@ function Login() {
                                     label="Password"
                                 />
                              </FormControl>
-                             <FormControl variant="outlined" sx={{mb: 2}} required>
-                                <InputLabel htmlFor="outlined-adornment-confirmpassword">Confirm Password</InputLabel>
+                             <FormControl variant="outlined" sx={{mb: 2}} >
+                                <InputLabel htmlFor="outlined-adornment-confirmpassword">Confirm Password*</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-confirmpassword"
-                                    type={showPassword ? 'text' : 'password'}
+                                    type={showPassword ? 'text' : 'password'} value={formdata.password} onChange={handleInputChange}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -73,18 +92,14 @@ function Login() {
                                     label="Confirm Password"
                                 />
                              </FormControl>
-                            <Typography sx={{display: 'flex'}}>
-                                <Checkbox icon={<FavoriteBorderIcon />} checkedIcon={<FavoriteIcon />}/>
-                            <Typography sx={{mt: 1}}>Remember me</Typography>
-                            </Typography>
                             <Button variant="contained" sx={{background: '#FF9933', my: 3, p: 1.5, borderRadius: '14px'}}>Sign Up</Button>
-                            <Typography>--- Or Sign in with ---</Typography>
+                            <Typography className='or'>--- Or Sign in with ---</Typography>
                             <Typography>
-                                <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold' }}>Google</Button>
-                                <Button variant="outlined" startIcon={<AppleIcon />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold' }}>Apple</Button>
-                                <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ border: '1px solid #E6E6FA', mt: 2, color: 'black', fontWeight: 'bold' }}>Facebook</Button>
+                                <Button className='btn' variant="outlined" startIcon={<GoogleIcon className='icon' />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold' }}>Google</Button>
+                                <Button className='btn' variant="outlined" startIcon={<AppleIcon className='icon' />} sx={{ border: '1px solid #E6E6FA', mr: 2, mt: 2, color: 'black', fontWeight: 'bold' }}>Apple</Button>
+                                <Button className='btns' variant="outlined" startIcon={<FacebookIcon className='icon' />} sx={{ border: '1px solid #E6E6FA', mt: 2, color: 'black', fontWeight: 'bold' }}>Facebook</Button>
                             </Typography>
-                            <Typography sx={{mt: 2}}>Do you already have an account? <Link to="/login" style={{color: 'black', textDecoration: 'none',fontWeight: 'bold'}}>Sign in</Link></Typography>
+                            <Typography className='tyac' sx={{mt: 2}}>Do you already have an account? <Link to="/login" style={{color: 'black', textDecoration: 'none',fontWeight: 'bold'}}>Sign in</Link></Typography>
                         </form>
                     </Paper>
                 </Grid>
@@ -93,4 +108,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

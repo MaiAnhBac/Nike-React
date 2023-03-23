@@ -34,7 +34,7 @@ function Contact() {
     };
     return ( 
         <Layout>
-            <Box sx={{ my: 10, ml: 10,mr: 10, mb: 10, "& h4": { fontWeight: "bold", mb: 2, color: "green" } }}>
+            <Box sx={{ my: 10, ml: 10,mr: 10, mb: 10, "& h4": { fontWeight: "bold", mb: 2, color: "#EC870E" } }}>
                 <Typography variant="h4">Contact <span className="span-title">My Nike</span></Typography>
                 <p className="p-title">Please fill out the form below to contact us</p>
                 <div style={{ marginBottom: '20px' }}>

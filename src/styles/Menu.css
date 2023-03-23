@@ -1,4 +1,8 @@
-
+.a-price {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
 @media (max-width: 600px) {
     .cardmenu {
         width: 320px !important;

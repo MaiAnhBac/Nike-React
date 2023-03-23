@@ -4,21 +4,43 @@ import {NavLink} from 'react-router-dom';
 import '../../styles/HeaderStyles.css'
 import { AppBar, Box, Divider, Drawer, IconButton, Toolbar, Typography} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../images/food.png'
 import logofm from '../../images/e.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Badge from '@mui/material/Badge';
+import swal from 'sweetalert'
+import { useNavigate } from "react-router-dom";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PersonIcon from '@mui/icons-material/Person';
+import KeyIcon from '@mui/icons-material/Key';
 function Header() {
+    const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
     const {carts} = useSelector((item) => item.user)
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
     }
+    const handleLogOut = () =>{
+        localStorage.removeItem("user")
+        localStorage.removeItem('cart')
+        swal("LogOut!", "You clicked the button!", "success");
+        navigate('/')
+    }
     const drawer = (
-        <Box  sx={{textAlign: 'center'}}>
+        <Box sx={{textAlign: 'center'}}>
             <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 <NavLink to='/'><img src={logofm} alt="logo" height={'70'} width={150} /></NavLink>
             </Typography>
@@ -28,7 +50,7 @@ function Header() {
                     <NavLink activeclassname="active" to="/">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/menu">Menu</NavLink>
+                    <NavLink to="/shop">Shop</NavLink>
                 </li>
                 <li>
                     <NavLink to="/about">About</NavLink>
@@ -44,7 +66,15 @@ function Header() {
                     </NavLink>
                 </li>
                 <li>
-                    {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}
+                    {userLogin ? (<Box><IconButton onClick={handleClick} sx={{ p: 0 }}><LockOpenIcon /></IconButton>
+                            <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
+                                <MenuItem onClick={handleClose}>
+                                    <NavLink className='navtt' to="/personal"><Box><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
+                                </MenuItem>
+                                <MenuItem onClick={handleLogOut}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>
+                            </Menu>
+                        </Box>
+                    ) : (<NavLink to="/login"><LockIcon /></NavLink>)}
                 </li>
             </ul>
         </Box>
@@ -52,9 +82,9 @@ function Header() {
     return ( 
        <>
         <Box>
-            <AppBar component={"nav"} sx={{ bgcolor: "black"}}>
+            <AppBar className='appbar' component={"nav"} sx={{ bgcolor: "#fcfcfa"}}>
                     <Toolbar>
-                        <IconButton color="inherit" aria-label='open drawer' edge="start" sx={{ mr: 2, display: { sm: "none" } }} onClick={handleDrawerToggle}>
+                        <IconButton color="inherit" aria-label='open drawer' edge="start" sx={{ mr: 2,color:'black', display: { sm: "none" } }} onClick={handleDrawerToggle}>
                             <MenuIcon />
                         </IconButton>
                         <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -66,7 +96,7 @@ function Header() {
                                     <NavLink activeclassname="active" to="/">Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/menu">Menu</NavLink>
+                                    <NavLink to="/shop">Shop</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/about">About</NavLink>
@@ -82,7 +112,16 @@ function Header() {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    {userLogin ? (<NavLink to="/logout"><LockOpenIcon /></NavLink>) : (<NavLink to="/login"><LockIcon /></NavLink>)}
+                                    {userLogin ? (
+                                        <Box><IconButton onClick={handleClick} sx={{p:0}}><LockOpenIcon /></IconButton>
+                                            <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
+                                                <MenuItem onClick={handleClose}>
+                                                    <NavLink className='navtt' to="/personal"><Box sx={{pb: 0}}><PersonIcon sx={{mr: 0.7}}/></Box>Profile</NavLink>
+                                                </MenuItem>
+                                                <MenuItem onClick={handleLogOut}><LogoutOutlinedIcon sx={{mr: 0.7, my: 0.4}}/>Logout</MenuItem>
+                                            </Menu>
+                                        </Box>
+                                    ) : (<NavLink to="/login"><LockIcon /></NavLink>)}
                                 </li>
                             </ul>
                         </Box>

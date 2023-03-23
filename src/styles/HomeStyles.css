@@ -10,9 +10,19 @@
     background-size: covers;
     background-image: url('../images/nike2.jpg');
 }
+/* nếu bỏ slide thì bỏ cái này home-av và position: absolute dòng 25 */
+/* .home-nav {
+    position: relative;
+    height: 94vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+} */
 .home .headerContainer{
     width: auto;
     margin-left: 30px;
+    /* position: absolute; */
 }
 .home .headerContainer h1{
     justify-content: center;
@@ -100,6 +110,7 @@
         background-image: url('../images/poster4.jpg');
     }
     .headerContainer{
+        align-items: center;
         margin-left: 0;
         border-radius: 10px;
         width: 80%;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom'
 import { AddCart } from "../redux/cartSystem";
-import { getAllCategory, getProductsByCate, getProductsByLimit, getProductsByPrice} from '../data/API'
+import {getAllProducts ,getAllCategory, getProductsByCate, getProductsByLimit, getProductsByPrice} from '../data/API'
 import Layout from "../components/Layout/Layout";
 import { FormControl, InputLabel, Select, MenuItem, Button, Box, Card, CardActionArea, CardContent, CardMedia, Typography, CardActions } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
@@ -14,7 +14,8 @@ import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import '../styles/Menu.css';
-function Menu() {
+
+function Shop() {
     const navigate = useNavigate();
     const [selected, setSelected] = useState('')
     const [data, setData] = useState([])
@@ -25,14 +26,15 @@ function Menu() {
     const [page, setPage] = useState(1)
     const limit = 20;
     const [value, setValue] = useState([20, 80]);
-    const handleChangee = (event, newValue) => {
+    const [count, setCount] = useState(10)
+    const handleChangePrice = (event, newValue) => {
         setValue(newValue);
         getProductsByPrice(newValue[0] ,newValue[1])
-        .then((price) => {
-            setData(price)
-        })
+            .then((price) => {
+                setData(price)
+            })
       };
-    const handleChange = (e) => {
+    const handleChangeCate = (e) => {
         setSelected(e.target.value)
         getProductsByCate(e.target.value)
             .then((datas) => {
@@ -55,10 +57,11 @@ function Menu() {
       }, []);
 
     useEffect(() => {
-        // getAllProducts()
-        //     .then((data) => {
-        //         setData(data)
-        //     })
+        getAllProducts()
+            .then((data) => {
+                const datas = Math.ceil(data.length / limit)
+                setCount(datas)
+            })
         getProductsByLimit( 1 ,limit)
             .then((offset) =>{
                 setData(offset)
@@ -71,7 +74,7 @@ function Menu() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-        }, 1000)
+        }, 2000)
     })
     return (
         <Layout>
@@ -86,7 +89,7 @@ function Menu() {
                             {loading ? (<Skeleton variant="rounded" width={320} height={58} sx={{ mt: 1 }} />) :
                                 (<FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-label" sx={{ mt: '12px' }}>Chọn lọc</InputLabel>
-                                    <Select value={selected} onChange={handleChange} labelId="demo-simple-select-label" id="demo-simple-select" label="Chọn lọc" sx={{ width: '300px', height: 58, mt: '10px' }}>
+                                    <Select value={selected} onChange={handleChangeCate} labelId="demo-simple-select-label" id="demo-simple-select" label="Chọn lọc" sx={{ width: '300px', height: 58, mt: '10px' }}>
                                         {categories.map((cate) => (
                                             <MenuItem value={cate.id} key={cate.id}>{cate.name}</MenuItem>
                                         ))}
@@ -97,10 +100,10 @@ function Menu() {
                             <Box sx={{ width: 300, mt: 0.5, mx: 2 }}>
                                 {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 1.5 }} />) :
                                     (<Box sx={{ display: 'flex', justifyContent: 'left' }}>
-                                        <Typography>Lọc theo giá từ: <a style={{ textDecoration: 'none', color: 'red', fontWeight: 'bold' }}>${value[0]} </a> - <a style={{ textDecoration: 'none', color: 'red', fontWeight: 'bold' }}>${value[1]}</a></Typography>
+                                        <Typography>Lọc theo giá từ: <a className="a-price">${value[0]} </a> - <a className="a-price">${value[1]}</a></Typography>
                                     </Box>)}
                                 {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 2 }} />) :
-                                    (<Slider value={value} onChange={handleChangee} valueLabelDisplay="auto"
+                                    (<Slider value={value} onChange={handleChangePrice} valueLabelDisplay="auto"
                                         min={0} max={1000} step={100} marks size='medium' color="secondary" sx={{ height: 8 }}
                                     />)}
                             </Box>
@@ -152,10 +155,10 @@ function Menu() {
             </Box> 
             <Stack spacing={2} py={3} sx={{display: 'flex', alignItems: 'center'}}>
                 { loading ? (<Skeleton variant="rounded" width={360} height={30} sx={{mt: 2}}/>) :
-                (<Pagination count={9} page={page} onChange={handleOffset}  variant="outlined" color="secondary" />)}
+                (<Pagination count={count} page={page} onChange={handleOffset}  variant="outlined" color="secondary" />)}
             </Stack>
         </Layout>
     );
 }
 
-export default Menu;
+export default Shop;

@@ -15,7 +15,12 @@ import Layout from "../components/Layout/Layout";
 import DeleteIcon from '@mui/icons-material/Delete';
 import swal from 'sweetalert';
 import '../styles/Shoppingcart.css';
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Divider from '@mui/material/Divider';
 function ShoppingCart() {
     const { carts } = useSelector((item) => item.user)
     const dispatch = useDispatch()
@@ -41,7 +46,7 @@ function ShoppingCart() {
     return (
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid className='grid' container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center' } }}>
+                <Grid className='grid' container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center', color: '#EC870E', fontWeight: 'bold' } }}>
                     <Grid item xs={12}>
                         <Typography variant="h4">Shopping Cart</Typography>
                     </Grid>
@@ -106,8 +111,23 @@ function ShoppingCart() {
                                 </TableBody>
                             </Table>
                         </TableContainer>
+                        <Box sx={{mt: 2}}>
+                            <FormControl>
+                                <FormLabel id="demo-radio-buttons-group-label">Chọn cách thức thanh toán:</FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="female"
+                                    name="radio-buttons-group"
+                                >
+                                    <FormControlLabel value="ATM" control={<Radio />} label="Thanh toán bằng thẻ ATM nội địa (Internet Banking)" />
+                                    <FormControlLabel value="COD" control={<Radio />} label="Thanh toán khi nhận hàng (COD)" />
+                                    <FormControlLabel value="NH" control={<Radio />} label="Chuyển khoản ngân hàng" />
+                                </RadioGroup>
+                            </FormControl>
+                        </Box>
+                        <Divider />
                         <Grid item xs={12} sx={{ textAlign: 'right' }}>
-                            <Link to={'/menu'} style={{ textDecoration: 'none' }} >
+                            <Link to={'/shop'} style={{ textDecoration: 'none' }} >
                                 <Button variant="contained" color="secondary" sx={{ m: 2 }}>Continue</Button>
                             </Link>
                             <Button variant="contained" color="primary">Checkout</Button>

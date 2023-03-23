@@ -11,8 +11,11 @@
     }
     .titleh5 {
         font-size: 16px !important;
+        padding-left: 3px;
     }
     .img {
         max-width: 120px;
+        padding-top: 10px;
+        padding-left: 10px;
     }
 }
