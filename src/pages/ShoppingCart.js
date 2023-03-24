@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Layout from "../components/Layout/Layout";
 import DeleteIcon from '@mui/icons-material/Delete';
-import swal from 'sweetalert';
+import toast from 'react-hot-toast';
 import '../styles/Shoppingcart.css';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -25,6 +25,57 @@ function ShoppingCart() {
     const { carts } = useSelector((item) => item.user)
     const dispatch = useDispatch()
     const [total, setTotal] = useState(0)
+    const [radio, setRadio] = useState()
+    const [name, setName] = useState()
+    const [phone, setPhone] = useState()
+    const [address, setAddress] = useState()
+    const [errorName, setErrorName] = useState(false);
+    const [errorPhone, setErrorPhone] = useState(false);
+    const [errorAddress, setErrorAddress] = useState(false);
+    const [errorRadio, setErrorRadio] = useState(false);
+    const handleChangeName = (e) => {
+        setName(e.target.value)
+    }
+    const handleChangePhone = (e) => {
+        setPhone(e.target.value)   
+    }
+    const handleChangeAddress = (e) => {
+        setAddress(e.target.value)  
+    }
+    const handleChangeRadio = (e) => {
+        setRadio(e.target.value) 
+    }
+    const onSubmitCart = (e) => {
+        e.preventDefault();
+        if (name === "") {
+            setErrorName(true)
+        }
+        else {
+            setErrorName(false)
+        }
+        if (phone === "") {
+            setErrorPhone(true)
+        }
+        else {
+            setErrorPhone(false)
+        }
+        if (address === "") {
+            setErrorAddress(true)
+        }
+        else {
+            setErrorAddress(false)
+        }
+        if (radio === "") {
+            setErrorRadio(true)
+        } else {
+            setErrorRadio(false)
+            setName("")
+            setPhone("")
+            setAddress("")
+            setRadio("")
+            toast.success('Here is the order success message!');
+        }
+    }
     /*  useMemo */
     // const handleTotal = useMemo(() => {
     //     let ans = 0;
@@ -80,7 +131,7 @@ function ShoppingCart() {
                                                 <TableCell align="right">
                                                     <IconButton onClick={() => {
                                                         dispatch(RemoveCart(cart));
-                                                        swal("Delete To Cart", "You clicked the button!", "success");
+                                                        toast.success('This is a success delete cart message!');
                                                     }}>
                                                         <DeleteIcon />
                                                     </IconButton>
@@ -111,27 +162,41 @@ function ShoppingCart() {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <Box sx={{mt: 2}}>
-                            <FormControl>
-                                <FormLabel id="demo-radio-buttons-group-label">Chọn cách thức thanh toán:</FormLabel>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="female"
-                                    name="radio-buttons-group"
-                                >
-                                    <FormControlLabel value="ATM" control={<Radio />} label="Thanh toán bằng thẻ ATM nội địa (Internet Banking)" />
-                                    <FormControlLabel value="COD" control={<Radio />} label="Thanh toán khi nhận hàng (COD)" />
-                                    <FormControlLabel value="NH" control={<Radio />} label="Chuyển khoản ngân hàng" />
-                                </RadioGroup>
-                            </FormControl>
-                        </Box>
-                        <Divider />
-                        <Grid item xs={12} sx={{ textAlign: 'right' }}>
-                            <Link to={'/shop'} style={{ textDecoration: 'none' }} >
-                                <Button variant="contained" color="secondary" sx={{ m: 2 }}>Continue</Button>
-                            </Link>
-                            <Button variant="contained" color="primary">Checkout</Button>
-                        </Grid>
+                        <Divider sx={{mt: 2}} />
+                        <form onSubmit={onSubmitCart}>
+                            <Box sx={{display: 'flex', flexDirection: 'column', my: 1}}>
+                                <Typography sx={{my: 1, fontWeight: 'bold'}}>Thông tin người đặt hàng</Typography>
+                                <TextField id="name" label="Họ và tên" value={name || ""} onChange={handleChangeName} variant="outlined" sx={{my: 1}} />
+                                {errorName && <p style={{ color: 'red', marginLeft: 5, marginBottom: '6px', fontSize: '12px', textAlign: 'left' }}>Vui lòng nhập họ và tên của bạn</p>}
+                                <TextField id="phone" type='tel' label="Số điện thoại" value={phone || ""} onChange={handleChangePhone} variant="outlined" sx={{my: 1}} />
+                                {errorPhone && <p style={{ color: 'red', marginLeft: 5, marginBottom: '6px', fontSize: '12px', textAlign: 'left' }}>Vui lòng nhập số điện thoại của bạn của bạn</p>}
+                                <TextField id="address" label="Địa chỉ" value={address || ""} onChange={handleChangeAddress} variant="outlined" sx={{my: 1}} />
+                                {errorAddress && <p style={{ color: 'red', marginLeft: 5, marginBottom: '6px', fontSize: '12px', textAlign: 'left' }}>Vui lòng nhập địa chỉ nhận hàng của bạn</p>}
+                            </Box>
+                            <Box sx={{ mt: 1 }}>
+                                <FormControl>
+                                    <FormLabel id="demo-radio-buttons-group-label">Chọn cách thức thanh toán:</FormLabel>
+                                    <RadioGroup onChange={handleChangeRadio} value={radio || ""}
+                                        aria-labelledby="demo-radio-buttons-group-label"
+                                        defaultValue="female"
+                                        name="radio-buttons-group"
+                                    >
+                                        <FormControlLabel value="ATM" control={<Radio />} disabled label="Thanh toán bằng thẻ ATM nội địa (Internet Banking)" />
+                                        <FormControlLabel value="COD" control={<Radio />} label="Thanh toán khi nhận hàng (COD)" />
+                                        <FormControlLabel value="NH" control={<Radio />} disabled label="Chuyển khoản ngân hàng" />
+                                    </RadioGroup>
+                                </FormControl>
+                                {errorRadio && <p style={{ color: 'red', marginLeft: 5, marginBottom: '6px', fontSize: '12px', textAlign: 'left' }}>Vui lòng chọn phương thức thanh toán của bạn</p>}
+                            </Box>
+                            <Divider />
+                            
+                            <Grid item xs={12} sx={{ textAlign: 'right' }}>
+                                <Link to={'/shop'} style={{ textDecoration: 'none' }} >
+                                    <Button variant="contained" color="secondary" sx={{ m: 2 }}>Continue</Button>
+                                </Link>
+                                <Button onClick={onSubmitCart } variant="contained" color="primary">Checkout</Button>
+                            </Grid>
+                        </form>
                     </Grid>
                 </Grid>
             </Box>

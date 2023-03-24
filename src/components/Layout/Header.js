@@ -15,7 +15,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PersonIcon from '@mui/icons-material/Person';
-import KeyIcon from '@mui/icons-material/Key';
+import toast from 'react-hot-toast';
 function Header() {
     const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
@@ -36,7 +36,7 @@ function Header() {
     const handleLogOut = () =>{
         localStorage.removeItem("user")
         localStorage.removeItem('cart')
-        swal("LogOut!", "You clicked the button!", "success");
+        toast.success('This is a success logout message!');
         navigate('/')
     }
     const drawer = (
@@ -68,10 +68,10 @@ function Header() {
                 <li>
                     {userLogin ? (<Box><IconButton onClick={handleClick} sx={{ p: 0 }}><LockOpenIcon /></IconButton>
                             <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={handleClose} sx={{borderRadius: '10px', mx: 1}}>
                                     <NavLink className='navtt' to="/personal"><Box><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
                                 </MenuItem>
-                                <MenuItem onClick={handleLogOut}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>
+                                <MenuItem onClick={handleLogOut} sx={{borderRadius: '10px', mx: 1}}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>
                             </Menu>
                         </Box>
                     ) : (<NavLink to="/login"><LockIcon /></NavLink>)}
@@ -115,10 +115,10 @@ function Header() {
                                     {userLogin ? (
                                         <Box><IconButton onClick={handleClick} sx={{p:0}}><LockOpenIcon /></IconButton>
                                             <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-                                                <MenuItem onClick={handleClose}>
+                                                <MenuItem onClick={handleClose} sx={{borderRadius: '10px', mx: 1}}>
                                                     <NavLink className='navtt' to="/personal"><Box sx={{pb: 0}}><PersonIcon sx={{mr: 0.7}}/></Box>Profile</NavLink>
                                                 </MenuItem>
-                                                <MenuItem onClick={handleLogOut}><LogoutOutlinedIcon sx={{mr: 0.7, my: 0.4}}/>Logout</MenuItem>
+                                                <MenuItem onClick={handleLogOut} sx={{borderRadius: '10px', mx: 1}}><LogoutOutlinedIcon sx={{mr: 0.7, my: 0.4}}/>Logout</MenuItem>
                                             </Menu>
                                         </Box>
                                     ) : (<NavLink to="/login"><LockIcon /></NavLink>)}

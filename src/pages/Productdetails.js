@@ -15,6 +15,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import AddIcon from '@mui/icons-material/Add';
 import '../styles/Productdetails.css';
 import swal from 'sweetalert';
+import toast from 'react-hot-toast';
 import {Link } from "react-router-dom";
 import Divider from '@mui/material/Divider';
 import Skeleton from '@mui/material/Skeleton';
@@ -106,11 +107,11 @@ function ProductDetails() {
                                 <Button size="large" variant="contained" onClick={() => {
                                     if (!isLoggedIn) {
                                         navigate('/login');
-                                        swal("Please Login!", "You clicked the button!", "warning");
+                                        toast.error('Please to login!', {icon: '⚠️'});
                                         return;
                                     }
                                     dispatch(AddCart(details));
-                                    swal("Add To Cart", "You clicked the button!", "success");
+                                    toast.success('This is a success add to cart message!');
                                 }} startIcon={<AddIcon />} sx={{ background: 'black', color: 'white', '&:hover': { background: 'green' } }}>ADD TO CART</Button>
                             </CardActions>)}
                         {loading ? (<Skeleton animation="wave" width={340} height={20} sx={{ ml: 2 }} />) : (

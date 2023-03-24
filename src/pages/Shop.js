@@ -6,7 +6,6 @@ import {getAllProducts ,getAllCategory, getProductsByCate, getProductsByLimit, g
 import Layout from "../components/Layout/Layout";
 import { FormControl, InputLabel, Select, MenuItem, Button, Box, Card, CardActionArea, CardContent, CardMedia, Typography, CardActions } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
-import swal from 'sweetalert'
 import {Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import Pagination from '@mui/material/Pagination';
@@ -14,7 +13,8 @@ import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import '../styles/Menu.css';
-
+import toast from 'react-hot-toast';
+import GoToTopButton from './Gototop'
 function Shop() {
     const navigate = useNavigate();
     const [selected, setSelected] = useState('')
@@ -137,11 +137,11 @@ function Shop() {
                                         <Button variant="contained" onClick={() => {
                                             if (!isLoggedIn) {
                                                 navigate('/login');
-                                                swal("Please Login!", "You clicked the button!", "warning");
+                                                toast.error('Please to login!', {icon: '⚠️'});
                                                 return;
                                             }
                                             dispatch(AddCart(datas));
-                                            swal("Add To Cart", "You clicked the button!", "success");
+                                            toast.success('This is a success add to cart message!');
                                         }}
                                             startIcon={<AddIcon />}
                                             sx={{ mt: '4px', color: 'white', borderRadius: '40px' ,border: 'none', background: 'green', transition: 'all 1s', '&:hover': { background: 'red' } }}>
@@ -157,6 +157,7 @@ function Shop() {
                 { loading ? (<Skeleton variant="rounded" width={360} height={30} sx={{mt: 2}}/>) :
                 (<Pagination count={count} page={page} onChange={handleOffset}  variant="outlined" color="secondary" />)}
             </Stack>
+            <GoToTopButton />
         </Layout>
     );
 }
