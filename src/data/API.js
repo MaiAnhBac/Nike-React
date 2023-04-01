@@ -1,16 +1,16 @@
-export const loginAndGetToken = (username, password) => {
-    return (
-        fetch('https://dummyjson.com/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-            })
-        })
-        .then(res => res.json())
-    )
-};
+// export const loginAndGetToken = (username, password) => {
+//     return (
+//         fetch('https://dummyjson.com/auth/login', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({
+//                 username: username,
+//                 password: password,
+//             })
+//         })
+//         .then(res => res.json())
+//     )
+// };
 // tất cả sản phẩm
 export const getAllProducts = () => {
     return (
@@ -53,3 +53,47 @@ export const getProductsByPrice = (min, max) => {
             .then(res => res.json())
     )
 };
+//Tạo tài khoản mới cho người dùng
+export const postAddNewUser = (name, email,avatar, password) => {
+    return (
+        fetch('https://api.escuelajs.co/api/v1/users/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                avatar: avatar,
+                password: password,
+            })
+        })
+            .then(res => res.json())
+    )
+};
+// AccessToken login
+export const authorization = (accessToken) => {
+    return (
+        fetch('https://api.escuelajs.co/api/v1/auth/profile', {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                localStorage.setItem('user', JSON.stringify(data))
+            })
+    )
+}
+export const login = (email, password) => {
+    return (
+        fetch('https://api.escuelajs.co/api/v1/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then((res) => res.json())
+    )
+}

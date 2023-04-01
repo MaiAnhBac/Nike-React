@@ -3,6 +3,31 @@
     color: black;
     margin-right: 12px;
 }
+/* sài cardMedia thì ẩn đi nhé dòng 7 tới 23 */
+.main-slide {
+    margin: 30px;
+}
+.carousel {
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+.carousel .slider-wrapper {
+    width: 750px !important;
+    height: 600px;
+}
+.carousel .slide img {
+    width: 700px !important;
+    height: 572px;
+}
+.carousel .thumbs {
+    width: 5%;
+}
+/* .carousel .carousel-slider{
+    width: 672px !important;
+    height: 600px;
+} */
 @media (max-width: 600px) {
     .card {
         flex-direction: column;
@@ -29,6 +54,19 @@
     }
     .tel {
         font-size: 14px !important;
+    }
+    /* Carousel */
+    .main-slide {
+       margin: 0;
+       padding-top: 30px;
+    }
+    .carousel .slider-wrapper {
+        width: 377px !important;
+        height: 360px;
+    }
+    .carousel .slide img {
+        width: 347px !important;
+        height: 360px;
     }
     
 }

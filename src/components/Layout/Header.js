@@ -9,7 +9,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Badge from '@mui/material/Badge';
-import swal from 'sweetalert'
 import { useNavigate } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -34,9 +33,9 @@ function Header() {
         setMobileOpen(!mobileOpen)
     }
     const handleLogOut = () =>{
-        localStorage.removeItem("user")
+        localStorage.removeItem('user')
         localStorage.removeItem('cart')
-        toast.success('This is a success logout message!');
+        toast.success('Logout successfully message!');
         navigate('/')
     }
     const drawer = (
@@ -61,12 +60,12 @@ function Header() {
                 <li>
                     <NavLink to="/shoppingcart">
                         <Badge color="secondary" badgeContent={carts.length}>
-                            <ShoppingCartIcon />
+                            <ShoppingCartIcon titleAccess='Shopping Cart' />
                         </Badge>
                     </NavLink>
                 </li>
                 <li>
-                    {userLogin ? (<Box><IconButton onClick={handleClick} sx={{ p: 0 }}><LockOpenIcon /></IconButton>
+                    {userLogin ? (<Box><IconButton onClick={handleClick} title='Tài khoản' sx={{ p: 0, color: 'black' }}><LockOpenIcon /></IconButton>
                             <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
                                 <MenuItem onClick={handleClose} sx={{borderRadius: '10px', mx: 1}}>
                                     <NavLink className='navtt' to="/personal"><Box><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
@@ -74,7 +73,7 @@ function Header() {
                                 <MenuItem onClick={handleLogOut} sx={{borderRadius: '10px', mx: 1}}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>
                             </Menu>
                         </Box>
-                    ) : (<NavLink to="/login"><LockIcon /></NavLink>)}
+                    ) : (<NavLink to="/login"><LockIcon titleAccess='Login' /></NavLink>)}
                 </li>
             </ul>
         </Box>
@@ -107,13 +106,13 @@ function Header() {
                                 <li>
                                     <NavLink to="/shoppingcart">
                                         <Badge color="secondary" badgeContent={carts.length}>
-                                            <ShoppingCartIcon />
+                                            <ShoppingCartIcon titleAccess='Shopping Cart' />
                                         </Badge>
                                     </NavLink>
                                 </li>
                                 <li>
                                     {userLogin ? (
-                                        <Box><IconButton onClick={handleClick} sx={{p:0}}><LockOpenIcon /></IconButton>
+                                        <Box><IconButton onClick={handleClick} title='Tài khoản' sx={{p:0, color: 'black'}}><LockOpenIcon /></IconButton>
                                             <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
                                                 <MenuItem onClick={handleClose} sx={{borderRadius: '10px', mx: 1}}>
                                                     <NavLink className='navtt' to="/personal"><Box sx={{pb: 0}}><PersonIcon sx={{mr: 0.7}}/></Box>Profile</NavLink>
@@ -121,7 +120,7 @@ function Header() {
                                                 <MenuItem onClick={handleLogOut} sx={{borderRadius: '10px', mx: 1}}><LogoutOutlinedIcon sx={{mr: 0.7, my: 0.4}}/>Logout</MenuItem>
                                             </Menu>
                                         </Box>
-                                    ) : (<NavLink to="/login"><LockIcon /></NavLink>)}
+                                    ) : (<NavLink to="/login"><LockIcon titleAccess='Login' /></NavLink>)}
                                 </li>
                             </ul>
                         </Box>

@@ -1,13 +1,10 @@
 .btn {
     border: 1px solid #E6E6FA !important;
-    margin-right: 2 !important;
-    margin-top: 2 !important;
     color: black !important;
     font-weight: bold !important;
 }
 .btns {
     border: 1px solid #E6E6FA !important;
-    margin-top: 2 !important;
     color: black !important;
     font-weight: bold !important;
 }
@@ -18,6 +15,13 @@
 .btns:hover {
     border: 1px solid #FF9933 !important;
     background: white !important;
+}
+.error{
+    color: red;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-align: left;
 }
 @media (max-width: 600px) {
     .paper {

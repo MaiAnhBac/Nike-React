@@ -13,6 +13,7 @@ function Contact() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [message, setMessage] = useState()
+    const [item, setItem] = useState([])
     const handleName = (e) => {
         setName(e.target.value)
     }
@@ -23,15 +24,14 @@ function Contact() {
         setMessage(e.target.value)
     }
     const handleSubmit = () => {
-        var courses = []
-        var course = {
+        const newObject = {
             name: name,
             email: email,
             message: message
         }
-        courses.push(course);
-        console.log(courses);
+        setItem([...item, newObject])
     };
+    console.log(item);
     return ( 
         <Layout>
             <Box sx={{ my: 10, ml: 10,mr: 10, mb: 10, "& h4": { fontWeight: "bold", mb: 2, color: "#EC870E" } }}>
@@ -61,15 +61,15 @@ function Contact() {
                         <TableBody>
                             <TableRow>
                                 <TableCell><SupportAgentIcon sx={{color: 'red', pt: 1}} />1800 000 0</TableCell>
-                                <TableCell><FacebookIcon sx={{color: '#3b5998', pt: 1}} />https://www.facebook.com/</TableCell>
+                                <TableCell><FacebookIcon sx={{color: '#3b5998', pt: 1}} />https://www.facebook.com</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell><EmailIcon sx={{color: 'skyblue', pt: 1}} />TMA@gmail.com</TableCell>
-                                <TableCell><YouTubeIcon sx={{color: '#ff0000', pt: 1}} />https://www.youtube.com/</TableCell>
+                                <TableCell><YouTubeIcon sx={{color: '#ff0000', pt: 1}} />https://www.youtube.com</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell><CallIcon sx={{color: 'green', pt: 1}} />09876543212</TableCell>
-                                <TableCell><InstagramIcon sx={{color: '#d6249f', pt: 1}} />https://www.instagram.com/</TableCell>
+                                <TableCell><InstagramIcon sx={{color: '#d6249f', pt: 1}} />https://www.instagram.com</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>

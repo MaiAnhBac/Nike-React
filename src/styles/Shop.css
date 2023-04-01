@@ -1,0 +1,59 @@
+.h5 {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    color: #FF8C00 !important;
+    font-weight: bold !important;
+}
+.h7 {
+    font-style: italic !important;
+}
+.cardmenu {
+    margin-left: 16px !important;
+    height: 60px !important;
+    margin-top: 8px !important;
+}
+.a-price {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+.h6 {
+    color: #FF8C00 !important;
+    margin-top: 8px !important;
+}
+.dividermenu {
+    margin-left: 125.6px !important;
+    margin-right: 125.6px !important;
+}
+.cardshop {
+    max-width: 390px !important;
+    margin: 16px !important;
+}
+.cardmedia {
+    height: 400px !important;
+    width: 390px !important;
+    transition: all .5s !important;
+}
+.cardmedia:hover {
+    transform: scale(1.1);
+}
+.cartactions {
+    min-height: 100px !important;
+    justify-content: space-between !important;
+    padding: 16px !important ;
+}
+.body2 {
+    color: red !important;
+    font-size: 30px !important;
+    margin-top: 3px !important;
+}
+@media (max-width: 600px) {
+    .cardmenu {
+        width: 320px !important;
+        margin-left: 0 !important;
+    }
+    .dividermenu {
+        margin-right: 96px !important;
+        margin-left: 96px !important;
+    }
+}

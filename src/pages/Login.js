@@ -1,4 +1,4 @@
-import { loginAndGetToken } from '../data/API'
+import {authorization, login } from '../data/API'
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
@@ -15,6 +15,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/Login.css';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from '@mui/material/Backdrop';
 import toast from 'react-hot-toast';
 function Login() {
     const paperStyle = { padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px' }
@@ -23,8 +25,8 @@ function Login() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [remember, setRemember] = useState(false);
-    const [errorUser, setErrorUser] = useState(false);
-    const [errorPass, setErrorPass] = useState(false);
+    const [error, setError] = useState(false);
+    const [progress, setProgress] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
@@ -38,41 +40,75 @@ function Login() {
     const handlePassword = (e) => {
         setPassword(e.target.value);
     }
-    const onConfirmLogin = (e) => {
-        e.preventDefault();
-        if (email === "") {
-            setErrorUser(true);
-        }
-        else  {
-            setErrorUser(false);
-        }
-        if (password === "") {
-            setErrorPass(true);
+    // const onConfirmLogin = (e) => {
+    //     e.preventDefault();
+    //     if (!email || !password) {
+    //         setError(true);
+    //     }
+    //     else {
+    //         setError(false);
+    //         setProgress(true)
+    //         loginAndGetToken(email, password).then(token => {
+    //             if (token.username === email) {
+    //                 localStorage.setItem('user', JSON.stringify(token))
+    //                 toast.success('Logged in successfully message!');
+    //                 navigate('/shop')
+    //                 if (remember) {
+    //                     localStorage.setItem('rememberMe', 'true');
+    //                     localStorage.setItem('email', email);
+    //                     localStorage.setItem('password', password);
+    //                 }
+    //                 else {
+    //                     localStorage.removeItem('rememberMe')
+    //                     localStorage.removeItem('email')
+    //                     localStorage.removeItem('password')
+    //                 }
+    //             }
+    //             else {
+    //                 setProgress(false)
+    //                 toast.error('Login failed message!');
+    //             }
+    //         })
+    //     }
+    // }
+    
+    async function api(email, password) {
+        let accessToken;
+        await login(email, password).then(token => {
+                accessToken = token.access_token
+        });
+        if(accessToken){
+            authorization(accessToken)
+            toast.success('Logged in successfully message!');
+            navigate('/shop')
+            if (remember) {
+                localStorage.setItem('rememberMe', 'true');
+                localStorage.setItem('email', email);
+                localStorage.setItem('password', password);
+            }
+            else {
+                localStorage.removeItem('rememberMe')
+                localStorage.removeItem('email')
+                localStorage.removeItem('password')
+            }
         }
         else {
-            setErrorPass(false);
-            loginAndGetToken(email, password).then(token => {
-                if (token.username === email) {
-                    localStorage.setItem('user', JSON.stringify(token))
-                    toast.success('This is a success login message!');
-                    navigate('/shop')
-                    if (remember) {
-                        localStorage.setItem('rememberMe', 'true');
-                        localStorage.setItem('email', email);
-                        localStorage.setItem('password', password);
-                    }
-                    else {
-                        localStorage.removeItem('rememberMe')
-                        localStorage.removeItem('email')
-                        localStorage.removeItem('password')
-                    }
-                }
-                else {
-                    toast.error('This is an error message!');
-                }
-            })
+            toast.error('Login failed message!');
+            setProgress(false)
         }
     }
+    const onConfirmLogin = (e) => {
+        e.preventDefault();
+            if (!email || !password) {
+            setError(true);
+        }
+        else {
+            setError(false);
+            setProgress(true)
+            api(email, password)
+        }
+    }
+   
     useEffect(() => {
         const rememberMeValue = localStorage.getItem('rememberMe') === 'true';
         const emailValue = localStorage.getItem('email') || '';
@@ -84,6 +120,7 @@ function Login() {
     return (
         <>
             <Layout>
+                {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
                 <Grid textAlign={'center'} sx={{ my: 18 }}>
                     <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
@@ -92,7 +129,7 @@ function Login() {
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
                             <TextField id="outlined-name" value={email || ""} onChange={handleEmail} name="username" label="Enter Email/Phone No*" variant="outlined" sx={{ mt: 3, mb: 1 }} />
-                            {errorUser && <p style={{ color: 'red', marginLeft: 5, marginBottom: '6px', fontSize: '12px', textAlign: 'left' }}>Vui lòng nhập thông tin username</p>}
+                            {error && <p className='error'>Vui lòng nhập thông tin Email/Phone No</p>}
                             <FormControl variant="outlined" sx={{ mb: 1, mt: 0.5 }}>
                                 <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
@@ -113,7 +150,7 @@ function Login() {
                                     label="Password"
                                 />
                             </FormControl>
-                            {errorPass && <p style={{ color: 'red', marginLeft: 5, marginBottom: 3, fontSize: '12px', textAlign: 'left' }}>Vui lòng nhập thông tin password</p>}
+                            {error && <p className='error'>Vui lòng nhập thông tin password</p>}
                             <Box sx={{ textAlign: 'start' }}>
                                 <FormControlLabel checked={remember} onChange={handleRemember} control={<Checkbox />} label="Remember me" />
                             </Box>

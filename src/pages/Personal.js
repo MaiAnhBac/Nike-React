@@ -29,7 +29,6 @@ function Personal() {
     const handleOpen = () => {
       setOpen(true);
     };
-  
     const handleClose = () => {
       setOpen(false);
     };
@@ -42,11 +41,11 @@ function Personal() {
                     </Grid>
                     <Grid item xs={6} md={4}>
                         <Card sx={{ minHeight: '475px', p: 5}}>
-                            <Avatar alt="Remy Sharp" src={userLogin.image} sx={{ border: '1px solid black', width: '120px', height: '120px', m: '0 auto', display: 'flex', justifyContent: 'center' }} />
-                            <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.lastName}</Typography>
-                            <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography>
+                            <Avatar alt="Remy Sharp" src={userLogin.avatar} sx={{ border: '1px solid black', width: '120px', height: '120px', m: '0 auto', display: 'flex', justifyContent: 'center' }} />
+                            <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.name}</Typography>
+                            {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography> */}
                             <Box sx={{ textAlign: 'center' }}>
-                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Đổi mật khẩu</Button>
+                                {userLogin.role === "admin" && <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Đổi mật khẩu</Button>}
                                 <Dialog open={open} onClose={handleClose}>
                                     <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Đổi mật khẩu</DialogTitle>
                                     <DialogContent sx={{display:'flex', flexDirection: 'column'}}>
@@ -113,28 +112,28 @@ function Personal() {
                                             <TableCell align="left">{userLogin.id}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>FirstName:</TableCell>
-                                            <TableCell align="left">{userLogin.firstName}</TableCell>
+                                            <TableCell>Họ và tên:</TableCell>
+                                            <TableCell align="left">{userLogin.name}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>LastName:</TableCell>
-                                            <TableCell align="left">{userLogin.lastName}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Gender:</TableCell>
-                                            <TableCell align="left">{userLogin.gender}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>UserName:</TableCell>
-                                            <TableCell align="left">{userLogin.username}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Password:</TableCell>
-                                            <TableCell align="left">{userLogin.password}</TableCell>
+                                            <TableCell>Vai trò:</TableCell>
+                                            <TableCell align="left">{userLogin.role}</TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Email:</TableCell>
                                             <TableCell align="left">{userLogin.email}</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>Mật khẩu:</TableCell>
+                                            <TableCell align="left">*******</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>Ngày tạo</TableCell>
+                                            <TableCell align="left">{userLogin.creationAt}</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>Ngày cập nhật</TableCell>
+                                            <TableCell align="left">{userLogin.updatedAt}</TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell colSpan={2} sx={{textAlign: 'center'}}>

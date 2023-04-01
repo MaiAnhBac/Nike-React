@@ -5,14 +5,14 @@ import { AddCart } from "../redux/cartSystem";
 import {getAllProducts ,getAllCategory, getProductsByCate, getProductsByLimit, getProductsByPrice} from '../data/API'
 import Layout from "../components/Layout/Layout";
 import { FormControl, InputLabel, Select, MenuItem, Button, Box, Card, CardActionArea, CardContent, CardMedia, Typography, CardActions } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/AddShoppingCart';
 import {Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
-import '../styles/Menu.css';
+import '../styles/Shop.css';
 import toast from 'react-hot-toast';
 import GoToTopButton from './Gototop'
 function Shop() {
@@ -27,6 +27,9 @@ function Shop() {
     const limit = 20;
     const [value, setValue] = useState([20, 80]);
     const [count, setCount] = useState(10)
+    const [max, setMax] = useState([])
+    // sắp xếp mảng data theo thứ tự giảm dần của giá trị price. trả về phần từ đầu tiên của array
+    // const maxPrice = max.sort((a, b) => b.price - a.price)[0];// maxPrice.price
     const handleChangePrice = (event, newValue) => {
         setValue(newValue);
         getProductsByPrice(newValue[0] ,newValue[1])
@@ -54,13 +57,14 @@ function Shop() {
         if (token) {
           setIsLoggedIn(true);
         }
-      }, []);
+      });
 
     useEffect(() => {
         getAllProducts()
             .then((data) => {
                 const datas = Math.ceil(data.length / limit)
                 setCount(datas)
+                // setMax(data)
             })
         getProductsByLimit( 1 ,limit)
             .then((offset) =>{
@@ -79,11 +83,11 @@ function Shop() {
     return (
         <Layout>
             <Box sx={{pt: 1, flexWrap: "wrap", mt: "20px" }}>
-                <Box sx={{ ml: 16, "@media (max-width: 600px)": { ml: 12 } }}>
+                <Box sx={{ ml: 16, "@media (max-width: 600px)": { ml: 12 },"@media (max-width: 414px)": { ml: 3 } }}>
                     {loading ? (<Skeleton variant="rounded" width={220} height={20} sx={{ mt: 3 }} />) :
-                        (<Typography variant="h5" sx={{ my: 1.5, color: '#FF8C00', fontWeight: 'bold' }}>Bộ lọc sản phẩm</Typography>)}
+                        (<Typography className="h5" variant="h5">Bộ lọc sản phẩm</Typography>)}
                     {loading ? (<Skeleton variant="rounded" width={280} height={10} sx={{ mt: 2 }} />) :
-                        (<Typography variant="h7" sx={{ fontStyle: 'italic' }}>Giúp lọc nhanh sản phẩm hay tìm kiếm</Typography>)}
+                        (<Typography className="h7" variant="h7">Giúp lọc nhanh sản phẩm hay tìm kiếm</Typography>)}
                     <Box sx={{ display: 'flex', justifyContent: 'left', mt: 0.5, width: '100%', "@media (max-width: 600px)": { flexDirection: 'column' } }}>
                         <Box>
                             {loading ? (<Skeleton variant="rounded" width={320} height={58} sx={{ mt: 1 }} />) :
@@ -96,7 +100,7 @@ function Shop() {
                                     </Select>
                                 </FormControl>)}
                         </Box>
-                        <Card className="cardmenu" sx={{ ml: 2, height: 60, mt: 1 }}>
+                        <Card className="cardmenu">
                             <Box sx={{ width: 300, mt: 0.5, mx: 2 }}>
                                 {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 1.5 }} />) :
                                     (<Box sx={{ display: 'flex', justifyContent: 'left' }}>
@@ -110,16 +114,16 @@ function Shop() {
                         </Card>
                     </Box>
                     {loading ? (<Skeleton variant="rounded" width={180} height={20} sx={{ my: 2 }} />) :
-                        (<Typography variant="h6" sx={{ color: '#FF8C00', mt: 1 }}>Tất cả sản phẩm</Typography>)}
+                        (<Typography variant="h6" className="h6">Tất cả sản phẩm</Typography>)}
                 </Box>
-                <Divider className="dividermenu" variant="middle" sx={{mx: 15.7}} />
+                <Divider className="dividermenu" variant="middle" />
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                     {data.map((datas) => (
-                        <Card key={datas.id} sx={{maxWidth: '390px', m: 2 }}>
+                        <Card key={datas.id} className="cardshop">
                             <Link to={`/productdetails/${datas.id}`} className='navLink'>
                                 <CardActionArea>
                                     { loading ? (<Skeleton variant="rounded" width={390} height={360}/>) :
-                                        (<CardMedia sx={{ height: '400px', width: '390px', transition: 'all .5s', '&:hover': { transform: 'scale(1.1)' } }} component={'img'} src={datas.images} alt={datas.title} />)}
+                                        (<CardMedia className="cardmedia" component={'img'} src={datas.images} alt={datas.title} />)}
                                     { loading ? (<Skeleton animation="wave" width={210} height={40} sx={{mt: 1}} />) :
                                         (<CardContent sx={{ minHeight: '0px' }}>
                                             <Typography variant="h5" component={"div"} sx={{ fontWeight: 'bold', color: 'green' }}>
@@ -129,23 +133,23 @@ function Shop() {
                                 </CardActionArea>
                             </Link>
                             { loading ? (<Skeleton animation="wave" sx={{height: 50}} />) :
-                                (<CardActions sx={{minHeight: '100px' ,justifyContent: 'space-between', p: 2, b: 0 }}>
-                                    <Typography variant="body2" sx={{ color: "red", fontSize: "30px", mt: '3px' }}>
+                                (<CardActions className="cartactions">
+                                    <Typography variant="body2" className="body2">
                                         ${datas.price}
                                     </Typography>
                                     <div style={{ mt: '5px' }}>
-                                        <Button variant="contained" onClick={() => {
+                                        <Button variant="outlined" onClick={() => {
                                             if (!isLoggedIn) {
                                                 navigate('/login');
                                                 toast.error('Please to login!', {icon: '⚠️'});
                                                 return;
                                             }
                                             dispatch(AddCart(datas));
-                                            toast.success('This is a success add to cart message!');
+                                            toast.success('Add to cart successfully message!');
                                         }}
                                             startIcon={<AddIcon />}
-                                            sx={{ mt: '4px', color: 'white', borderRadius: '40px' ,border: 'none', background: 'green', transition: 'all 1s', '&:hover': { background: 'red' } }}>
-                                            Add
+                                            sx={{ mt: '4px', color: 'black', borderRadius: '10px',border: '1px solid black' , transition: 'all 1s', '&:hover': { background: '#DCDCDC', border: '1px solid black' } }}>
+                                            Add cart
                                         </Button>
                                     </div>
                                 </CardActions>)}
@@ -157,7 +161,7 @@ function Shop() {
                 { loading ? (<Skeleton variant="rounded" width={360} height={30} sx={{mt: 2}}/>) :
                 (<Pagination count={count} page={page} onChange={handleOffset}  variant="outlined" color="secondary" />)}
             </Stack>
-            <GoToTopButton />
+            <GoToTopButton/>
         </Layout>
     );
 }

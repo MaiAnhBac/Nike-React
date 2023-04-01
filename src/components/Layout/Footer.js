@@ -11,11 +11,11 @@ function Footer() {
             {/* position: 'fixed', bottom: 0, width: '100%' */}
             <Box sx = {{textAlign: "center", bgcolor: "#1A1A19", color: "white", p: 3}} >
                 <Box sx= {{my: 0, "& svg": {
-                    fontSize: "40px",
+                    fontSize: "35px",
                     cursor: "pointer",
                     mr: 2,
                 }}}>
-                    <InstagramIcon sx={{borderRadius:'10px',background: '#ea4c89',transition: 'all 1s', '&:hover': {opacity: '0.8', transform: 'scale(1.4)'}}} />
+                    <InstagramIcon sx={{borderRadius:'10px',background: '#ea4c89',transition: 'all 1s', '&:hover': { transform: 'scale(1.4)'}}} />
                     <TwitterIcon sx={{borderRadius:'10px',background: '#1da1f2', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />
                     <GitHubIcon sx={{borderRadius:'10px',background: 'black', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />
                     <YouTubeIcon sx={{borderRadius:'10px',background: '#EA4335', transition: 'all 1s', '&:hover': {transform: 'scale(1.4)'}}} />

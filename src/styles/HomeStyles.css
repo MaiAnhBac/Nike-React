@@ -107,6 +107,10 @@
     .home{
         justify-content: center;
         align-items: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: covers;
+        object-fit: fill;
         background-image: url('../images/poster4.jpg');
     }
     .headerContainer{
