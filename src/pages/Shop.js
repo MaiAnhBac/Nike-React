@@ -14,8 +14,10 @@ import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import '../styles/Shop.css';
 import toast from 'react-hot-toast';
-import GoToTopButton from './Gototop'
+import GoToTopButton from './Gototop';
+import Newproduct from './NewProduct';
 function Shop() {
+    const userLogin = JSON.parse(localStorage.getItem('user')) || []
     const navigate = useNavigate();
     const [selected, setSelected] = useState('')
     const [data, setData] = useState([])
@@ -112,6 +114,7 @@ function Shop() {
                                     />)}
                             </Box>
                         </Card>
+                        {userLogin.role === "admin" && <Newproduct />}
                     </Box>
                     {loading ? (<Skeleton variant="rounded" width={180} height={20} sx={{ my: 2 }} />) :
                         (<Typography variant="h6" className="h6">Tất cả sản phẩm</Typography>)}

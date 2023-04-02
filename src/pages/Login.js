@@ -40,38 +40,6 @@ function Login() {
     const handlePassword = (e) => {
         setPassword(e.target.value);
     }
-    // const onConfirmLogin = (e) => {
-    //     e.preventDefault();
-    //     if (!email || !password) {
-    //         setError(true);
-    //     }
-    //     else {
-    //         setError(false);
-    //         setProgress(true)
-    //         loginAndGetToken(email, password).then(token => {
-    //             if (token.username === email) {
-    //                 localStorage.setItem('user', JSON.stringify(token))
-    //                 toast.success('Logged in successfully message!');
-    //                 navigate('/shop')
-    //                 if (remember) {
-    //                     localStorage.setItem('rememberMe', 'true');
-    //                     localStorage.setItem('email', email);
-    //                     localStorage.setItem('password', password);
-    //                 }
-    //                 else {
-    //                     localStorage.removeItem('rememberMe')
-    //                     localStorage.removeItem('email')
-    //                     localStorage.removeItem('password')
-    //                 }
-    //             }
-    //             else {
-    //                 setProgress(false)
-    //                 toast.error('Login failed message!');
-    //             }
-    //         })
-    //     }
-    // }
-    
     async function api(email, password) {
         let accessToken;
         await login(email, password).then(token => {

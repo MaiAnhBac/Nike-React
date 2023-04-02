@@ -83,7 +83,7 @@ export const authorization = (accessToken) => {
                 localStorage.setItem('user', JSON.stringify(data))
             })
     )
-}
+};
 export const login = (email, password) => {
     return (
         fetch('https://api.escuelajs.co/api/v1/auth/login', {
@@ -92,6 +92,23 @@ export const login = (email, password) => {
             body: JSON.stringify({
                 email: email,
                 password: password
+            })
+        })
+            .then((res) => res.json())
+    )
+};
+//Create New Product
+export const createNewProduct =(title,price,description,categoryId,images) => {
+    return (
+        fetch('https://api.escuelajs.co/api/v1/products/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: title,
+                price: price,
+                description: description,
+                categoryId: categoryId,
+                images: images
             })
         })
             .then((res) => res.json())

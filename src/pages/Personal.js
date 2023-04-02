@@ -45,7 +45,7 @@ function Personal() {
                             <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.name}</Typography>
                             {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography> */}
                             <Box sx={{ textAlign: 'center' }}>
-                                {userLogin.role === "admin" && <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Đổi mật khẩu</Button>}
+                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Đổi mật khẩu</Button>
                                 <Dialog open={open} onClose={handleClose}>
                                     <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Đổi mật khẩu</DialogTitle>
                                     <DialogContent sx={{display:'flex', flexDirection: 'column'}}>
@@ -97,7 +97,7 @@ function Personal() {
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
-
+                               
                             </Box>
                             <Typography variant="h6" sx={{p: 3, textAlign: 'center'}}>Welcome to my Nike Website</Typography>
                         </Card>
