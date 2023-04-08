@@ -25,4 +25,9 @@
         padding-top: 10px;
         padding-left: 10px;
     }
+    .empty {
+        padding: 171px !important;
+        font-size: 17px !important;
+        align-items: center !important;  
+    }
 }

@@ -1,0 +1,32 @@
+.imgdes {
+    height: 700px;
+    width: 1600px;
+}
+.titlebold{
+    font-weight: bold;
+}
+.titleh6pro{
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+}
+.titlereviews {
+    text-align: center;
+}
+@media only screen and (max-width: 600px){
+    .imgdes{
+        height: 250px !important;
+        width: 400px !important;
+    }
+    .titleh6pro {
+        font-size: 16px !important;
+    }
+    .titleproduct {
+        font-size: 13px !important;
+    }
+    .titlereviews {
+        font-size: 13px !important;
+    }
+    .btnreview {
+        font-size: 10px !important;
+    }
+}

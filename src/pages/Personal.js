@@ -45,12 +45,12 @@ function Personal() {
                             <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.name}</Typography>
                             {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography> */}
                             <Box sx={{ textAlign: 'center' }}>
-                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Đổi mật khẩu</Button>
+                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Change Password</Button>
                                 <Dialog open={open} onClose={handleClose}>
-                                    <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Đổi mật khẩu</DialogTitle>
+                                    <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Change Password</DialogTitle>
                                     <DialogContent sx={{display:'flex', flexDirection: 'column'}}>
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
-                                            <InputLabel htmlFor="outlined-adornment-password" sx={{background: 'white', pr: 1}}>Mật khẩu cũ</InputLabel>
+                                            <InputLabel htmlFor="outlined-adornment-password" sx={{background: 'white', pr: 1}}>Old password</InputLabel>
                                             <OutlinedInput
                                                 id="outlined-adornment-password" name="password"
                                                 type={showPassword ? 'text' : 'password'}
@@ -70,7 +70,7 @@ function Personal() {
                                             />
                                         </FormControl>
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
-                                            <InputLabel htmlFor="outlined-adornment-passwordold" sx={{background: 'white', pr: 1}}>Mật khẩu mới</InputLabel>
+                                            <InputLabel htmlFor="outlined-adornment-passwordold" sx={{background: 'white', pr: 1}}>A new password</InputLabel>
                                             <OutlinedInput
                                                 id="outlined-adornment-passwordold" name="Mật khẩu mới"
                                                 type={showPassword ? 'text' : 'password'}
@@ -91,9 +91,9 @@ function Personal() {
                                         </FormControl>
                                     </DialogContent>
                                     <DialogActions sx={{mr: 2}}>
-                                        <Button onClick={handleClose}>Hủy</Button>
+                                        <Button onClick={handleClose}>Cancel</Button>
                                         <Button onClick={handleClose} autoFocus>
-                                            Đồng ý
+                                            Agree
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
@@ -112,11 +112,11 @@ function Personal() {
                                             <TableCell align="left">{userLogin.id}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Họ và tên:</TableCell>
+                                            <TableCell>First and last name:</TableCell>
                                             <TableCell align="left">{userLogin.name}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Vai trò:</TableCell>
+                                            <TableCell>Role:</TableCell>
                                             <TableCell align="left">{userLogin.role}</TableCell>
                                         </TableRow>
                                         <TableRow>
@@ -124,15 +124,15 @@ function Personal() {
                                             <TableCell align="left">{userLogin.email}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Mật khẩu:</TableCell>
+                                            <TableCell>Password:</TableCell>
                                             <TableCell align="left">*******</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Ngày tạo</TableCell>
+                                            <TableCell>Date created:</TableCell>
                                             <TableCell align="left">{userLogin.creationAt}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Ngày cập nhật</TableCell>
+                                            <TableCell>Update day:</TableCell>
                                             <TableCell align="left">{userLogin.updatedAt}</TableCell>
                                         </TableRow>
                                         <TableRow>

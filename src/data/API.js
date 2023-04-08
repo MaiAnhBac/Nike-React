@@ -47,9 +47,9 @@ export const getProductsByLimit = (off, limit) => {
     )
 };
 //lọc giá trị theo từ nhỏ tới lớn
-export const getProductsByPrice = (min, max) => {
+export const getProductsByPrice = (min, max, limit) => {
     return (
-        fetch(`https://api.escuelajs.co/api/v1/products/?price_min=${min}&price_max=${max}`)
+        fetch(`https://api.escuelajs.co/api/v1/products/?price_min=${min}&price_max=${max}&offset=10&limit=${limit}`)
             .then(res => res.json())
     )
 };
@@ -111,6 +111,26 @@ export const createNewProduct =(title,price,description,categoryId,images) => {
                 images: images
             })
         })
+            .then((res) => res.json())
+    )
+}
+//Delete products
+export const deleteProduct = (id) => {
+    return (
+        fetch(`https://api.escuelajs.co/api/v1/products/${id}`,{
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: id
+            })
+        })
+            .then((res) => res.json())
+    )
+}
+//Searches for products
+export const getSearchProduct = (title) => {
+    return (
+        fetch(`https://api.escuelajs.co/api/v1/products/?title=${title}`)
             .then((res) => res.json())
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { postAddNewUser } from '../data/API'
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
@@ -45,24 +45,30 @@ function Register() {
     }
     const onConfirmCreate = (e) => {
         e.preventDefault();
+        setProgress(true)
         if (!name || !avatar || !email || !password) {
             setError(true)
+            setProgress(false)
         } else {
             setError(false)
-            setProgress(true)
-            postAddNewUser(name, email,avatar, password)
-                .then((data) => {
-                    toast.success('Successful registration message!');
-                    console.log(data);
-                    setProgress(false)
-                })
-                .catch((error) => {
-                    setProgress(false)
-                    toast.error('Registration failed message!');
-                    console.log(error);
-                })
+            setTimeout(() => {
+                setProgress(false)
+                postAddNewUser(name, email,avatar, password)
+                    .then(() => {
+                        toast.success('Successful registration message!');
+                        setName('')
+                        setEmail('')
+                        setAvatar('')
+                        setPassword('')
+                    })
+                    .catch((error) => {
+                        toast.error('Registration failed message!');
+                        console.log(error);
+                    })
+            }, 3000)
         }
     }
+    
     return ( 
         <>
             <Layout>
@@ -75,12 +81,12 @@ function Register() {
                         </Grid>
                         <form onSubmit={onConfirmCreate} style={{display: 'flex', flexDirection: 'column'}}>
                             <TextField id="outlined-first" label="Name*"  variant="outlined" sx={{mb: 1, mt: 3}} value={name || ""} onChange={handleChangeName}   />
-                            {error && <p className='error'>Vui lòng nhập thông tin Name</p>}
+                            {error && <p className='error'>Please enter information Name</p>}
                             <TextField id="outlined-phone" label="Enter Email/Phone No*" sx={{mb: 1, mt: 0.5}} variant="outlined" value={email || ""} onChange={handleChangeEmail}   />
-                            {error && <p className='error'>Vui lòng nhập thông tin Email/Phone No</p>}
-                            <TextField id="outlined-avatar" label="Avatar*" sx={{mb: 1, mt: 0.5}} variant="outlined" value={avatar || ""} onChange={handleChangeAvatar}  />
-                            {error && <p className='error'>Vui lòng nhập thông tin Avatar (Lưu ý: dán link ảnh)</p>}
-                            <FormControl variant="outlined" sx={{mb: 1, mt: 0.5}} >
+                            {error && <p className='error'>Please enter your Email/Phone No</p>}
+                            <TextField id="outlined-avatar" label="URL avatar*" sx={{mb: 1, mt: 0.5}} variant="outlined" value={avatar || ""} onChange={handleChangeAvatar}  />
+                            {error && <p className='error'>Please enter Avatar information (Note: paste image link)</p>}
+                            <FormControl variant="outlined" sx={{mb: 0.5, mt: 0.5}} >
                                 <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
@@ -100,7 +106,7 @@ function Register() {
                                     label="Password"
                                 />
                             </FormControl>
-                            {error && <p className='error'>Vui lòng nhập thông tin Password</p>}
+                            {error && <p className='error'>Please enter Password information</p>}
                             <Button variant="contained" type="submit" sx={{background: '#FF9933', my: 1, p: 1.5, borderRadius: '14px'}}>Sign Up</Button>
                             <Typography className='or'>--- Or Sign in with ---</Typography>
                             <Typography>

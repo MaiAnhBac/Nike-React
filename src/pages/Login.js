@@ -67,16 +67,19 @@ function Login() {
     }
     const onConfirmLogin = (e) => {
         e.preventDefault();
-            if (!email || !password) {
+        setProgress(true)
+        if (!email || !password) {
             setError(true);
+            setProgress(false)
         }
         else {
             setError(false);
-            setProgress(true)
-            api(email, password)
+            setTimeout(() => {
+                setProgress(false)
+                api(email, password)
+            }, 3000)
         }
     }
-   
     useEffect(() => {
         const rememberMeValue = localStorage.getItem('rememberMe') === 'true';
         const emailValue = localStorage.getItem('email') || '';
@@ -97,7 +100,7 @@ function Login() {
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
                             <TextField id="outlined-name" value={email || ""} onChange={handleEmail} name="username" label="Enter Email/Phone No*" variant="outlined" sx={{ mt: 3, mb: 1 }} />
-                            {error && <p className='error'>Vui lòng nhập thông tin Email/Phone No</p>}
+                            {error && <p className='error'>Please enter your Email/Phone No</p>}
                             <FormControl variant="outlined" sx={{ mb: 1, mt: 0.5 }}>
                                 <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
@@ -118,7 +121,7 @@ function Login() {
                                     label="Password"
                                 />
                             </FormControl>
-                            {error && <p className='error'>Vui lòng nhập thông tin password</p>}
+                            {error && <p className='error'>Please enter password information</p>}
                             <Box sx={{ textAlign: 'start' }}>
                                 <FormControlLabel checked={remember} onChange={handleRemember} control={<Checkbox />} label="Remember me" />
                             </Box>

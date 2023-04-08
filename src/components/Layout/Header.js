@@ -59,7 +59,7 @@ function Header() {
                 </li>
                 <li>
                     <NavLink to="/shoppingcart">
-                        <Badge color="secondary" badgeContent={carts.length}>
+                        <Badge color="error" badgeContent={carts.length}>
                             <ShoppingCartIcon titleAccess='Shopping Cart' />
                         </Badge>
                     </NavLink>
@@ -105,7 +105,7 @@ function Header() {
                                 </li>
                                 <li>
                                     <NavLink to="/shoppingcart">
-                                        <Badge color="secondary" badgeContent={carts.length}>
+                                        <Badge color="error" badgeContent={carts.length}>
                                             <ShoppingCartIcon titleAccess='Shopping Cart' />
                                         </Badge>
                                     </NavLink>

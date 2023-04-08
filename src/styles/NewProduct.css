@@ -1,3 +1,32 @@
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
     width: 700px !important;
 }
+.errPro {
+    color: red;
+    font-size: 12px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+@media only screen and (max-width: 600px){
+    .btnNewProduct{
+        margin: 0 !important;
+        right: 90px !important;
+        margin-top: 8px !important;
+    }
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+        width: 400px !important;
+    }
+}
+
+@media only screen and (max-width: 414px){
+    .btnNewProduct{
+        margin: 0 !important;
+        right: 24px !important;
+        margin-top: 8px !important;
+        transition: all 1s;
+    }
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+        width: 400px !important;
+        transition: all 1s;
+    }
+}

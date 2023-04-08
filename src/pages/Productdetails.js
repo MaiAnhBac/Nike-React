@@ -21,13 +21,23 @@ import Rating from '@mui/material/Rating';
 import {useNavigate} from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import DeleteProduct from './DeleteProduct';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import ProductDescription from './ProductDescription';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 function ProductDetails() {
+    const userLogin = JSON.parse(localStorage.getItem('user')) || []
     const { id } = useParams();
     const navigate = useNavigate();
     const [details, setDetails] = useState([])
     const [loading, setLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const dispatch = useDispatch()
+    function handleClick(event) {
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
     useEffect(() => {
         getProductsByDetails(id)
             .then((data) => {
@@ -48,6 +58,15 @@ function ProductDetails() {
     return (
         <Layout>
             <Box sx={{ p: 4, m: 4 }}>
+            {loading ? (<Skeleton animation="wave" width={150} height={20} sx={{mb: 2}}/>) : (
+                <Breadcrumbs separator="›" sx={{mb: 2}}>
+                    <Link to='/shop' className='navLinkBreadcrumb shop'>
+                        Shop
+                    </Link>
+                    <Link underline="hover" className='navLinkBreadcrumb'>
+                        Product Details
+                    </Link>
+                </Breadcrumbs>)}
                 <Card className="card" sx={{ display: 'flex'}}>
                     {loading ? (<Skeleton variant="rounded" width={750} height={700} />) : (
                         <Carousel>
@@ -62,21 +81,27 @@ function ProductDetails() {
                         <CardContent >
                             {loading ? (<Skeleton animation="wave" width={500} height={50} />) : (
                                 <Typography className="title" gutterBottom variant="h4" component="div" sx={{ color: 'green', fontWeight: 'bold' }}>
-                                    {details.title}
+                                    {details.title} {userLogin.role === "admin" && <DeleteProduct />}
                                 </Typography>)}
                             {loading ? (<Skeleton animation="wave" width={400} height={30} />) : (
                                 <Box sx={{ display: 'flex' }}>
                                     <Typography className="cate" gutterBottom variant="h6" color="text.secondary" sx={{ mr: 1 }}>
-                                        Thương hiệu:
+                                        Brand:
                                     </Typography>
                                     <Typography className="cate" gutterBottom variant="h6" color="blue">
                                         {details?.category?.name}
                                     </Typography>
                                     <Typography className="cate" gutterBottom variant="h6" color="text.secondary" sx={{ mx: 1 }}>
-                                        | Mã sản phẩm:
+                                        | Product code:
                                     </Typography>
                                     <Typography className="cate" gutterBottom variant="h6" color="blue">
-                                        Chưa cập nhật
+                                        Not update
+                                    </Typography>
+                                    <Typography className="cate" gutterBottom variant="h6" color="text.secondary" sx={{ mx: 1 }}>
+                                        | Status:
+                                    </Typography>
+                                    <Typography className="cate" gutterBottom variant="h6" color="blue">
+                                        Stocking
                                     </Typography>
                                 </Box>)}
                             <Divider />
@@ -87,7 +112,7 @@ function ProductDetails() {
                             {loading ? (<Skeleton animation="wave" width={120} height={70} />) : (
                                 <Box sx={{ display: 'flex', mt: 6 }}>
                                     <Typography className="quanlity" variant="h6" sx={{ mr: '15px' }}>
-                                        Số lượng:
+                                        Quantity:
                                     </Typography>
                                     <TextField className="quan" size="small" value='1' type="number" style={{ width: "60px", height: "60px" }} inputProps={{ min: 1, max: 100 }} />
                                 </Box>)}
@@ -101,10 +126,7 @@ function ProductDetails() {
                                 </Box>)}
                         </CardContent>
                         {loading ? (<Skeleton animation="wave" sx={{ ml: 2 }} width={240} height={90} />) : (
-                            <CardActions sx={{ display: 'fixed', bottom: 0 }}>
-                                <Link to={'/shop'} className='navLink'>
-                                    <Button size="large" variant="outlined" startIcon={<ArrowBackIosIcon />} sx={{ color: 'black',border: '1px solid black', '&:hover': { background: '#DCDCDC',border: '1px solid black' } }}>BACK</Button>
-                                </Link>
+                            <CardActions sx={{ display: 'fixed', bottom: 0, ml: 1 }}>
                                 <Button size="large" variant="outlined" onClick={() => {
                                     if (!isLoggedIn) {
                                         navigate('/login');
@@ -113,14 +135,23 @@ function ProductDetails() {
                                     }
                                     dispatch(AddCart(details));
                                     toast.success('Add to cart successfully message!');
-                                }} startIcon={<AddIcon />} sx={{ color: 'black',border: '1px solid black', '&:hover': { background: '#DCDCDC', border: '1px solid black'} }}>ADD CART</Button>
+                                }} startIcon={<AddIcon />} sx={{ color: 'black',border: '1px solid black', '&:hover': { background: '#DCDCDC', border: '1px solid black'} }}>ADD TO CART</Button>
                             </CardActions>)}
                         {loading ? (<Skeleton animation="wave" width={340} height={20} sx={{ ml: 2 }} />) : (
-                            <Typography className="tel" gutterBottom variant="h6" color="text.secondary" sx={{ ml: 1 }}>
-                                Gọi <a style={{ textDecoration: 'none', color: 'red' }}>0987563711</a> để được tư vấn miễn phí
+                            <Typography className="tel" gutterBottom variant="h6" color="text.secondary" sx={{ ml: 2 }}>
+                               Call <a style={{ textDecoration: 'none', color: 'red' }}>0987563711</a> for a free consultation
+                            </Typography>)}
+                        {loading ? (<Skeleton animation="wave" width={340} height={20} sx={{ ml: 2 }} />) : (
+                            <Typography className="tel" gutterBottom variant="h6" color="text.secondary" sx={{ ml: 2, mt: 3, display: 'flex' }}>
+                               <WorkspacePremiumIcon /> <Typography className="teltilte" sx={{ml: 1}}>100% GENUINE GUARANTEE</Typography>
+                            </Typography>)}
+                        {loading ? (<Skeleton animation="wave" width={340} height={20} sx={{ ml: 2 }} />) : (
+                            <Typography className="tel" gutterBottom variant="h6" color="text.secondary" sx={{ ml: 2,mt: 2, display: 'flex' }}>
+                               <CardGiftcardIcon /> <Typography className="teltilte" sx={{ml: 1}}>FREE GIFT PACKAGE</Typography>
                             </Typography>)}
                     </Box>
                 </Card>
+                <ProductDescription details={details} />
             </Box>
         </Layout>
     );

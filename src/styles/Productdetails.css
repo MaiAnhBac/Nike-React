@@ -3,6 +3,16 @@
     color: black;
     margin-right: 12px;
 }
+.navLinkBreadcrumb {
+    text-decoration: none;
+    color: black;
+}
+.shop {
+    color: darkgray;
+}
+.shop:hover {
+    text-decoration: underline;
+}
 /* sài cardMedia thì ẩn đi nhé dòng 7 tới 23 */
 .main-slide {
     margin: 30px;
@@ -20,6 +30,7 @@
 .carousel .slide img {
     width: 700px !important;
     height: 572px;
+    object-fit: cover;
 }
 .carousel .thumbs {
     width: 5%;
@@ -37,13 +48,13 @@
         height: 360px !important;
     }
     .title {
-        font-size: 20px !important;
+        font-size: 18px !important;
     }
     .cate {
-        font-size: 12px !important;
+        font-size: 10.5px !important;
     }
     .des {
-        font-size: 13px !important;
+        font-size: 12px !important;
     }
     .quanlity {
         font-size: 13px !important;
@@ -53,7 +64,14 @@
         font-size: 30px !important;
     }
     .tel {
-        font-size: 14px !important;
+        font-size: 12px !important;
+    }
+    .teltilte{
+        font-size: 11px !important;
+        margin-top: 5px !important;
+    }
+    .navLinkBreadcrumb {
+        font-size: 13px;
     }
     /* Carousel */
     .main-slide {
