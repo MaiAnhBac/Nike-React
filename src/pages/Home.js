@@ -8,6 +8,7 @@ import banner2 from '../images/nike2.jpg'
 import banner3 from '../images/short.jpg'
 import Paper from '@mui/material/Paper';
 import Carousel from 'react-material-ui-carousel'
+import nike from "../images/nike.png";
 function Home() {
     const items = [
       {

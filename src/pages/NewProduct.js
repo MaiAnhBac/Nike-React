@@ -5,11 +5,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {getAllCategory, createNewProduct} from '../data/API'
+import {getAllCategory, createNewProduct,uploadFile } from '../data/API'
 import toast from 'react-hot-toast';
 import '../styles/NewProduct.css';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import axios from 'axios';
 function NewProduct() {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState([])
@@ -20,6 +21,7 @@ function NewProduct() {
     const [images, setImages] = useState()
     const [error, setError] = useState(false)
     const [progress, setProgress] = useState(false);
+    const [imageProduct, setImageProduct] = useState([])
     const handleOpen = () => {
       setOpen(true);
     };
@@ -36,7 +38,22 @@ function NewProduct() {
         setDescription(e.target.value)
     }
     const handleChangeImage = (e) => {
-        setImages([e.target.value])
+        setImages(e.target.files[0])
+        const formData = new FormData();
+        formData.append("file", e.target.files[0]);
+        axios
+            .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((res) => {
+                setImageProduct([res?.data?.location])
+
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     const handleChangeCate = (e) => {
         setSelected(e.target.value);
@@ -44,7 +61,7 @@ function NewProduct() {
     const onSubmitProduct = (e) => {
         e.preventDefault();
         setProgress(true)
-        if(!title || !price || !description || !selected || !images){
+        if(!title || !price || !description || !selected || !imageProduct){
             setError(true)
             setProgress(false)
         }
@@ -52,7 +69,7 @@ function NewProduct() {
             setError(false)
             setTimeout(() => {
                 setProgress(false)
-                createNewProduct(title, price, description, selected, images)
+                createNewProduct(title, price, description, selected, imageProduct)
                     .then(() => {
                         toast.success('Create a successful new product!');
                         setTitle('')
@@ -95,7 +112,7 @@ function NewProduct() {
                         </Select>
                     </FormControl>
                     {error && <p className="errPro">Please select the product category!</p>}
-                    <TextField id="outlined-images" value={images || ""}  onChange={handleChangeImage} label="URL images" variant="outlined" sx={{mb: 1}} />
+                    <TextField id="outlined-images" type="file" name="file" onChange={handleChangeImage} variant="outlined" sx={{mb: 1}} />
                     {error && <p className="errPro">Please paste the image url!</p>}
                 </DialogContent>
                 <DialogActions sx={{ mr: 3 }}>

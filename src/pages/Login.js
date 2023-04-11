@@ -77,7 +77,7 @@ function Login() {
             setTimeout(() => {
                 setProgress(false)
                 api(email, password)
-            }, 3000)
+            }, 1500)
         }
     }
     useEffect(() => {

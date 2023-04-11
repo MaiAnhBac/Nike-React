@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {updateUser} from '../data/API'
 import { Button, Typography, Box, Grid, Card } from "@mui/material";
 import {Link} from 'react-router-dom';
 import Layout from "../components/Layout/Layout";
@@ -17,21 +18,55 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import toast from 'react-hot-toast';
 function Personal() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
     const [open, setOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState()
+    const [changePassword, setChangePassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
-
     const handleOpen = () => {
       setOpen(true);
     };
     const handleClose = () => {
       setOpen(false);
     };
+    const onPassword = (e) => {
+        setPassword(e.target.value)
+    }
+    const onChangePassword = (e) => {
+        setChangePassword(e.target.value);
+    }
+    const onChangeConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value)
+    }
+    const onClickPassword = () => {
+        const id = userLogin.id;
+        const pass = userLogin.password;
+        if(password === pass && changePassword != ""){
+            if (changePassword === confirmPassword) {
+                updateUser(id, changePassword)
+                    .then((data) => {
+                        console.log(data);
+                        toast.success('Change password successfully!');
+                        setPassword('')
+                        setConfirmPassword('')
+                        setChangePassword('')
+                    })
+            }
+            else {
+                toast.error('Confirm password do not match!');
+            }
+        }
+        else{
+            toast.error('Old password is incorrect!');
+        }
+    }
     return ( 
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
@@ -52,7 +87,7 @@ function Personal() {
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
                                             <InputLabel htmlFor="outlined-adornment-password" sx={{background: 'white', pr: 1}}>Old password</InputLabel>
                                             <OutlinedInput
-                                                id="outlined-adornment-password" name="password"
+                                                id="outlined-adornment-password" name="password" onChange={onPassword}  value={password || ""}
                                                 type={showPassword ? 'text' : 'password'}
                                                 endAdornment={
                                                     <InputAdornment position="end">
@@ -70,9 +105,29 @@ function Personal() {
                                             />
                                         </FormControl>
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
-                                            <InputLabel htmlFor="outlined-adornment-passwordold" sx={{background: 'white', pr: 1}}>A new password</InputLabel>
+                                            <InputLabel htmlFor="outlined-adornment-passwordold" sx={{background: 'white', pr: 1}}>New password</InputLabel>
                                             <OutlinedInput
-                                                id="outlined-adornment-passwordold" name="Mật khẩu mới"
+                                                id="outlined-adornment-passwordold" name="Mật khẩu mới" onChange={onChangePassword} value={changePassword || ""}
+                                                type={showPassword ? 'text' : 'password'}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                                label="Password"
+                                            />
+                                        </FormControl>
+                                        <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
+                                            <InputLabel htmlFor="outlined-adornment-passwordcon" sx={{background: 'white', pr: 1}}>Confirm password</InputLabel>
+                                            <OutlinedInput
+                                                id="outlined-adornment-passwordcon" name="Mật khẩu mới" onChange={onChangeConfirmPassword} value={confirmPassword || ""}
                                                 type={showPassword ? 'text' : 'password'}
                                                 endAdornment={
                                                     <InputAdornment position="end">
@@ -92,7 +147,7 @@ function Personal() {
                                     </DialogContent>
                                     <DialogActions sx={{mr: 2}}>
                                         <Button onClick={handleClose}>Cancel</Button>
-                                        <Button onClick={handleClose} autoFocus>
+                                        <Button onClick={onClickPassword} autoFocus>
                                             Agree
                                         </Button>
                                     </DialogActions>
