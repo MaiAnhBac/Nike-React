@@ -20,8 +20,8 @@ import Backdrop from '@mui/material/Backdrop';
 import toast from 'react-hot-toast';
 function Login() {
     const paperStyle = { padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px' }
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [remember, setRemember] = useState(false);
@@ -99,12 +99,12 @@ function Login() {
                             <Typography className='tyh2' sx={{ mt: 2 }}>Hey, Enter your details to get sign in <br /> to your account</Typography>
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
-                            <TextField id="outlined-name" value={email || ""} onChange={handleEmail} name="username" label="Enter Email/Phone No*" variant="outlined" sx={{ mt: 3, mb: 1 }} />
+                            <TextField id="outlined-name" value={email} onChange={handleEmail} name="username" label="Enter Email/Phone No*" variant="outlined" sx={{ mt: 3, mb: 1 }} />
                             {error && <p className='error'>Please enter your Email/Phone No</p>}
                             <FormControl variant="outlined" sx={{ mb: 1, mt: 0.5 }}>
                                 <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
-                                    id="outlined-adornment-password" name="password" value={password || ""} onChange={handlePassword}
+                                    id="outlined-adornment-password" name="password" value={password} onChange={handlePassword}
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">

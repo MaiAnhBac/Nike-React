@@ -1,7 +1,7 @@
-import { useState } from "react";
-import {updateUser} from '../data/API'
+import { useEffect, useState } from "react";
+import {updateUser, getUser, updateUserInfo} from '../data/API'
+import axios from 'axios';
 import { Button, Typography, Box, Grid, Card } from "@mui/material";
-import {Link} from 'react-router-dom';
 import Layout from "../components/Layout/Layout";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -18,18 +18,34 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import TextField from '@mui/material/TextField';
 import toast from 'react-hot-toast';
+import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
 function Personal() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
     const [open, setOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [password, setPassword] = useState()
-    const [changePassword, setChangePassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
+    const [password, setPassword] = useState('')
+    const [changePassword, setChangePassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [Edit, setEdit] = useState(false);
+    const [data, setData] = useState('')
+    const [name, setName] = useState(data?.name)
+    const [imageUser, setImageUser] = useState()
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+    const handleChangeName = (e) => {
+        setName(e.target.value);
+    }
+    const onClickEdit = () => {
+        setTimeout(() => {
+            setEdit(!Edit)
+        },500)
+    }
     const handleOpen = () => {
       setOpen(true);
     };
@@ -45,9 +61,34 @@ function Personal() {
     const onChangeConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
     }
+    const handleChangeAvatar = (e) => {
+        const formData = new FormData();
+        formData.append("file", e.target.files[0]);
+        axios
+            .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((res) => {
+                setImageUser(res?.data?.location)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    const onClickSave = (e) => {
+        e.preventDefault();
+        const id = data.id;
+        updateUserInfo(id,name, imageUser)
+            .then((data) => {
+                setData(data)
+                setEdit(false)
+            })
+    }
     const onClickPassword = () => {
-        const id = userLogin.id;
-        const pass = userLogin.password;
+        const id = data.id;
+        const pass = data.password;
         if(password === pass && changePassword != ""){
             if (changePassword === confirmPassword) {
                 updateUser(id, changePassword)
@@ -67,6 +108,12 @@ function Personal() {
             toast.error('Old password is incorrect!');
         }
     }
+    useEffect(() => {
+        getUser(userLogin.id)
+            .then((data) => {
+                setData(data);
+            })
+    },[])
     return ( 
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
@@ -76,18 +123,18 @@ function Personal() {
                     </Grid>
                     <Grid item xs={6} md={4}>
                         <Card sx={{ minHeight: '475px', p: 5}}>
-                            <Avatar alt="Remy Sharp" src={userLogin.avatar} sx={{ border: '1px solid black', width: '120px', height: '120px', m: '0 auto', display: 'flex', justifyContent: 'center' }} />
-                            <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{userLogin.name}</Typography>
-                            {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{userLogin.email}</Typography> */}
+                            <Avatar alt="Remy Sharp" src={data?.avatar} sx={{ width: '120px', height: '120px', m: '0 auto', display: 'flex', justifyContent: 'center' }} />
+                            <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{data?.name}</Typography>
+                            {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{data?.email}</Typography> */}
                             <Box sx={{ textAlign: 'center' }}>
-                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2 }}>Change Password</Button>
+                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2,textTransform: 'capitalize' }}>Change Password</Button>
                                 <Dialog open={open} onClose={handleClose}>
                                     <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Change Password</DialogTitle>
                                     <DialogContent sx={{display:'flex', flexDirection: 'column'}}>
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
                                             <InputLabel htmlFor="outlined-adornment-password" sx={{background: 'white', pr: 1}}>Old password</InputLabel>
                                             <OutlinedInput
-                                                id="outlined-adornment-password" name="password" onChange={onPassword}  value={password || ""}
+                                                id="outlined-adornment-password" name="password" onChange={onPassword}  value={password}
                                                 type={showPassword ? 'text' : 'password'}
                                                 endAdornment={
                                                     <InputAdornment position="end">
@@ -107,7 +154,7 @@ function Personal() {
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
                                             <InputLabel htmlFor="outlined-adornment-passwordold" sx={{background: 'white', pr: 1}}>New password</InputLabel>
                                             <OutlinedInput
-                                                id="outlined-adornment-passwordold" name="Mật khẩu mới" onChange={onChangePassword} value={changePassword || ""}
+                                                id="outlined-adornment-passwordold" name="Mật khẩu mới" onChange={onChangePassword} value={changePassword}
                                                 type={showPassword ? 'text' : 'password'}
                                                 endAdornment={
                                                     <InputAdornment position="end">
@@ -127,7 +174,7 @@ function Personal() {
                                         <FormControl variant="outlined" sx={{ mb: 1, mt: 1 }}>
                                             <InputLabel htmlFor="outlined-adornment-passwordcon" sx={{background: 'white', pr: 1}}>Confirm password</InputLabel>
                                             <OutlinedInput
-                                                id="outlined-adornment-passwordcon" name="Mật khẩu mới" onChange={onChangeConfirmPassword} value={confirmPassword || ""}
+                                                id="outlined-adornment-passwordcon" name="Mật khẩu mới" onChange={onChangeConfirmPassword} value={confirmPassword}
                                                 type={showPassword ? 'text' : 'password'}
                                                 endAdornment={
                                                     <InputAdornment position="end">
@@ -164,37 +211,43 @@ function Personal() {
                                     <TableBody>
                                         <TableRow>
                                             <TableCell>ID:</TableCell>
-                                            <TableCell align="left">{userLogin.id}</TableCell>
+                                            <TableCell align="left">
+                                                <TextField id="outlined-id" value={data?.id || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                            </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>First and last name:</TableCell>
-                                            <TableCell align="left">{userLogin.name}</TableCell>
+                                            <TableCell>Name:</TableCell>
+                                            <TableCell align="left">
+                                                {Edit ? (<TextField id="outlined-name" value={name} onChange={handleChangeName} variant="outlined" size="small" sx={{width: '340px'}} />) : (
+                                                <TextField id="outlined-name" value={data?.name || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />)}
+                                            </TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Role:</TableCell>
-                                            <TableCell align="left">{userLogin.role}</TableCell>
+                                            <TableCell align="left">
+                                                <TextField id="outlined-role" value={data?.role || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                            </TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Email:</TableCell>
-                                            <TableCell align="left">{userLogin.email}</TableCell>
+                                            <TableCell align="left">
+                                                <TextField id="outlined-email" value={data?.email || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                            </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Password:</TableCell>
-                                            <TableCell align="left">*******</TableCell>
+                                            <TableCell>Avatar:</TableCell>
+                                            <TableCell align="left">
+                                                {Edit ? (<TextField id="outlined-avatar" type="file"  variant="outlined" size="small" onChange={handleChangeAvatar} />) : (
+                                                <TextField id="outlined-avatar" type="file"  disabled variant="outlined" size="small" />)}
+                                            </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Date created:</TableCell>
-                                            <TableCell align="left">{userLogin.creationAt}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Update day:</TableCell>
-                                            <TableCell align="left">{userLogin.updatedAt}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell colSpan={2} sx={{textAlign: 'center'}}>
-                                                <Link to={'/pagenotfound'} style={{ textDecoration: 'none' }}>
-                                                    <Button variant="outlined" color="secondary" sx={{ m: 2 }}>Edit</Button>
-                                                </Link>
+                                            <TableCell colSpan={2} sx={{ml: 4}}>
+                                                {Edit ? (<Box> 
+                                                    <Button variant="outlined" startIcon={<SaveIcon />} onClick={onClickSave} color="primary" sx={{ m: 2, textTransform: 'capitalize' }}>Save</Button>
+                                                    <Button variant="outlined" startIcon={<CancelIcon />} onClick={onClickEdit} color="error" sx={{textTransform: 'capitalize'}}>Cancel</Button>
+                                                </Box>): (
+                                                    <Button variant="outlined" startIcon={<EditIcon />} onClick={onClickEdit} color="secondary" sx={{ m: 2,textTransform: 'capitalize' }}>Edit</Button>)}
                                             </TableCell>
                                         </TableRow>
                                     </TableBody>

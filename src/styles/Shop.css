@@ -46,8 +46,8 @@
     margin-top: 8px !important;
 }
 .dividermenu {
-    margin-left: 125.6px !important;
-    margin-right: 125.6px !important;
+    margin-left: 122px !important;
+    margin-right: 122px !important;
 }
 .cardshop {
     max-width: 390px !important;
@@ -126,6 +126,7 @@
     height: 1.3em;
     width: 1.3em;
     fill: #b4b4b4;
+    background: none;
   }
 
 

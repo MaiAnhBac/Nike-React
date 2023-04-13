@@ -10,7 +10,7 @@ function DeleteProduct() {
     const onDeleteProduct = (e) => {
         e.preventDefault();
         deleteProduct(id)
-            .then((data) => {
+            .then(() => {
                 toast.success('Delete product successfully!');
                 navigate('/shop')
             })

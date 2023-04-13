@@ -57,7 +57,7 @@ function ProductDetails() {
       }, []);
     return (
         <Layout>
-            <Box sx={{ p: 4, m: 4 }}>
+            <Box sx={{ p: 3, m: 3 }}>
             {loading ? (<Skeleton animation="wave" width={150} height={20} sx={{mb: 2}}/>) : (
                 <Breadcrumbs separator="›" sx={{mb: 2}}>
                     <Link to='/shop' className='navLinkBreadcrumb shop'>
@@ -134,7 +134,7 @@ function ProductDetails() {
                                         return;
                                     }
                                     dispatch(AddCart(details));
-                                    toast.success('Add to cart successfully message!');
+                                    toast.success('Add to cart successfully!');
                                 }} startIcon={<AddIcon />} sx={{ color: 'black',border: '1px solid black', '&:hover': { background: '#DCDCDC', border: '1px solid black'} }}>ADD TO CART</Button>
                             </CardActions>)}
                         {loading ? (<Skeleton animation="wave" width={340} height={20} sx={{ ml: 2 }} />) : (

@@ -23,14 +23,13 @@ function Register() {
     const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-    const [name, setName] = useState()
-    const [email, setEmail] = useState()
-    const [avatar, setAvatar] = useState()
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassword] = useState()
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState(false)
     const [progress, setProgress] = useState(false);
-    const [imageUser, setImageUser] = useState([])
+    const [imageUser, setImageUser] = useState()
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
@@ -39,7 +38,6 @@ function Register() {
         setName(e.target.value)
     }
     const handleChangeAvatar = (e) => {
-        setAvatar(e.target.files[0])
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
         axios
@@ -67,7 +65,7 @@ function Register() {
     const onConfirmCreate = (e) => {
         e.preventDefault();
         setProgress(true)
-        if (!name || !avatar || !email || !password) {
+        if (!name || !imageUser || !email || !password) {
             setError(true)
             setProgress(false)
         } else {
@@ -80,7 +78,6 @@ function Register() {
                             toast.success('Successful registration message!');
                             setName('')
                             setEmail('')
-                            setAvatar('')
                             setPassword('')
                             setConfirmPassword('')
                             navigate('/login')
@@ -90,7 +87,7 @@ function Register() {
                             toast.error('Registration failed message!');
                             console.log(error);
                         })
-                }, 1500)
+                }, 5000)
             }
             else {
                 toast.error('Confirm password do not match!');
@@ -109,15 +106,15 @@ function Register() {
                             <Typography className='tyh2' sx={{mt: 2}}>Hey, Enter your details to get create <br/> account to your</Typography>
                         </Grid>
                         <form onSubmit={onConfirmCreate} style={{display: 'flex', flexDirection: 'column'}}>
-                            <TextField id="outlined-first" label="Name*"  variant="outlined" sx={{mb: 0.5, mt: 3}} value={name || ""} onChange={handleChangeName}   />
+                            <TextField id="outlined-first" label="Name*"  variant="outlined" sx={{mb: 0.5, mt: 3}} value={name} onChange={handleChangeName}   />
                             {error && <p className='error'>Please enter information Name</p>}
-                            <TextField id="outlined-phone" label="Enter Email/Phone No*" sx={{mb: 0.5, mt: 0.5}} variant="outlined" value={email || ""} onChange={handleChangeEmail}   />
+                            <TextField id="outlined-phone" label="Enter Email/Phone No*" sx={{mb: 0.5, mt: 0.5}} variant="outlined" value={email} onChange={handleChangeEmail}   />
                             {error && <p className='error'>Please enter your Email/Phone No</p>}
                             <FormControl variant="outlined" sx={{mb: 0.5, mt: 0.5}} >
                                 <InputLabel htmlFor="outlined-adornment-password">Password*</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
-                                    type={showPassword ? 'text' : 'password'} onChange={handleChangePassword} value={password || ""}
+                                    type={showPassword ? 'text' : 'password'} onChange={handleChangePassword} value={password}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -138,7 +135,7 @@ function Register() {
                                 <InputLabel htmlFor="outlined-adornment-passwordcon" sx={{background: 'white'}}>Confirm Password*</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-passwordcon"
-                                    type={showPassword ? 'text' : 'password'} onChange={handleChangeConfirmPassword} value={confirmPassword || ""}
+                                    type={showPassword ? 'text' : 'password'} onChange={handleChangeConfirmPassword} value={confirmPassword}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton

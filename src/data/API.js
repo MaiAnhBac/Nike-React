@@ -134,7 +134,7 @@ export const getSearchProduct = (title) => {
             .then((res) => res.json())
     )
 }
-//update User
+//update User password
 export const updateUser = (id, password) => {
     return (
         fetch(`https://api.escuelajs.co/api/v1/users/${id}`, {
@@ -143,6 +143,27 @@ export const updateUser = (id, password) => {
             body: JSON.stringify({
                 id: id,
                 password: password
+            })
+        })
+    )
+};
+//user
+export const getUser = (id) => {
+    return (
+        fetch(`https://api.escuelajs.co/api/v1/users/${id}`)
+            .then(res => res.json())
+    )
+};
+//update user infomation
+export const updateUserInfo = (id,name ,avatar) => {
+    return (
+        fetch(`https://api.escuelajs.co/api/v1/users/${id}`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                name: name,
+                avatar: avatar
             })
         })
     )

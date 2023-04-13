@@ -29,7 +29,7 @@ function Shop() {
     const limit = 20;
     const [value, setValue] = useState([20, 80]);
     const [count, setCount] = useState(10)
-    const [search, setSearch] = useState()
+    const [search, setSearch] = useState('')
     // const [max, setMax] = useState([])
     // sắp xếp mảng data theo thứ tự giảm dần của giá trị price. trả về phần từ đầu tiên của array
     // const maxPrice = max.sort((a, b) => b.price - a.price)[0];// maxPrice.price
@@ -120,7 +120,7 @@ function Shop() {
                                 <Box className='cardmenu-con'>
                                     {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 1.5 }} />) :
                                         (<Box sx={{ display: 'flex', justifyContent: 'left' }}>
-                                            <Typography>Filter by price from: <a className="a-price">${value[0]} </a> › <a className="a-price">${value[1]}</a></Typography>
+                                            <Typography>Filter by price from <a className="a-price">${value[0]} </a> › to <a className="a-price">${value[1]}</a></Typography>
                                         </Box>)}
                                     {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 2 }} />) :
                                         (<Slider value={value} onChange={handleChangePrice} valueLabelDisplay="auto"
@@ -132,7 +132,7 @@ function Shop() {
                         <Box sx={{ mr: 17, mt: 2 }}>
                         {loading ? (<Skeleton variant="rounded" width={220} height={40} sx={{ mt: 1 }} />) :(
                             <div className="search">
-                                <input type="text" className="search__input" placeholder="Search product here..." value={search || ""} onKeyPress={onKeyPressSearch}  onChange={handleChangeSearch} />
+                                <input type="text" className="search__input" placeholder="Search product here..." value={search} onKeyPress={onKeyPressSearch}  onChange={handleChangeSearch} />
                                 <button className="search__button" onClick={onClickSearch}  >
                                     <svg className="search__icon" aria-hidden="true" viewBox="0 0 24 24">
                                         <g>
@@ -179,7 +179,7 @@ function Shop() {
                                                 return;
                                             }
                                             dispatch(AddCart(datas));
-                                            toast.success('Add to cart successfully message!');
+                                            toast.success('Add to cart successfully!');
                                         }}
                                             sx={{ mt: '4px', color: 'black', borderRadius: '10px', border: '1px solid black', transition: 'all 1s', '&:hover': { background: '#DCDCDC', border: '1px solid black' } }}>
                                             <AddIcon />

@@ -18,7 +18,6 @@ function NewProduct() {
     const [price, setPrice] = useState()
     const [description, setDescription] = useState()
     const [selected, setSelected] = useState()
-    const [images, setImages] = useState()
     const [error, setError] = useState(false)
     const [progress, setProgress] = useState(false);
     const [imageProduct, setImageProduct] = useState([])
@@ -38,7 +37,6 @@ function NewProduct() {
         setDescription(e.target.value)
     }
     const handleChangeImage = (e) => {
-        setImages(e.target.files[0])
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
         axios
@@ -76,12 +74,11 @@ function NewProduct() {
                         setPrice('')
                         setDescription('')
                         setSelected('')
-                        setImages('')
                     })
                     .catch((err) => {
                         console.log(err)
                     })
-            }, 3000)
+            }, 5000)
         }
     }
     useEffect(() => {
@@ -113,7 +110,7 @@ function NewProduct() {
                     </FormControl>
                     {error && <p className="errPro">Please select the product category!</p>}
                     <TextField id="outlined-images" type="file" name="file" onChange={handleChangeImage} variant="outlined" sx={{mb: 1}} />
-                    {error && <p className="errPro">Please paste the image url!</p>}
+                    {error && <p className="errPro">Please choose your photo file!</p>}
                 </DialogContent>
                 <DialogActions sx={{ mr: 3 }}>
                     <Button variant="contained" onClick={handleClose}>Cancel</Button>

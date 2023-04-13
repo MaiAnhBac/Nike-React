@@ -10,9 +10,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SendIcon from '@mui/icons-material/Send';
 function Contact() {
-    const [name, setName] = useState()
-    const [email, setEmail] = useState()
-    const [message, setMessage] = useState()
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
     const [item, setItem] = useState([])
     const handleName = (e) => {
         setName(e.target.value)
@@ -38,13 +38,13 @@ function Contact() {
                 <Typography variant="h4">Contact <span className="span-title">My Nike</span></Typography>
                 <p className="p-title">Please fill out the form below to contact us</p>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField label="Name" onChange={handleName} id="name" fullWidth />
+                    <TextField label="Name" value={name} onChange={handleName} id="name" fullWidth />
                 </div>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField label="Email" onChange={handleEmail} id="email" fullWidth />
+                    <TextField label="Email" value={email} onChange={handleEmail} id="email" fullWidth />
                 </div>
                 <div style={{ marginBottom: '20px' }}>
-                    <TextField id="outlined-multiline-static" label="Message" onChange={handleMessage}  multiline rows={4} fullWidth />
+                    <TextField id="outlined-multiline-static" value={message} label="Message" onChange={handleMessage}  multiline rows={4} fullWidth />
                 </div>
                 <Typography>
                     <Button variant="contained" onClick={handleSubmit} endIcon={<SendIcon />} sx={{padding: "10px 35px", fontSize: "17px", background: "green"}}>Send</Button>

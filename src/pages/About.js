@@ -5,9 +5,9 @@ import '../styles/About.css'
 function About() {
     return ( 
         <Layout>
-            <Box sx={{my: 6, textAlign: "center", "@media (max-width: 600px)": {mt: 0, "& h3": {fontSize: "1.7rem"}}}} >
+            <Box sx={{my: 3,textAlign: "center", "@media (max-width: 600px)": {mt: 0, "& h3": {fontSize: "1.7rem"}}}} >
                 <Typography variant="h3" fontWeight={"bold"} padding={10} color={'#EC870E'} >
-                    Welcome to My Nike
+                    Welcome to <span className="Nike">My Nike</span> 
                 </Typography>
                 <p className="box-p">
                 - NIKE, Inc. designs, develops, markets and sells high quality footwear, apparel, and equipment, accessories and services. Its athletic footwear products are designed primarily for specific athletic use, although a large percentage of the products are worn for casual or leisure purposes. It focuses on NIKE Brand and Brand Jordan product offerings in seven key categories: running, basketball, football, men’s training, women’s training, NIKE sportswear, and action sports. It also markets product designed for kids, as well as for other athletic and recreational uses such as baseball, cricket, golf, lacrosse, outdoor activities, football, tennis, volleyball, walking, and wrestling

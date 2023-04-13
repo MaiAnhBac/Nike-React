@@ -31,9 +31,9 @@ function ShoppingCart() {
     const { carts } = useSelector((item) => item.user)
     const dispatch = useDispatch()
     const [total, setTotal] = useState(0)
-    const [radio, setRadio] = useState()
-    const [phone, setPhone] = useState()
-    const [address, setAddress] = useState()
+    const [radio, setRadio] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
     const [errorPhone, setErrorPhone] = useState(false);
     const [errorAddress, setErrorAddress] = useState(false);
     const [errorRadio, setErrorRadio] = useState(false);
@@ -129,7 +129,7 @@ function ShoppingCart() {
                                                     <TableCell align="right">
                                                         <IconButton onClick={() => {
                                                             dispatch(RemoveCart(cart));
-                                                            toast.success('Delete product successfully message!');
+                                                            toast.success('Delete product successfully!');
                                                         }}>
                                                             <DeleteIcon titleAccess='Delete cart' />
                                                         </IconButton>
@@ -165,15 +165,15 @@ function ShoppingCart() {
                                 <Box sx={{ display: 'flex', flexDirection: 'column', my: 1 }}>
                                     <Typography sx={{ my: 1, fontWeight: 'bold' }}>Ordering information</Typography>
                                     <TextField id="name" label="First and last name" value={userLogin.name} variant="outlined" sx={{ my: 1 }} />
-                                    <TextField id="phone" type='tel' label="Phone number" value={phone || ""} onChange={handleChangePhone} variant="outlined" sx={{ my: 1 }} />
+                                    <TextField id="phone" type='tel' label="Phone number" value={phone} onChange={handleChangePhone} variant="outlined" sx={{ my: 1 }} />
                                     {errorPhone && <p className='errorcart'>Please enter your phone number</p>}
-                                    <TextField id="address" label="Address" value={address || ""} onChange={handleChangeAddress} variant="outlined" sx={{ my: 1 }} />
+                                    <TextField id="address" label="Address" value={address} onChange={handleChangeAddress} variant="outlined" sx={{ my: 1 }} />
                                     {errorAddress && <p className='errorcart'>Please enter your delivery address</p>}
                                 </Box>
                                 <Box sx={{ mt: 1 }}>
                                     <FormControl>
                                         <FormLabel id="demo-radio-buttons-group-label">Choose payment method:</FormLabel>
-                                        <RadioGroup onChange={handleChangeRadio} value={radio || ""}
+                                        <RadioGroup onChange={handleChangeRadio} value={radio}
                                             aria-labelledby="demo-radio-buttons-group-label"
                                             defaultValue="female"
                                             name="radio-buttons-group"
