@@ -16,17 +16,22 @@
     .imgdes{
         height: 250px !important;
         width: 400px !important;
+        transition: all .5s linear;
     }
     .titleh6pro {
         font-size: 16px !important;
+        transition: all .5s linear;
     }
     .titleproduct {
         font-size: 13px !important;
+        transition: all .5s linear;
     }
     .titlereviews {
         font-size: 13px !important;
+        transition: all .5s linear;
     }
     .btnreview {
         font-size: 10px !important;
+        transition: all .5s linear;
     }
 }

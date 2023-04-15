@@ -1,16 +1,3 @@
-// export const loginAndGetToken = (username, password) => {
-//     return (
-//         fetch('https://dummyjson.com/auth/login', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({
-//                 username: username,
-//                 password: password,
-//             })
-//         })
-//         .then(res => res.json())
-//     )
-// };
 // tất cả sản phẩm
 export const getAllProducts = () => {
     return (
@@ -145,6 +132,7 @@ export const updateUser = (id, password) => {
                 password: password
             })
         })
+        .then(res => res.json())
     )
 };
 //user
@@ -166,5 +154,6 @@ export const updateUserInfo = (id,name ,avatar) => {
                 avatar: avatar
             })
         })
+        .then(res => res.json())
     )
 };

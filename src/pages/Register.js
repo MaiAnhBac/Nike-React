@@ -40,18 +40,27 @@ function Register() {
     const handleChangeAvatar = (e) => {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
-        axios
-            .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                setImageUser(res?.data?.location)
-            })
-            .catch((error) => {
+        async function uploadAvatar() {
+            try {
+              await axios
+                    .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((res) => {
+                        setImageUser(res?.data?.location)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+            }
+            catch(error) {
                 console.log(error);
-            });
+            }
+        }
+        uploadAvatar();
     }
     const handleChangeEmail = (e) => {
         setEmail(e.target.value)
@@ -65,7 +74,7 @@ function Register() {
     const onConfirmCreate = (e) => {
         e.preventDefault();
         setProgress(true)
-        if (!name || !imageUser || !email || !password) {
+        if (!name || !imageUser || !email || !password || !confirmPassword) {
             setError(true)
             setProgress(false)
         } else {

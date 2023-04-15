@@ -29,5 +29,6 @@ span.span-title {
 @media (max-width: 600px) {
     .box-p {
         font-size: 1.2rem;
+        transition: all .5s linear;
     }
 }

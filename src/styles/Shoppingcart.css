@@ -8,26 +8,32 @@
 @media (max-width: 600px) {
     .grid {
         display: grid !important;
+        transition: all .5s linear;
     }
     .cell {
         display: grid !important;
         padding: 0 !important;
+        transition: all .5s linear;
     }
     .box {
         margin: 1 !important;
+        transition: all .5s linear;
     }
     .titleh5 {
         font-size: 16px !important;
         padding-left: 3px;
+        transition: all .5s linear;
     }
     .img {
         max-width: 120px;
         padding-top: 10px;
         padding-left: 10px;
+        transition: all .5s linear;
     }
     .empty {
         padding: 171px !important;
         font-size: 17px !important;
         align-items: center !important;  
+        transition: all .5s linear;
     }
 }

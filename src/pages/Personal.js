@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {updateUser, getUser, updateUserInfo} from '../data/API'
 import axios from 'axios';
 import { Button, Typography, Box, Grid, Card } from "@mui/material";
+import { useNavigate } from 'react-router-dom'
 import Layout from "../components/Layout/Layout";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -23,8 +24,11 @@ import toast from 'react-hot-toast';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
+import Skeleton from '@mui/material/Skeleton';
+import '../styles/Personal.css';
 function Personal() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('')
@@ -34,6 +38,7 @@ function Personal() {
     const [data, setData] = useState('')
     const [name, setName] = useState(data?.name)
     const [imageUser, setImageUser] = useState()
+    const [loading, setLoading] = useState(true)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
@@ -64,27 +69,36 @@ function Personal() {
     const handleChangeAvatar = (e) => {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
-        axios
-            .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                setImageUser(res?.data?.location)
-            })
-            .catch((error) => {
+        async function uploadAvatar() {
+            try {
+              await axios
+                    .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((res) => {
+                        setImageUser(res?.data?.location)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+            }
+            catch(error) {
                 console.log(error);
-            });
+            }
+        }
+        uploadAvatar();
     }
     const onClickSave = (e) => {
         e.preventDefault();
         const id = data.id;
-        updateUserInfo(id,name, imageUser)
-            .then((data) => {
-                setData(data)
-                setEdit(false)
-            })
+            updateUserInfo(id,name, imageUser)
+                .then((data) => {
+                    setData(data)
+                    setEdit(false)
+                });
     }
     const onClickPassword = () => {
         const id = data.id;
@@ -93,11 +107,17 @@ function Personal() {
             if (changePassword === confirmPassword) {
                 updateUser(id, changePassword)
                     .then((data) => {
-                        console.log(data);
                         toast.success('Change password successfully!');
                         setPassword('')
                         setConfirmPassword('')
                         setChangePassword('')
+                        setTimeout(() => {
+                            localStorage.removeItem('user')
+                            localStorage.removeItem('cart')
+                            navigate('/login')
+                            toast.error('Please login again!');
+                        },1000)
+                        
                     })
             }
             else {
@@ -113,21 +133,25 @@ function Personal() {
             .then((data) => {
                 setData(data);
             })
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
     },[])
     return ( 
         <Layout>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center', my: 10, fontSize: '40px', fontWeight: 'bold', color: '#EC870E' } }}>
+                <Grid container spacing={2} sx={{ p: 4 }}>
                     <Grid item xs={12}>
-                        <Typography variant="h4">Personal information</Typography>
+                        <Typography variant="h4" className="personal">Personal information</Typography>
                     </Grid>
                     <Grid item xs={6} md={4}>
-                        <Card sx={{ minHeight: '475px', p: 5}}>
-                            <Avatar alt="Remy Sharp" src={data?.avatar} sx={{ width: '120px', height: '120px', m: '0 auto', display: 'flex', justifyContent: 'center' }} />
-                            <Typography variant="h5" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{data?.name}</Typography>
-                            {/* <Typography variant="h5" sx={{ textAlign: 'center'}}>{data?.email}</Typography> */}
+                        <Card sx={{ minHeight: '435px', p: 1.5}}>
+                            {loading ? (<Skeleton className="skeleton-avatar" variant="circular" width={200} height={200} sx={{m: '0 auto'}} />) :
+                            (<Avatar alt="Remy Sharp" src={data?.avatar} className="avatar" />)}
+                            {loading ? (<Skeleton className="skeleton-tilte" variant="text" width={100} height={40} sx={{m: '0 auto', mt: 2}} />) :
+                            (<Typography variant="h5" className="name-info" sx={{p: 3, textAlign: 'center', color: 'red', fontWeight: 'bold'}}>{data?.name}</Typography>)}
                             <Box sx={{ textAlign: 'center' }}>
-                                <Button variant="outlined" onClick={handleOpen} color="secondary" sx={{ m: 2,textTransform: 'capitalize' }}>Change Password</Button>
+                                <Button variant="outlined" onClick={handleOpen} className="btn-pass" color="secondary" sx={{ m: 2,textTransform: 'capitalize' }}>Change Password</Button>
                                 <Dialog open={open} onClose={handleClose}>
                                     <DialogTitle align="center" sx={{color: '#EC870E', fontWeight: 'bold'}}>Change Password</DialogTitle>
                                     <DialogContent sx={{display:'flex', flexDirection: 'column'}}>
@@ -199,9 +223,8 @@ function Personal() {
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
-                               
                             </Box>
-                            <Typography variant="h6" sx={{p: 3, textAlign: 'center'}}>Welcome to my Nike Website</Typography>
+                            <Typography variant="h6" className="title-to" sx={{p: 3, textAlign: 'center'}}>Welcome to my Nike Website</Typography>
                         </Card>
                     </Grid>
                     <Grid item xs={6} md={8}>
@@ -210,44 +233,44 @@ function Personal() {
                                 <Table>
                                     <TableBody>
                                         <TableRow>
-                                            <TableCell>ID:</TableCell>
+                                            <TableCell className="tilte-col">ID:</TableCell>
                                             <TableCell align="left">
-                                                <TextField id="outlined-id" value={data?.id || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                                <TextField id="outlined-id" value={data?.id || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Name:</TableCell>
-                                            <TableCell align="left">
-                                                {Edit ? (<TextField id="outlined-name" value={name} onChange={handleChangeName} variant="outlined" size="small" sx={{width: '340px'}} />) : (
-                                                <TextField id="outlined-name" value={data?.name || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />)}
+                                            <TableCell className="tilte-col">Name:</TableCell>
+                                            <TableCell align="left" >
+                                                {Edit ? (<TextField id="outlined-name" value={name} onChange={handleChangeName} className="tilte-input" variant="outlined" size="small" sx={{width: '340px'}} />) : (
+                                                <TextField id="outlined-name" value={data?.name || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />)}
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Role:</TableCell>
+                                            <TableCell className="tilte-col">Role:</TableCell>
                                             <TableCell align="left">
-                                                <TextField id="outlined-role" value={data?.role || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                                <TextField id="outlined-role" value={data?.role || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Email:</TableCell>
+                                            <TableCell className="tilte-col">Email:</TableCell>
                                             <TableCell align="left">
-                                                <TextField id="outlined-email" value={data?.email || ''} disabled variant="outlined" size="small" sx={{width: '340px'}} />
+                                                <TextField id="outlined-email" value={data?.email || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Avatar:</TableCell>
+                                            <TableCell className="tilte-col">Avatar:</TableCell>
                                             <TableCell align="left">
-                                                {Edit ? (<TextField id="outlined-avatar" type="file"  variant="outlined" size="small" onChange={handleChangeAvatar} />) : (
-                                                <TextField id="outlined-avatar" type="file"  disabled variant="outlined" size="small" />)}
+                                                {Edit ? (<TextField id="outlined-avatar" type="file"  variant="outlined" size="small" className="tilte-input" onChange={handleChangeAvatar} />) : (
+                                                <TextField id="outlined-avatar" type="file"  disabled variant="outlined" size="small" className="tilte-input" />)}
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell colSpan={2} sx={{ml: 4}}>
                                                 {Edit ? (<Box> 
-                                                    <Button variant="outlined" startIcon={<SaveIcon />} onClick={onClickSave} color="primary" sx={{ m: 2, textTransform: 'capitalize' }}>Save</Button>
-                                                    <Button variant="outlined" startIcon={<CancelIcon />} onClick={onClickEdit} color="error" sx={{textTransform: 'capitalize'}}>Cancel</Button>
+                                                    <Button variant="outlined" startIcon={<SaveIcon />} onClick={onClickSave} className="btn-info" color="primary" sx={{m: 1, textTransform: 'capitalize' }}>Save</Button>
+                                                    <Button variant="outlined" startIcon={<CancelIcon />} onClick={onClickEdit} className="btn-info" color="error" sx={{textTransform: 'capitalize'}}>Cancel</Button>
                                                 </Box>): (
-                                                    <Button variant="outlined" startIcon={<EditIcon />} onClick={onClickEdit} color="secondary" sx={{ m: 2,textTransform: 'capitalize' }}>Edit</Button>)}
+                                                    <Button variant="outlined" startIcon={<EditIcon />} onClick={onClickEdit} className="btn-info" color="secondary" sx={{m: 1,textTransform: 'capitalize' }}>Edit</Button>)}
                                             </TableCell>
                                         </TableRow>
                                     </TableBody>

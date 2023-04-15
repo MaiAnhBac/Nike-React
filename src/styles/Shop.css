@@ -31,10 +31,10 @@
     border-radius: 13px !important;
 }
 .cardmenu-con {
-  width: 300px;
+  width: 250px;
   margin-top: 4px;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 22px;
+  margin-right: 22px;
 }
 .a-price {
     text-decoration: none;
@@ -101,6 +101,7 @@
     outline: none;
     background-color: #f0eeee;
     width: 20em;
+    transition: width .8s;
   }
   
   .search__input::-webkit-input-placeholder {
@@ -136,7 +137,7 @@
       transition: all 1s;
     }
     .cardmenu {
-        width: 320px !important;
+        width: 300px !important;
         margin-left: 0 !important;
         transition: all 1s;
     }

@@ -20,7 +20,7 @@ function NewProduct() {
     const [selected, setSelected] = useState()
     const [error, setError] = useState(false)
     const [progress, setProgress] = useState(false);
-    const [imageProduct, setImageProduct] = useState([])
+    const [imageProduct, setImageProduct] = useState('')
     const handleOpen = () => {
       setOpen(true);
     };
@@ -39,19 +39,27 @@ function NewProduct() {
     const handleChangeImage = (e) => {
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
-        axios
-            .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                setImageProduct([res?.data?.location])
+        async function uploadAvatar() {
+            try {
+              await axios
+                    .post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((res) => {
+                        setImageProduct([res?.data?.location])
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
 
-            })
-            .catch((error) => {
+            }
+            catch(error) {
                 console.log(error);
-            });
+            }
+        }
+        uploadAvatar();
     }
     const handleChangeCate = (e) => {
         setSelected(e.target.value);

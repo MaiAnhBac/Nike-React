@@ -1,0 +1,61 @@
+.avatar {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto;
+}
+.personal{
+    text-align: center !important;
+    margin-top: 80px !important;
+    margin-bottom: 80px !important;
+    font-size: 40px !important;
+    font-weight: 700 !important;
+    color: #EC870E !important;
+}
+@media only screen and (max-width: 600px){
+    .avatar {
+        margin-top: 20px !important;
+        width: 120px !important;
+        height: 120px !important;
+        transition: all .5s linear;
+    }
+    .personal{
+        font-size: 30px !important;
+        margin-top: 60px !important;
+        transition: all .5s linear;
+    }
+    .name-info{
+        font-size: 20px !important;
+        transition: all .5s linear;
+    }
+    .btn-pass{
+        font-size: 10px !important;
+        transition: all .5s linear;
+    }
+    .title-to{
+        font-size: 10px !important;
+        margin-top: 22px !important;
+        padding: 8px !important;
+        transition: all .5s linear;
+    }
+    .tilte-col{
+        font-size: 12px !important;
+        transition: all .5s linear;
+    }
+    .tilte-input{
+        width: 130px !important;
+        transition: all .5s linear;
+    }
+    .btn-info{
+        font-size: 12px !important;
+        transition: all .5s linear;
+        margin: 2px !important;
+    }
+    .skeleton-avatar{
+        width: 120px !important;
+        height: 120px !important;
+    }
+    .skeleton-tilte{
+        width: 80px !important;
+        height: 20px !important;
+    }
+}

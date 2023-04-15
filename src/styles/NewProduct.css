@@ -12,9 +12,11 @@
         margin: 0 !important;
         right: 90px !important;
         margin-top: 8px !important;
+        transition: all .5s linear;
     }
     .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
         width: 400px !important;
+        transition: all .5s linear;
     }
 }
 

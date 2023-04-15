@@ -16,6 +16,7 @@ import '../styles/Shop.css';
 import toast from 'react-hot-toast';
 import GoToTopButton from './Gototop';
 import Newproduct from './NewProduct';
+import { useLocation } from 'react-router-dom';
 function Shop() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || []
     const navigate = useNavigate();
@@ -30,6 +31,9 @@ function Shop() {
     const [value, setValue] = useState([20, 80]);
     const [count, setCount] = useState(10)
     const [search, setSearch] = useState('')
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get('search');
     // const [max, setMax] = useState([])
     // sắp xếp mảng data theo thứ tự giảm dần của giá trị price. trả về phần từ đầu tiên của array
     // const maxPrice = max.sort((a, b) => b.price - a.price)[0];// maxPrice.price
@@ -95,18 +99,24 @@ function Shop() {
             setLoading(false)
         }, 2000)
     })
+    useEffect(() => {
+        if(searchQuery){
+            getSearchProduct(searchQuery)
+                .then((title) => setData(title))
+        }
+    })
     return (
         <Layout>
             <Box className='boxall'>
                 <Box className='boxall-con'>
-                    {loading ? (<Skeleton variant="rounded" width={220} height={20} sx={{ mt: 3 }} />) :
+                    {loading ? (<Skeleton variant="rounded" width={140} height={25} sx={{ mt: 2 }} />) :
                         (<Typography className="h5" variant="h5">Product filter</Typography>)}
                     {loading ? (<Skeleton variant="rounded" width={280} height={10} sx={{ mt: 2 }} />) :
                         (<Typography className="h7" variant="h7">Helps to quickly filter or search for products</Typography>)}
                     <Box className='boxfilter'>
                         <Box className='boxfilter-none'>
                             <Box>
-                                {loading ? (<Skeleton variant="rounded" width={320} height={58} sx={{ mt: 1 }} />) :
+                                {loading ? (<Skeleton variant="rounded" width={300} height={58} sx={{ mt: 1 }} />) :
                                     (<FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label" sx={{ mt: '10px', ml: 1.3 }}>Select</InputLabel>
                                         <Select value={selected} onChange={handleChangeCate} labelId="demo-simple-select-label" id="demo-simple-select" label="Chọn lọc" sx={{ width: '300px', height: 58, mt: '10px', borderRadius: 4 }}>
@@ -118,13 +128,13 @@ function Shop() {
                             </Box>
                             <Card className="cardmenu" variant="outlined">
                                 <Box className='cardmenu-con'>
-                                    {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 1.5 }} />) :
+                                    {loading ? (<Skeleton variant="rounded" width={250} height={10} sx={{ mt: 1.5 }} />) :
                                         (<Box sx={{ display: 'flex', justifyContent: 'left' }}>
-                                            <Typography>Filter by price from <a className="a-price">${value[0]} </a> › to <a className="a-price">${value[1]}</a></Typography>
+                                            <Typography>Price Range from <a className="a-price">${value[0]} </a> › to <a className="a-price">${value[1]}</a></Typography>
                                         </Box>)}
-                                    {loading ? (<Skeleton variant="rounded" width={290} height={10} sx={{ mt: 2 }} />) :
+                                    {loading ? (<Skeleton variant="rounded" width={250} height={10} sx={{ mt: 2 }} />) :
                                         (<Slider value={value} onChange={handleChangePrice} valueLabelDisplay="auto"
-                                            min={0} max={1000} step={100} marks size='medium' color="secondary" sx={{ height: 8 }}
+                                            min={0} max={1000} step={100} size='medium' color="secondary" sx={{ height: 8 }}
                                         />)}
                                 </Box>
                             </Card>
@@ -143,7 +153,7 @@ function Shop() {
                             </div>)}
                         </Box>
                     </Box>
-                    {loading ? (<Skeleton variant="rounded" width={180} height={20} sx={{ my: 2 }} />) : (
+                    {loading ? (<Skeleton variant="rounded" width={120} height={20} sx={{ my: 2 }} />) : (
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 1.5 }}>
                             <Typography variant="h6" className="h6">All products</Typography>
                             {userLogin.role === "admin" && <Newproduct />}

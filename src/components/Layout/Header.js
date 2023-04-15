@@ -23,7 +23,17 @@ function Header() {
     const [mobileOpen, setMobileOpen] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null);
     const [activeInput, setActiveInput] = useState(false);
+    const [search, setSearch] = useState('');
     const open = Boolean(anchorEl);
+    //sử dụng queryParams chuyền dữ liệu qua trang Shop
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const shopURL = `/shop?search=${search}`;
+        navigate(shopURL)
+    }
+    const onChangeSearch = (e) => {
+        setSearch(e.target.value)
+    }
     const handleInputClick = () => {
         setActiveInput(!activeInput);
     }
@@ -99,8 +109,8 @@ function Header() {
                             <IconButton onClick={handleInputClick} sx={{ borderRadius: '.5rem', background: '#eee', mr: 2, height: '40px', color: 'black'}}>
                                 <SearchIcon />
                             </IconButton>
-                            <form action="" className={`search-form ${activeInput ? 'active' : ''}`} >
-                                <input className='inputsearch' type="search" id="search-box" placeholder="Search here..." />
+                            <form action="" onSubmit={onSubmit} className={`search-form ${activeInput ? 'active' : ''}`} >
+                                <input className='inputsearch' type="search" id="search-box" placeholder="Search here..." value={search} onChange={onChangeSearch} />
                                 <SearchIcon className='label' />
                             </form>
                             <IconButton sx={{ borderRadius: '.5rem', background: '#eee', mr: 2, height: '40px'}}>

@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url('../images/5627151.jpg');
+    transition: all .5s linear;
 }
 /* nếu bỏ slide thì bỏ cái này home-av và position: absolute dòng 25 */
 /* .home-nav {
@@ -113,6 +114,7 @@
         background-size: cover;
         object-fit: fill;
         background-image: url('../images/poster135.jpg');
+        transition: all .5s linear;
     }
     .headerContainer{
         align-items: center;
@@ -121,16 +123,19 @@
         width: 80%;
         color: white;
         background-color: #1d2124;
+        transition: all .5s linear;
     }
     .home .headerContainer h1 {
         font-size: 40px;
         margin: 15px 15px;
         color: white;
+        transition: all .5s linear;
     }
     .home .headerContainer p {
         font-size: 20px;
         color: white;
         text-align: center;
+        transition: all .5s linear;
     }
     .home .headerContainer button {
         background-color: white;
@@ -138,6 +143,7 @@
         margin-left: 43px;
         color: black;
         width: 220px;
+        transition: all .5s linear;
     }
     .home.headerContainer button:hover{
         background-color: #0709;
