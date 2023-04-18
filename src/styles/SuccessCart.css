@@ -1,0 +1,73 @@
+.success-cart, .failed-cart{
+    padding: 320px;
+    display: flex;
+    justify-content: center;
+}
+.success-cart-card{
+    padding: 16px;
+    width: 500px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 10px !important;
+}
+.title-success-h6{
+    font-weight: bold !important;
+    line-height: 2 !important;
+}
+.title-success{
+    font-weight: bold !important;
+    line-height: 2 !important;
+}
+.title-success-info{
+    font-size: 15px !important;
+    margin-top: 10px !important;
+}
+.btn-success, .btn-failed{
+    text-transform: capitalize !important;
+    color: black !important;
+    font-weight: bold !important;
+    margin-top: 10px !important;
+    margin-left: 0;
+}
+.failed-cart-card{
+    padding: 16px;
+    width: 500px;
+    height: 170px;
+    border: 1px solid black;
+    border-radius: 10px !important;
+}
+.title-failed{
+    font-weight: bold !important;
+    line-height: 2 !important;
+}
+.title-failed-info{
+    font-size: 15px !important;
+    margin-top: 10px !important;
+}
+@media (max-width: 600px) {
+    .success-cart, .failed-cart{
+        padding: 70px;
+        display: flex;
+        justify-content: center;
+        transition: all .5s linear;
+    }
+    .success-cart-card{
+        height: 180px;
+    }
+    .failed-cart-card{
+        height: 160px;
+    }
+    .title-success-h6, .title-failed{
+        font-size: 16px !important;
+    }
+    .title-success{
+        font-size: 13px !important;
+    }
+    .title-success-info, .title-failed-info{
+        font-size: 13px !important;
+        
+    }
+    .btn-success, .btn-failed{
+        font-size: 13px !important;
+    }
+}

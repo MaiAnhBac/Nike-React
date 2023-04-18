@@ -98,6 +98,7 @@ function Personal() {
                 .then((data) => {
                     setData(data)
                     setEdit(false)
+                    toast.success('Successfully edited!');
                 });
     }
     const onClickPassword = () => {
@@ -145,7 +146,7 @@ function Personal() {
                         <Typography variant="h4" className="personal">Personal information</Typography>
                     </Grid>
                     <Grid item xs={6} md={4}>
-                        <Card sx={{ minHeight: '435px', p: 1.5}}>
+                        <Card sx={{ p: 1.5}}>
                             {loading ? (<Skeleton className="skeleton-avatar" variant="circular" width={200} height={200} sx={{m: '0 auto'}} />) :
                             (<Avatar alt="Remy Sharp" src={data?.avatar} className="avatar" />)}
                             {loading ? (<Skeleton className="skeleton-tilte" variant="text" width={100} height={40} sx={{m: '0 auto', mt: 2}} />) :
@@ -224,58 +225,44 @@ function Personal() {
                                     </DialogActions>
                                 </Dialog>
                             </Box>
-                            <Typography variant="h6" className="title-to" sx={{p: 3, textAlign: 'center'}}>Welcome to my Nike Website</Typography>
                         </Card>
                     </Grid>
                     <Grid item xs={6} md={8}>
                         <Grid item xs={12}>
-                            <TableContainer component={Paper}>
-                                <Table>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell className="tilte-col">ID:</TableCell>
-                                            <TableCell align="left">
-                                                <TextField id="outlined-id" value={data?.id || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="tilte-col">Name:</TableCell>
-                                            <TableCell align="left" >
-                                                {Edit ? (<TextField id="outlined-name" value={name} onChange={handleChangeName} className="tilte-input" variant="outlined" size="small" sx={{width: '340px'}} />) : (
-                                                <TextField id="outlined-name" value={data?.name || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />)}
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="tilte-col">Role:</TableCell>
-                                            <TableCell align="left">
-                                                <TextField id="outlined-role" value={data?.role || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="tilte-col">Email:</TableCell>
-                                            <TableCell align="left">
-                                                <TextField id="outlined-email" value={data?.email || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{width: '340px'}} />
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="tilte-col">Avatar:</TableCell>
-                                            <TableCell align="left">
-                                                {Edit ? (<TextField id="outlined-avatar" type="file"  variant="outlined" size="small" className="tilte-input" onChange={handleChangeAvatar} />) : (
-                                                <TextField id="outlined-avatar" type="file"  disabled variant="outlined" size="small" className="tilte-input" />)}
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell colSpan={2} sx={{ml: 4}}>
-                                                {Edit ? (<Box> 
-                                                    <Button variant="outlined" startIcon={<SaveIcon />} onClick={onClickSave} className="btn-info" color="primary" sx={{m: 1, textTransform: 'capitalize' }}>Save</Button>
-                                                    <Button variant="outlined" startIcon={<CancelIcon />} onClick={onClickEdit} className="btn-info" color="error" sx={{textTransform: 'capitalize'}}>Cancel</Button>
-                                                </Box>): (
-                                                    <Button variant="outlined" startIcon={<EditIcon />} onClick={onClickEdit} className="btn-info" color="secondary" sx={{m: 1,textTransform: 'capitalize' }}>Edit</Button>)}
-                                            </TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                            <Card>
+                                <Typography variant="h6" className="title-details" sx={{p: 2, ml: 4, color: 'blue'}}>Contact information</Typography>
+                                <Box sx={{ display: 'flex', mb: 2 }} className='box-flex'>
+                                    <Box sx={{mx: 6}} className='flex-name'>
+                                        <Typography>ID</Typography>
+                                        <TextField id="outlined-id" value={data?.id || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{ width: '340px' }} />
+                                    </Box>
+                                    <Box className='flex-name'>
+                                        <Typography>Name</Typography>
+                                        {Edit ? (<TextField id="outlined-name" value={name} onChange={handleChangeName} className="tilte-input" variant="outlined" size="small" sx={{ width: '340px' }} />) : (
+                                            <TextField id="outlined-name" value={data?.name || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{ width: '340px' }} />)}
+                                    </Box>
+                                </Box>
+                                <Box sx={{ display: 'flex', mb: 2 }} className='box-flex'>
+                                    <Box sx={{mx: 6}} className='flex-name'>
+                                        <Typography>Role</Typography>
+                                        <TextField id="outlined-role" value={data?.role || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{ width: '340px' }} />
+                                    </Box>
+                                    <Box className='flex-name'>
+                                        <Typography>Email</Typography>
+                                        <TextField id="outlined-email" value={data?.email || ''} disabled variant="outlined" className="tilte-input" size="small" sx={{ width: '340px' }} />
+                                    </Box>
+                                </Box>
+                                <Box sx={{mx: 6}} className='flex-avatar'>
+                                    <Typography>Avatar</Typography>
+                                    {Edit ? (<TextField id="outlined-avatar" type="file" variant="outlined" size="small" className="tilte-input" onChange={handleChangeAvatar} />) : (
+                                        <TextField id="outlined-avatar" type="file" disabled variant="outlined" size="small" className="tilte-input" />)}
+                                </Box>
+                                {Edit ? (<Box sx={{mx: 5}} className='box-btn'>
+                                    <Button variant="outlined" startIcon={<SaveIcon />} onClick={onClickSave} className="btn-info-cancel" color="primary" sx={{ my: 3, mx: 1, textTransform: 'capitalize' }}>Update</Button>
+                                    <Button variant="outlined" startIcon={<CancelIcon />} onClick={onClickEdit} className="btn-info-save" color="error" sx={{ textTransform: 'capitalize' }}>Cancel</Button>
+                                </Box>) : (
+                                    <Button variant="outlined" startIcon={<EditIcon />} onClick={onClickEdit} className="btn-info" color="secondary" sx={{ mx: 6,my: 3 ,textTransform: 'capitalize' }}>Edit</Button>)}
+                            </Card>
                         </Grid>
                     </Grid>  
                 </Grid>

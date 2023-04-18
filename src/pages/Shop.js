@@ -41,14 +41,18 @@ function Shop() {
         setSearch(e.target.value)
     }
     const onKeyPressSearch = (e) => {
-        if (e.code === 'Enter') {
-            getSearchProduct(search)
-                .then((title) => setData(title))
+        if (search) {
+            if (e.code === 'Enter') {
+                getSearchProduct(search)
+                    .then((title) => setData(title))
+            }
         }
     }
     const onClickSearch = () => {
-        getSearchProduct(search)
-            .then((title) => setData(title))
+        if(search){
+            getSearchProduct(search)
+                .then((title) => setData(title))
+        }
     }
     const handleChangePrice = (event, newValue) => {
         setValue(newValue);

@@ -100,7 +100,7 @@
   .search__input:focus {
     outline: none;
     background-color: #f0eeee;
-    width: 20em;
+    width: 18.5em;
     transition: width .8s;
   }
   

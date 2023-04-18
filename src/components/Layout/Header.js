@@ -15,6 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import toast from 'react-hot-toast';
 function Header() {
     const navigate = useNavigate();
@@ -24,12 +26,16 @@ function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [activeInput, setActiveInput] = useState(false);
     const [search, setSearch] = useState('');
+    const [darkMode, setDarkMode] = useState(true);
     const open = Boolean(anchorEl);
     //sử dụng queryParams chuyền dữ liệu qua trang Shop
     const onSubmit = (e) => {
         e.preventDefault();
         const shopURL = `/shop?search=${search}`;
         navigate(shopURL)
+    }
+    const onClickDarkMode = () => {
+        setDarkMode(!darkMode)
     }
     const onChangeSearch = (e) => {
         setSearch(e.target.value)
@@ -79,7 +85,7 @@ function Header() {
     return ( 
        <>
         <Box>
-            <AppBar className='appbar' component={"nav"} sx={{ bgcolor: "#fff"}}>
+            <AppBar className='appbar' component={"nav"} sx={{ bgcolor:`${darkMode ? "#fff" : "#eeeeee" }`}}>
                     <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                         <Box>
                             <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -87,7 +93,7 @@ function Header() {
                             </Typography>
                         </Box>
                         <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                            <ul className='navigation-menu'>
+                            <ul className={`${darkMode ? 'navigation-menu' : 'navigation-menu-light'}`}>
                                 <li>
                                     <NavLink activeclassname="active" to="/">Home</NavLink>
                                 </li>
@@ -126,6 +132,7 @@ function Header() {
                                         <MenuItem onClick={handleClose} sx={{ borderRadius: '10px', mx: 1 }}>
                                             <NavLink className='navtt' to="/personal"><Box sx={{ pb: 0 }}><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
                                         </MenuItem>
+                                        <MenuItem onClick={onClickDarkMode}  sx={{ borderRadius: '10px', mx: 1 }}>{darkMode ? (<div style={{display: 'flex'}}><DarkModeIcon sx={{ mr: 0.7, my: 0.4 }} /><div style={{marginTop: '3px'}}>Dark</div></div>) : (<div style={{display: 'flex'}}><LightModeIcon sx={{ mr: 0.7, my: 0.4 }} /><div style={{marginTop: '3px'}}>Light</div></div>)}</MenuItem>
                                         <MenuItem onClick={handleLogOut} sx={{ borderRadius: '10px', mx: 1 }}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>
                                     </Menu>
                                 </Box>

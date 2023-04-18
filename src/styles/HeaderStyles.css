@@ -4,12 +4,26 @@
     align-items: center;
     justify-content: center;
 }
+.navigation-menu-light{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .navigation-menu li {
+    margin: 0px 20px;
+}
+.navigation-menu-light li {
     margin: 0px 20px;
 }
 .navigation-menu li a {
     text-decoration: none;
     color: black;
+    font-weight: 600;
+}
+.navigation-menu-light li a {
+    text-decoration: none;
+    color: white;
     font-weight: 600;
 }
 .active {

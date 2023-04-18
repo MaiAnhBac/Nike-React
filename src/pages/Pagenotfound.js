@@ -1,5 +1,4 @@
 import ErrorIcon from '@mui/icons-material/Error';
-import Button from '@mui/material/Button';
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 function Pagenotfound() {

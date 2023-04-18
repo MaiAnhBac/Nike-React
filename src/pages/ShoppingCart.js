@@ -20,11 +20,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Divider from '@mui/material/Divider';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import cart from '../images/cart.jpg'
 function ShoppingCart() {
     const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
@@ -37,7 +36,6 @@ function ShoppingCart() {
     const [errorPhone, setErrorPhone] = useState(false);
     const [errorAddress, setErrorAddress] = useState(false);
     const [errorRadio, setErrorRadio] = useState(false);
-    const [open, setOpen] = useState(false);
     const [progress, setProgress] = useState(false);
     const handleChangePhone = (e) => {
         setPhone(e.target.value)   
@@ -64,12 +62,9 @@ function ShoppingCart() {
             setTimeout(() => {
                 toast.success('Order success message!');
                 setProgress(false)
-                setOpen(true)
+                navigate('/success')
             }, 4000)
         }
-    }
-    const onClickShop = () => {
-        navigate('/shop')
     }
     /*  useMemo */
     // const handleTotal = useMemo(() => {
@@ -92,7 +87,13 @@ function ShoppingCart() {
     return (
         <Layout>
             {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
-            {carts.length === 0 ? (<Box className='empty' sx={{ p: 45, textAlign: 'center', fontSize: '20px', color: '#808080' }}>Your shopping cart is empty.</Box>) : (
+            {carts.length === 0 ? (
+            <Box className='empty' sx={{ p: 20,display: 'flex',flexDirection: 'column',alignItems: 'center', color: '#808080' }}>
+                <CardMedia component={'img'} src={cart} sx={{width: '450px'}}/>
+                <Typography className='title-hidden' sx={{fontSize: '20px'}}>Your shopping cart is empty.</Typography>
+                <Button className='btn-cart' onClick={() => {navigate('/shop')}}>Continue Shopping</Button>
+            </Box>
+            ) : (
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid className='grid' container spacing={2} sx={{ p: 4, '& h4': { textAlign: 'center', color: '#EC870E', fontWeight: 'bold' } }}>
                         <Grid item xs={12}>
@@ -186,35 +187,7 @@ function ShoppingCart() {
                                     {errorRadio && <p className='errorcart'>Please choose your payment method</p>}
                                 </Box>
                                 <Divider />
-                                <Grid item xs={12} sx={{ textAlign: 'right' }}>
-                                    <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>
-                                    <Dialog open={open}>
-                                        <DialogTitle align="center" sx={{ fontWeight: 'bold'}} >
-                                            <Box sx={{display: 'flex', justifyContent: 'center' }}>
-                                                <CheckCircleIcon sx={{ mt: 0.3, color: '#008000', mr: 0.5 }} />
-                                                <Typography sx={{ fontWeight: 'bold', fontSize: '20px' }}>Thank you for your order</Typography>
-                                            </Box>
-                                            <Typography sx={{ my: 1, fontStyle: 'italic' }}>Thank you for trusting and ordering our products. Please check your information and we will contact you</Typography>
-                                        </DialogTitle>
-                                        <DialogContent >
-                                            <Typography sx={{ my: 1, fontWeight: 'bold' }}>Ordering information</Typography>
-                                            <Typography sx={{ my: 1 }}>- {userLogin.name}</Typography>
-                                            <Typography sx={{ my: 1}}>- {phone}</Typography>
-                                            <Typography sx={{ my: 1, fontWeight: 'bold' }}>Delivery address</Typography>
-                                            <Typography sx={{ my: 1}}>- {address}</Typography>
-                                            <Typography sx={{ my: 1, fontWeight: 'bold' }}>Choose payment method</Typography>
-                                            <Typography sx={{ my: 1}}>- {radio}</Typography>
-                                            <Typography sx={{ my: 1, fontWeight: 'bold' }}>Shipping method</Typography>
-                                            <Typography sx={{ my: 1}}>- Delivery to your doorstep</Typography>
-                                            <Typography sx={{ my: 1, fontWeight: 'bold' }}>Delivery estimate: 5 days</Typography>
-                                        </DialogContent>
-                                        <DialogActions sx={{ mr: 3, mb: 1 }}>
-                                            <Button variant="contained" color="success" onClick={onClickShop} >
-                                                Continue to buy
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </Grid>
+                                <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>
                             </form>
                         </Grid>
                     </Grid>

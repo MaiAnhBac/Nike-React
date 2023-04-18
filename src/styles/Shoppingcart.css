@@ -5,6 +5,14 @@
     font-size: 12px;
     text-align: left;
 }
+.btn-cart{
+    text-transform: capitalize !important;
+    border-radius: 30px !important;
+    background: black !important;
+    color: white !important;
+    margin-top: 27px !important;
+    padding: 8px 17px !important;
+}
 @media (max-width: 600px) {
     .grid {
         display: grid !important;
@@ -35,5 +43,8 @@
         font-size: 17px !important;
         align-items: center !important;  
         transition: all .5s linear;
+    }
+    .title-hidden{
+        font-size: 15px !important;
     }
 }

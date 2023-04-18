@@ -42,20 +42,53 @@
         transition: all .5s linear;
     }
     .tilte-input{
-        width: 130px !important;
+        width: 180px !important;
         transition: all .5s linear;
     }
     .btn-info{
-        font-size: 12px !important;
+        font-size: 10px !important;
         transition: all .5s linear;
-        margin: 2px !important;
+        margin-left: 30px !important;
+    }
+    .box-btn{
+        margin-left: 26px !important;
+        margin-right: 18px !important;
+        transition: all .5s linear;
+    }
+    .btn-info-cancel, .btn-info-save {
+        margin-left: 0px !important;
+        font-size: 10px !important;
+        transition: all .5s linear;
     }
     .skeleton-avatar{
         width: 120px !important;
         height: 120px !important;
+        transition: all .5s linear;
     }
     .skeleton-tilte{
         width: 80px !important;
         height: 20px !important;
+        transition: all .5s linear;
+        
+    }
+    .box-flex{
+        flex-direction: column;
+        margin-left: 12px !important;
+        transition: all .5s linear;
+    }
+    .flex-name{
+        margin-left: 18px !important;
+        margin-right: 18px !important;
+        transition: all .5s linear;
+    }
+    .flex-avatar {
+        margin-left: 30px !important;
+        transition: all .5s linear;
+    }
+    .title-details{
+        font-size: 17px !important;
+        text-align: center !important;
+        margin-left: 0px !important;
+        transition: all .5s linear;
     }
 }
