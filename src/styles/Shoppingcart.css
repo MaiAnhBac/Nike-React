@@ -12,6 +12,7 @@
     color: white !important;
     margin-top: 27px !important;
     padding: 8px 17px !important;
+    min-width: 160px !important;
 }
 @media (max-width: 600px) {
     .grid {
@@ -46,5 +47,11 @@
     }
     .title-hidden{
         font-size: 15px !important;
+    }
+}
+@media (max-width: 414px) {
+    .title-hidden{
+        font-size: 14px !important;
+        width: 190px !important;
     }
 }

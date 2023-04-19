@@ -111,7 +111,7 @@ function Register() {
                 <Grid textAlign={'center'} sx={{my: 10}}>
                     <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
-                            <h2 style={{fontWeight: 'bold'}}>Create Account</h2>
+                            <h2 className="title-sigin" style={{fontWeight: 'bold'}}>Create Account</h2>
                             <Typography className='tyh2' sx={{mt: 2}}>Hey, Enter your details to get create <br/> account to your</Typography>
                         </Grid>
                         <form onSubmit={onConfirmCreate} style={{display: 'flex', flexDirection: 'column'}}>

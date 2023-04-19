@@ -95,7 +95,7 @@ function Login() {
                 <Grid textAlign={'center'} sx={{ my: 18 }}>
                     <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
-                            <h2 style={{ fontWeight: 'bold' }}>Sign in</h2>
+                            <h2 className='title-sigin' style={{ fontWeight: 'bold' }}>Sign in</h2>
                             <Typography className='tyh2' sx={{ mt: 2 }}>Hey, Enter your details to get sign in <br /> to your account</Typography>
                         </Grid>
                         <form onSubmit={onConfirmLogin} style={{ display: 'flex', flexDirection: 'column' }}>
