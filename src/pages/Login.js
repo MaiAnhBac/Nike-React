@@ -19,7 +19,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import toast from 'react-hot-toast';
 function Login() {
-    const paperStyle = { padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px' }
+    const paperStyle = { padding: '50px', width: 500, margin: '0px auto', borderRadius: '30px' }
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -92,7 +92,7 @@ function Login() {
         <>
             <Layout>
                 {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
-                <Grid textAlign={'center'} sx={{ my: 18 }}>
+                <Grid textAlign={'center'} sx={{ mt: 18 }}>
                     <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 className='title-sigin' style={{ fontWeight: 'bold' }}>Sign in</h2>

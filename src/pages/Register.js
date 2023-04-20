@@ -20,7 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import { useNavigate } from 'react-router-dom'
 function Register() {
-    const paperStyle = {padding: '50px', width: 500, margin: '20px auto', borderRadius: '30px'}
+    const paperStyle = {padding: '50px', width: 500, margin: '0px auto', borderRadius: '30px'}
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [name, setName] = useState('')
