@@ -47,7 +47,7 @@ function Home() {
                 <div className="headerContainer">
                     <h1>Nike Website</h1>
                     <p>Best Nike In VietNamese</p>
-                    <Link to='/shop'> <Button startIcon={<ReplyIcon sx={{fontSize: 'inherit'}} />}>Order Now</Button></Link>
+                    <Link to='/shop'> <Button className='btn-home' startIcon={<ReplyIcon sx={{fontSize: 'inherit'}} />}>Order Now</Button></Link>
                 </div>
             </div>
         </Layout>

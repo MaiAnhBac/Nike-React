@@ -108,7 +108,7 @@ function Shop() {
             getSearchProduct(searchQuery)
                 .then((title) => setData(title))
         }
-    })
+    },[searchQuery])
     return (
         <Layout>
             <Box className='boxall'>
@@ -132,6 +132,7 @@ function Shop() {
                             </Box>
                             <Card className="cardmenu" variant="outlined">
                                 <Box className='cardmenu-con'>
+                                    <Box>
                                     {loading ? (<Skeleton variant="rounded" width={250} height={10} sx={{ mt: 1.5 }} />) :
                                         (<Box sx={{ display: 'flex', justifyContent: 'left' }}>
                                             <Typography>Price Range from <a className="a-price">${value[0]} </a> › to <a className="a-price">${value[1]}</a></Typography>
@@ -140,7 +141,9 @@ function Shop() {
                                         (<Slider value={value} onChange={handleChangePrice} valueLabelDisplay="auto"
                                             min={0} max={1000} step={100} size='medium' color="secondary" sx={{ height: 8 }}
                                         />)}
+                                    </Box>
                                 </Box>
+                                    <Divider orientation="vertical"></Divider>
                             </Card>
                         </Box>
                         <Box sx={{ mr: 17, mt: 2 }}>
