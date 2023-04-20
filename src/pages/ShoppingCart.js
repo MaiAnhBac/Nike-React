@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { ClearCart, RemoveCart, resetStore } from "../redux/cartSystem";
+import {RemoveCart, resetStore } from "../redux/cartSystem";
 import { Typography, Box, CardMedia, Grid, Button, IconButton, TextField } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
