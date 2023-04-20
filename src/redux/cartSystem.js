@@ -28,9 +28,17 @@ const cartSystem = createSlice({
                 localStorage.setItem('cart', JSON.stringify(state.carts))
             }
         }
+    },
+    extraReducers: {
+        'RESET_STORE': (state, action) => {
+            return {carts: []};
+        }
     }
 })
 
 export const {AddCart} = cartSystem.actions;
 export default cartSystem.reducer;
 export const {RemoveCart} = cartSystem.actions;
+export const resetStore = () => ({
+    type: 'RESET_STORE',
+  });

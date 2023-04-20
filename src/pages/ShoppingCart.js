@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RemoveCart } from "../redux/cartSystem";
+import { ClearCart, RemoveCart, resetStore } from "../redux/cartSystem";
 import { Typography, Box, CardMedia, Grid, Button, IconButton, TextField } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -61,6 +61,8 @@ function ShoppingCart() {
             setErrorRadio(false)
             setTimeout(() => {
                 toast.success('Order success message!');
+                dispatch(resetStore())
+                localStorage.removeItem('cart')
                 setProgress(false)
                 navigate('/success')
             }, 4000)
