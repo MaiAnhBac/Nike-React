@@ -130,7 +130,7 @@ function Header() {
                                 <Box><IconButton onClick={handleClick} title='Tài khoản' sx={{ color: 'black', borderRadius: '.5rem', background: '#eee', height: '40px' }}><LockOpenIcon /></IconButton>
                                     <Menu id="my-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
                                         <MenuItem onClick={handleClose} sx={{ borderRadius: '10px', mx: 1 }}>
-                                            <NavLink className='navtt' to="/personal"><Box sx={{ pb: 0 }}><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
+                                            <NavLink className='navtt' to="/profile"><Box sx={{ pb: 0 }}><PersonIcon sx={{ mr: 0.7 }} /></Box>Profile</NavLink>
                                         </MenuItem>
                                         <MenuItem onClick={onClickDarkMode}  sx={{ borderRadius: '10px', mx: 1 }}>{darkMode ? (<div style={{display: 'flex'}}><DarkModeIcon sx={{ mr: 0.7, my: 0.4 }} /><div style={{marginTop: '3px'}}>Dark</div></div>) : (<div style={{display: 'flex'}}><LightModeIcon sx={{ mr: 0.7, my: 0.4 }} /><div style={{marginTop: '3px'}}>Light</div></div>)}</MenuItem>
                                         <MenuItem onClick={handleLogOut} sx={{ borderRadius: '10px', mx: 1 }}><LogoutOutlinedIcon sx={{ mr: 0.7, my: 0.4 }} />Logout</MenuItem>

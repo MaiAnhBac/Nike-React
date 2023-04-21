@@ -10,6 +10,7 @@ import Personal from '../pages/Personal'
 import ProductDetails from '../pages/Productdetails'
 import SuccessCart from '../pages/SuccessCart';
 import FailedCart from '../pages/FailedCart';
+import Profile from '../pages/Profile';
 const publicRoutes = [
     {path: '/', component: Home},
     {path: '/about', component: About},
@@ -23,6 +24,7 @@ const publicRoutes = [
     {path: '/productdetails/:id', component: ProductDetails},
     {path: '/success', component: SuccessCart},
     {path: '/failed', component: FailedCart},
+    {path: '/profile', component: Profile},
 ]
 
 const privateRoutes = []
