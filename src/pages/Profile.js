@@ -144,23 +144,23 @@ function Profile() {
                     </div>
                     <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a className={`nav-link border-top active-link ${activeAccount ? "show" : ""}`} onClick={onActivedAccount} href="#account">
-							<PersonIcon className="icon" />
+							<PersonIcon className="profile-icon" />
                             <p className="title-p">Account</p>
                         </a>
                         <a className={`nav-link active-link ${activePass ? "show" : ""} `} onClick={onActivedPass} href="#password">
-                            <KeyIcon className="icon" />
+                            <KeyIcon className="profile-icon" />
                             <p className="title-p">Password</p>
                         </a>
                         <a className="nav-link active-link"  data-toggle="pill" href="#" role="tab"  aria-selected="true">
-                            <PrivacyTipIcon className="icon" />
+                            <PrivacyTipIcon className="profile-icon" />
                             <p className="title-p">Security</p>
                         </a>
                         <a className="nav-link active-link" data-toggle="pill" href="#" role="tab"  aria-selected="true">
-                            <AirplayIcon className="icon" />
+                            <AirplayIcon className="profile-icon" />
                             <p className="title-p">Application</p>
                         </a>
                         <a className="nav-link active-link" data-toggle="pill" href="#" role="tab"  aria-selected="true">
-                            <NotificationsIcon className="icon" />
+                            <NotificationsIcon className="profile-icon" />
                             <p className="title-p">Notification</p>
                         </a>
                     </div>

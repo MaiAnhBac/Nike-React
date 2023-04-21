@@ -92,7 +92,7 @@ function Login() {
         <>
             <Layout>
                 {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
-                <Grid textAlign={'center'} sx={{ mt: 18 }}>
+                <Grid textAlign={'center'} sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'}}>
                     <Paper className='paper' elevation={20} style={paperStyle}>
                         <Grid>
                             <h2 className='title-sigin' style={{ fontWeight: 'bold' }}>Sign in</h2>

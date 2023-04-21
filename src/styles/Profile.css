@@ -151,10 +151,16 @@
     }
     .row .col-md-6 .form-group{
         padding: 10px;
+        transition: all .5s linear;
     }
     .row .col-md-6 .form-group .file{
         width: 235px;
         transition: all .5s ease;
+    }
+    .profile-img{
+        width: 150px;
+        height: 150px;
+        transition: all .5s linear;
     }
 }
 @media (max-width: 870px){
@@ -165,9 +171,24 @@
     }
     .row .col-md-6 .form-group{
         padding: 10px;
+        transition: all .5s linear;
     }
     .row .col-md-6 .form-group .file{
         width: 235px;
         transition: all .5s ease;
+    }
+}
+@media (max-width: 414px){
+    .profile-tab-nav{
+        min-width: 280px;
+        transition: all .5s linear;
+    }
+    .profile-h3-account{
+        font-size: 20px;
+        transition: all .5s linear;
+    }
+    .p-md-5{
+        padding: 17px;
+        transition: all .5s linear;
     }
 }

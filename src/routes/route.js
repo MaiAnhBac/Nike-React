@@ -6,7 +6,6 @@ import Shop from '../pages/Shop'
 import Register from '../pages/Register';
 import Pagenotfound from '../pages/Pagenotfound'
 import ShoppingCart from '../pages/ShoppingCart'
-import Personal from '../pages/Personal'
 import ProductDetails from '../pages/Productdetails'
 import SuccessCart from '../pages/SuccessCart';
 import FailedCart from '../pages/FailedCart';
@@ -20,7 +19,6 @@ const publicRoutes = [
     {path: '/contact', component: Contact},
     {path: '/shop', component: Shop},
     {path: '/shoppingcart', component: ShoppingCart},
-    {path: '/personal', component: Personal},
     {path: '/productdetails/:id', component: ProductDetails},
     {path: '/success', component: SuccessCart},
     {path: '/failed', component: FailedCart},
