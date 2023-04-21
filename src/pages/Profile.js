@@ -6,6 +6,7 @@ import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import KeyIcon from '@mui/icons-material/Key';
 import PersonIcon from '@mui/icons-material/Person';
 import AirplayIcon from '@mui/icons-material/Airplay';
+import StackeIcon from '@mui/icons-material/StackedBarChart';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
@@ -83,12 +84,14 @@ function Profile() {
 	const onClickSave = (e) => {
         e.preventDefault();
         const id = data.id;
-            updateUserInfo(id,name, imageUser)
-                .then((data) => {
-                    setData(data)
-                    setEditAccount(false)
-                    toast.success('Successfully edited!');
-                });
+        setTimeout(() => {
+        updateUserInfo(id, name, imageUser)
+            .then((data) => {
+                setData(data)
+                setEditAccount(false)
+                toast.success('Successfully edited!');
+            });
+        }, 2000)
     }
 	const onClickSavePassword = () => {
         const id = data.id;
@@ -131,7 +134,6 @@ function Profile() {
     return (
         <Layout>
         <div className="container">
-            {/* <h1 className="mb-5">Account Settings</h1> */}
             <div className="mb-flex">
                 <div className="profile-tab-nav border-right">
                     <div className="profile-nav">
@@ -163,6 +165,10 @@ function Profile() {
                             <NotificationsIcon className="profile-icon" />
                             <p className="title-p">Notification</p>
                         </a>
+                        <a className="nav-link active-link" data-toggle="pill" href="#" role="tab"  aria-selected="true">
+                            <StackeIcon className="profile-icon" />
+                            <p className="title-p">Statistical</p>
+                        </a>
                     </div>
                 </div>
                 <div className="tab-content p-4 p-md-5" id="v-pills-tabContent">
@@ -173,38 +179,38 @@ function Profile() {
 								<div className="form-group">
 								  	<label className="label-title">Name</label>
 									{EditAccount ? (<input type="text" className="form-control" value={name} onChange={handleChangeName}/>) : 
-								  	<input type="text" disabled className="form-control" value={data?.name || ""}/>}
+								  	<input type="text" disabled className="form-control no-drop" value={data?.name || ""}/>}
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Role</label>
-								  	<input type="text" disabled className="form-control" value={data?.role || ""}/>
+								  	<input type="text" disabled className="form-control no-drop" value={data?.role || ""}/>
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Email</label>
-								  	<input type="text" disabled className="form-control" value={data?.email || ""}/>
+								  	<input type="text" disabled className="form-control no-drop" value={data?.email || ""}/>
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Phone number</label>
-								  	<input type="text" disabled className="form-control" value="+84 345478547"/>
+								  	<input type="text" disabled className="form-control no-drop" value="+84 345478547"/>
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Avatar</label>
 									{EditAccount ? (<input type="file" className="form-control file" onChange={handleChangeAvatar} />) : 
-								  		(<input type="file" disabled className="form-control file" />)}
+								  		(<input type="file" disabled className="form-control file no-drop" />)}
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Country</label>
-								  	<input type="text" disabled className="form-control" value="Việt Nam"/>
+								  	<input type="text" disabled className="form-control no-drop" value="Việt Nam"/>
 								</div>
 							</div>
 						</div>
@@ -224,7 +230,7 @@ function Profile() {
 								<div className="form-group">
 								  	<label className="label-title">Old password</label>
 									{EditPass ? (<input type="password" className="form-control" value={password} onChange={onPassword}/>) : 
-								  	(<input type="password" disabled className="form-control" value={data?.password || ""}/>)}
+								  	(<input type="password" disabled className="form-control no-drop" value={data?.password || ""}/>)}
 								</div>
 							</div>
 						</div>
@@ -233,14 +239,14 @@ function Profile() {
 								<div className="form-group">
 								  	<label className="label-title">New password</label>
 								  	{EditPass ? (<input type="password" className="form-control" value={changePassword} onChange={onChangePassword}/>) : 
-								  	(<input type="password" disabled className="form-control" value="password" />)}
+								  	(<input type="password" disabled className="form-control no-drop" value="password" />)}
 								</div>
 							</div>
 							<div className="col-md-6">
 								<div className="form-group">
 								  	<label className="label-title">Confirm new password</label>
 								  	{EditPass ? (<input type="password" className="form-control" value={confirmPassword} onChange={onChangeConfirmPassword}/>) : 
-								  	(<input type="password" disabled className="form-control" value="password"/>)}
+								  	(<input type="password" disabled className="form-control no-drop" value="password"/>)}
 								</div>
 							</div>
 						</div>

@@ -109,6 +109,9 @@
     padding: 7px !important;
     height: calc(1.8em + 0.75rem + 2px) !important;
 }
+.row .col-md-6 .form-group .no-drop {
+    cursor: no-drop;
+}
 .row-profile{
     padding: 20px;
 }
