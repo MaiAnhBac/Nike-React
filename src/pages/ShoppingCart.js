@@ -90,7 +90,7 @@ function ShoppingCart() {
         <Layout>
             {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
             {carts.length === 0 ? (
-            <Box className='empty' sx={{ p: 20,display: 'flex',flexDirection: 'column',alignItems: 'center', color: '#808080' }}>
+            <Box className='empty' sx={{display: 'flex',flexDirection: 'column',alignItems: 'center', color: '#808080', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <CardMedia component={'img'} src={cart} sx={{width: '450px'}}/>
                 <Typography className='title-hidden' sx={{fontSize: '20px'}}>Your shopping cart is empty.</Typography>
                 <Button className='btn-cart' onClick={() => {navigate('/shop')}}>Continue Shopping</Button>
