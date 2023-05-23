@@ -53,7 +53,11 @@ export const postAddNewUser = (name, email,avatar, password) => {
                 password: password,
             })
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Có lỗi xảy ra ' + res.status);
+                }
+                res.json()})
     )
 };
 // AccessToken login
@@ -98,7 +102,11 @@ export const createNewProduct =(title,price,description,categoryId,images) => {
                 images: images
             })
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Có lỗi xảy ra ' + res.status);
+                }
+                res.json()})
     )
 }
 //Delete products
@@ -157,3 +165,21 @@ export const updateUserInfo = (id,name ,avatar) => {
         .then(res => res.json())
     )
 };
+//getALLuser
+export const checkUserEmail = (email) => {
+    return (
+        fetch('https://api.escuelajs.co/api/v1/users/is-available', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json'},
+            body: JSON.stringify({
+                email: email
+            })
+        })
+            .then(res => res.json())
+    )
+};
+
+// checkUserEmail('matt@mail.com')
+//     .then((res) =>{
+//         console.log(res);
+//     })

@@ -34,10 +34,6 @@ function ProductDetails() {
     const [loading, setLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const dispatch = useDispatch()
-    function handleClick(event) {
-        event.preventDefault();
-        console.info('You clicked a breadcrumb.');
-    }
     useEffect(() => {
         getProductsByDetails(id)
             .then((data) => {

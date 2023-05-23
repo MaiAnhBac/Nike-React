@@ -85,6 +85,7 @@ function NewProduct() {
                     })
                     .catch((err) => {
                         console.log(err)
+                        toast.error('Create new product failed message!');
                     })
             }, 5000)
         }

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { postAddNewUser } from '../data/API'
+import { useEffect, useState } from "react";
+import { postAddNewUser, checkUserEmail } from '../data/API'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
@@ -79,7 +79,7 @@ function Register() {
             setProgress(false)
         } else {
             setError(false)
-            if(password === confirmPassword){
+            if (password === confirmPassword) {
                 setTimeout(() => {
                     setProgress(false)
                     postAddNewUser(name, email, imageUser, password)
@@ -90,7 +90,6 @@ function Register() {
                             setPassword('')
                             setConfirmPassword('')
                             navigate('/login')
-                            
                         })
                         .catch((error) => {
                             toast.error('Registration failed message!');
