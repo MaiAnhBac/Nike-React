@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import cart from '../images/cart.jpg'
-import { PayPalButton } from "react-paypal-button-v2";
+// import { PayPalButton } from "react-paypal-button-v2";
 function ShoppingCart() {
     const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
