@@ -14,12 +14,6 @@
     padding: 8px 17px !important;
     min-width: 160px !important;
 }
-#zoid-paypal-buttons-uid_e767eb3301_mdy6nty6mtc {
-    display: none;
-}
-.buttons-container {
-    display: none;
-}
 @media (max-width: 600px) {
     .grid {
         display: grid !important;
