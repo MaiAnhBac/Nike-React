@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import cart from '../images/cart.jpg'
-// import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalButton } from "react-paypal-button-v2";
 function ShoppingCart() {
     const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
@@ -200,7 +200,7 @@ function ShoppingCart() {
                                     {errorRadio && <p className='errorcart'>Please choose your payment method</p>}
                                 </Box>
                                 <Divider />
-                                {/* {paypal ? (
+                                {paypal ? (
                                     <PayPalButton
                                     amount={total}
                                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
@@ -220,8 +220,8 @@ function ShoppingCart() {
                                         toast.error('Transaction failed');
                                     }}
                                   />
-                                ) : (<Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>)} */}
-                                <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>
+                                ) : (<Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>)}
+                                {/* <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button> */}
                             </form>
                         </Grid>
                     </Grid>
