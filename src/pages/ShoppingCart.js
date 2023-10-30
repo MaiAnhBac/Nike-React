@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import cart from '../images/cart.jpg'
+import { PayPalButton } from "react-paypal-button-v2";
 function ShoppingCart() {
     const navigate = useNavigate();
     const userLogin = JSON.parse(localStorage.getItem('user')) || null
@@ -37,6 +38,16 @@ function ShoppingCart() {
     const [errorAddress, setErrorAddress] = useState(false);
     const [errorRadio, setErrorRadio] = useState(false);
     const [progress, setProgress] = useState(false);
+    const [paypal, setPayPal] = useState(false);
+    const [devivery, setDevivert] = useState(false)
+    const handleChangeDevivery = (e) => {
+        setDevivert(e.target.checked)
+        setPayPal(false)
+    }
+    const handleChangePaypal = (e) => {
+        setPayPal(e.target.checked)
+        setDevivert(false)
+    }
     const handleChangePhone = (e) => {
         setPhone(e.target.value)   
     }
@@ -158,7 +169,7 @@ function ShoppingCart() {
                                         </TableRow>
                                         <TableRow>
                                             <TableCell align="left" sx={{ fontWeight: 'bold', color: 'red', fontSize: '18px' }}>Total:</TableCell>
-                                            <TableCell align="left" sx={{ color: 'red', fontWeight: 'bold', fontSize: '18px' }}>{total} đ</TableCell>
+                                            <TableCell align="left" sx={{ color: 'red', fontWeight: 'bold', fontSize: '18px' }}>{total} $</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
@@ -181,15 +192,36 @@ function ShoppingCart() {
                                             defaultValue="female"
                                             name="radio-buttons-group"
                                         >
-                                            <FormControlLabel value="Payment by domestic ATM card (Internet Banking)" control={<Radio />} disabled label="Payment by domestic ATM card (Internet Banking)" />
-                                            <FormControlLabel value="Payment on delivery (COD)" control={<Radio />} label="Payment on delivery (COD)" />
+                                            <FormControlLabel checked={paypal} onChange={handleChangePaypal} control={<Radio />} label="Payment by domestic ATM card (Internet Banking)" />
+                                            <FormControlLabel checked= {devivery} onChange={handleChangeDevivery} control={<Radio />} label="Payment on delivery (COD)" />
                                             <FormControlLabel value="Bank transfer" control={<Radio />} disabled label="Bank transfer" />
                                         </RadioGroup>
                                     </FormControl>
                                     {errorRadio && <p className='errorcart'>Please choose your payment method</p>}
                                 </Box>
                                 <Divider />
-                                <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>
+                                {paypal ? (
+                                    <PayPalButton
+                                    amount={total}
+                                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                                    onSuccess={(details, data) => {
+                                        toast.success('Transaction completed by ' + details.payer.name.given_name);
+                                    //   alert("Transaction completed by " + details.payer.name.given_name);
+                            
+                                      // OPTIONAL: Call your server to save the transaction
+                                      return fetch("/paypal-transaction-complete", {
+                                        method: "post",
+                                        body: JSON.stringify({
+                                          orderID: data.orderID
+                                        })
+                                      });
+                                    }}
+                                    onError={() => {
+                                        toast.error('Transaction failed');
+                                    }}
+                                  />
+                                ) : (<Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>)}
+                                
                             </form>
                         </Grid>
                     </Grid>
