@@ -200,7 +200,7 @@ function ShoppingCart() {
                                     {errorRadio && <p className='errorcart'>Please choose your payment method</p>}
                                 </Box>
                                 <Divider />
-                                {paypal ? (
+                                {/* {paypal ? (
                                     <PayPalButton
                                     amount={total}
                                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
@@ -220,8 +220,8 @@ function ShoppingCart() {
                                         toast.error('Transaction failed');
                                     }}
                                   />
-                                ) : (<Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>)}
-                                
+                                ) : (<Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>)} */}
+                                <Button onClick={onSubmitCart} variant="contained" color="primary" sx={{ m: 2 }} >Checkout</Button>
                             </form>
                         </Grid>
                     </Grid>
