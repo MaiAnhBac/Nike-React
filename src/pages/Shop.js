@@ -17,6 +17,8 @@ import toast from 'react-hot-toast';
 import GoToTopButton from './Gototop';
 import Newproduct from './NewProduct';
 import { useLocation } from 'react-router-dom';
+import Aos from "aos";
+import "aos/dist/aos.css";
 function Shop() {
     const userLogin = JSON.parse(localStorage.getItem('user')) || []
     const navigate = useNavigate();
@@ -109,6 +111,9 @@ function Shop() {
                 .then((title) => setData(title))
         }
     },[searchQuery])
+    useEffect(() => {
+        Aos.init()
+    })
     return (
         <Layout>
             <Box className='boxall'>
@@ -169,7 +174,8 @@ function Shop() {
                 <Divider className="dividermenu" variant="middle" />
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                     {data.map((datas) => (
-                        <Card key={datas.id} className="cardshop">
+                        <Card data-aos="fade-up"
+                        data-aos-duration="3000" key={datas.id} className="cardshop">
                             <Link to={`/productdetails/${datas.id}`} className='navLink'>
                                 <CardActionArea>
                                     {loading ? (<Skeleton variant="rounded" width={390} height={360} />) :
