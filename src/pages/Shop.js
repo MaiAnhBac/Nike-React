@@ -25,6 +25,7 @@ function Shop() {
     const [selected, setSelected] = useState('')
     const [data, setData] = useState([])
     const [categories, setCategories] = useState([])
+    const [LowHigh, setLowHigh] = useState('Default');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
@@ -78,6 +79,22 @@ function Shop() {
                 setData(offset)
             })
     }
+    const onChangLowHigh = (e) => {
+        sortData(e.target.value)
+        setLowHigh(e.target.value)
+    }
+    const sortData = (option) => {
+        const sortedData = [...data].sort((a, b) => {
+          if (option === 'Low-to-High') {
+            return a.price - b.price;
+          } else if (option === 'High-to-Low') {
+            return b.price - a.price;
+          } else if(option === 'Default') {
+            return 0;
+          }
+        });
+        setData(sortedData);
+      };
     useEffect(() => {
         const token = localStorage.getItem('user');
         if (token) {
@@ -150,6 +167,17 @@ function Shop() {
                                 </Box>
                                     <Divider orientation="vertical"></Divider>
                             </Card>
+                            <Box className="card-lowtohigh">
+                                {loading ? (<Skeleton variant="rounded" width={300} height={58} sx={{ mt: 1 }} />) :
+                                    (<FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-labell" sx={{ mt: '10px', ml: 1.5 }}>Select</InputLabel>
+                                        <Select value={LowHigh} onChange={onChangLowHigh} labelId="demo-simple-select-labell" id="demo-simple-selectt" label="Chọn lọc" sx={{ width: '300px', height: 58, mt: '10px', borderRadius: 4 }}>                                  
+                                                <MenuItem value="Default">Default</MenuItem>
+                                                <MenuItem value="Low-to-High">Low to Hight</MenuItem>
+                                                <MenuItem value="High-to-Low">High to Low</MenuItem>
+                                        </Select>
+                                    </FormControl>)}
+                            </Box>
                         </Box>
                         <Box sx={{ mr: 17, mt: 2 }}>
                         {loading ? (<Skeleton variant="rounded" width={220} height={40} sx={{ mt: 1 }} />) :(

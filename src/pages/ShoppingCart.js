@@ -137,7 +137,6 @@ function ShoppingCart() {
                                                     <TableCell align="right">${cart.price}</TableCell>
                                                     <TableCell align="right">
                                                         <TextField size="small" type="number" value={cart.amount} style={{ width: "60px", height: "60px", marginTop: '12px' }} inputProps={{ min: 1, max: 100 }} />
-                                                    
                                                     </TableCell>
                                                     <TableCell align="right" sx={{ color: 'red', fontWeight: 'bold' }}>${cart.price * cart.amount} </TableCell>
                                                     <TableCell align="right">

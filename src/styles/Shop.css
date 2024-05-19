@@ -29,6 +29,7 @@
     height: 60px !important;
     margin-top: 8px !important;
     border-radius: 13px !important;
+    margin-right: 16px !important;
 }
 .cardmenu-con {
   width: 250px;
@@ -71,7 +72,6 @@
     font-size: 30px !important;
     margin-top: 3px !important;
 }
-
 /* Search */
 .search {
     display: flex;
