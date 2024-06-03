@@ -87,13 +87,13 @@ function ShoppingCart() {
     //     })
     //     return ans;
     // }, [])
-    const handleTotal = () => {
+    const handleTotal = useMemo(() => {
         let ans = 0;
         carts.map(item => {
             ans += item.amount * item.price
         })
         setTotal(ans)
-    }
+    })
     useEffect(() => {
         handleTotal();
     })

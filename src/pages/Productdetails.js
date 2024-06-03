@@ -34,6 +34,7 @@ function ProductDetails() {
     const [loading, setLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const dispatch = useDispatch()
+    console.log(id);
     useEffect(() => {
         getProductsByDetails(id)
             .then((data) => {
