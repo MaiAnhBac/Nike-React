@@ -87,16 +87,16 @@ function ShoppingCart() {
     //     })
     //     return ans;
     // }, [])
-    const handleTotal = useMemo(() => {
+    const handleTotal =() => {
         let ans = 0;
         carts.map(item => {
             ans += item.amount * item.price
         })
         setTotal(ans)
-    })
+    }
     useEffect(() => {
-        handleTotal();
-    })
+        handleTotal()
+    }, [handleTotal])
     return (
         <Layout>
             {progress && <Backdrop open={progress} sx={{color: '#FF9933', bgcolor: 'rgba(192,192,192,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}><CircularProgress color="inherit" /></Backdrop>}
